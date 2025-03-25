@@ -160,6 +160,11 @@ double Rectangle::area(Point** points, size_t len){
     return result;
 }
 
+Point* Rectangle::get_pts(){
+    return pts;
+
+}
+
 void Rectangle::show_calc() {
     std::cout << "Доступные вычисления:\n"  << "1. Площадь прямоугольника\n" << "2. Периметр прямоугольника\n";
 }

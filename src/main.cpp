@@ -71,10 +71,8 @@ int main(){
         default:
            std::cout << "Ошибка ввода!"  << std::endl;
     }
-    
-    //std::cout << "\n";
-    //std::cout << "shape: " << sh << "\n" << "cnds: " << cnds << "\n" << "calc: " << clc << std::endl;
-    
+
+
     if(sh == square && clc == area && cnds == sides) {
         double a{0},b{0},c{0},d{0};
         std::cin >> a >> b >> c >> d;
@@ -178,9 +176,6 @@ int main(){
         return 0;
     }
 
-
-    //std::cout << "Не реализовано." << std::endl;
-    
        
     return 0;
 }

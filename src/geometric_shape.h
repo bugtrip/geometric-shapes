@@ -77,6 +77,7 @@ public:
     void get_sides(double& a, double& b, double& c, double& d) const;
     bool check_valid_rec(double a, double b, double c, double d);
     double perimeter();
+    Point* get_pts();
     virtual double area();
     virtual double area(Point** coords, size_t len) override;
     virtual void show_conditions() override;
