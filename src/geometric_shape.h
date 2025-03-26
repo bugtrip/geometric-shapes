@@ -36,6 +36,8 @@ private:
     size_t length{0};
 public:
     Square() = default;
+    Square(const Square&) = delete;
+    Square& operator=(const Square&) = delete;
     Square(Conditions calc, double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : calc(calc) {
             set_sides(a,b,c,d);
     }
@@ -66,6 +68,8 @@ private:
     size_t length{0};
 public:
     Rectangle() = default;
+    Rectangle(const Rectangle&) = delete;
+    Rectangle& operator=(const Rectangle&) = delete;
     Rectangle(Conditions calc, double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0){
         set_sides(a,b,c,d);
     }
