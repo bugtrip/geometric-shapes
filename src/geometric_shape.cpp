@@ -2,6 +2,7 @@
 #include "geometric_shape.h"
 #include <cstring>
 #include <cmath>
+#include <algorithm>
 
 double Point::get_x(){
     return x;
@@ -17,7 +18,7 @@ void Point::set_pt(double x, double y){
 
 void GeometricShape::show_menu() {
     std::cout << "Выберите геометрическую фигуру для расчетов:\n" 
-              << "1. Квадрат\n" << "2. Прямоугольник\n" << "3. Треугольник\n" << "4. Ромб" << std::endl;
+              << "  1. Квадрат\n" << "  2. Прямоугольник\n" << "  3. Треугольник\n" << "  4. Ромб\n\n" << "  0. Выход" << std::endl;
 }
 
 void GeometricShape::show_input_form(Conditions cnds){
@@ -89,11 +90,11 @@ Point* Square::get_pts(){
 }
 
 void Square::show_calc() {
-    std::cout << "Доступные вычисления:\n"  << "1. Площадь квадрата\n" << "2. Периметр квадрата\n";
+    std::cout << "Доступные вычисления:\n"  << "  1. Площадь квадрата\n" << "  2. Периметр квадрата\n";
 }
 
 void Square::show_conditions() {
-    std::cout<< "Как произвести расчеты?\n1. По сторонам квадрата\n2. По координатам вершин квадрата\n";
+    std::cout<< "Как произвести расчеты?\n  1. По сторонам квадрата\n  2. По координатам вершин квадрата\n";
 }
 
 void Square::show_input_form(Conditions cnds) {
@@ -166,15 +167,15 @@ Point* Rectangle::get_pts(){
 }
 
 void Rectangle::show_calc() {
-    std::cout << "Доступные вычисления:\n"  << "1. Площадь прямоугольника\n" << "2. Периметр прямоугольника\n";
+    std::cout << "Доступные вычисления:\n"  << "  1. Площадь прямоугольника\n" << "  2. Периметр прямоугольника\n";
 }
 
 void Rectangle::show_conditions() {
-    std::cout << "Как произвести расчеты?\n1. По сторонам прямоугольника\n2. По координатам вершин прямоугольника\n";
+    std::cout << "Как произвести расчеты?\n  1. По сторонам прямоугольника\n  2. По координатам вершин прямоугольника\n";
 }
 
 void Rectangle::show_input_form(Conditions cnds) {
-    cnds == sides ? std::cout << "Введите параметры сторон прямоугольника по порядку A B C D:\n" : cnds == coords ? std::cout
+    cnds == sides ? std::cout << "Введите длины сторон прямоугольника по порядку A B C D:\n" : cnds == coords ? std::cout
                               << "Введите координаты:\n" : std::cout
                               << "Ошибка ввода!"  << std::endl;
 }

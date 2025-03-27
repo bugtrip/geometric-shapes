@@ -2,7 +2,7 @@
 #define _GEOMETRIC_H
 #include <cstddef>
 
-enum Shape{square = 1, rectangle = 2, triangle = 3, none_sh = 4};
+enum Shape{exit_sh = 0, square = 1, rectangle = 2, triangle = 3, none_sh = 4};
 enum Calculations{area = 1, perimeter = 2, none_clc = 3};
 enum Conditions{sides = 1, coords = 2, none_cnd = 3};
 

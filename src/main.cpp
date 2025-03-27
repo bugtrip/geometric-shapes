@@ -16,7 +16,7 @@ int main(){
     std::cin >> num_shape;
     std::cout << "\n";
     
-    sh = (num_shape == 1) ? square : (num_shape == 2) ? rectangle : none_sh;
+    sh = (num_shape == 1) ? square : (num_shape == 2) ? rectangle : (num_shape == 0) ? exit_sh : none_sh;
     
     switch(sh){
         case square:
@@ -68,6 +68,9 @@ int main(){
                 rec_shape.show_input_form(cnds);
                 break;        
             }
+        case exit_sh:
+            //std::cout << " " << std::endl;
+            return 0;
         default:
            std::cout << "Ошибка ввода!"  << std::endl;
     }
