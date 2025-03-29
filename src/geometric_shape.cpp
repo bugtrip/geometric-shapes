@@ -27,6 +27,8 @@ void GeometricShape::show_input_form(Conditions cnds){
                               << "Ошибка ввода!"  << std::endl;
 }
 
+//Square
+
 void Square::set_sides(double a, double b, double c, double d){
     if(check_valid_sq(a,b,c,d)){
         this->a = a;
@@ -100,6 +102,8 @@ void Square::show_conditions() {
 void Square::show_input_form(Conditions cnds) {
     GeometricShape::show_input_form(cnds);
 }
+
+//Rectangle
 
 void Rectangle::set_sides(double a, double b, double c, double d){
     if(check_valid_rec(a,b,c,d)){
@@ -180,4 +184,70 @@ void Rectangle::show_input_form(Conditions cnds) {
                               << "Ошибка ввода!"  << std::endl;
 }
 
+//Triangle
+
+bool Triangle::check_valid_tr(double a, double b, double c){
+    if((a + b) > c && (b + c) > a && (a + c) > b) return true;
+    
+    return false;
+}
+
+void Triangle::set_sides(double a, double b, double c){
+    if(check_valid_tr(a,b,c)){
+        this->a = a;
+        this->b = b;
+        this->c = c;
+    }
+}
+
+void Triangle::set_points(Point** points, size_t len){
+    if(pts) delete [] pts;
+    length = len;
+    pts = new Point[length];
+    for(size_t i = 0; i < length; ++i){
+        this->pts[i] = *points[i];
+    }
+}
+
+double Triangle::perimeter(){
+    return a + b + c;
+}
+
+double Triangle::area(Point** points, size_t len){
+    double result{0.0}, res1{0.0}, res2{0.0};
+    length = len;
+    if(pts) delete [] pts;
+    pts = new Point[length];
+    for(size_t i = 0; i < length; ++i){
+        pts[i] = *points[i];
+    }
+    
+    for(size_t i = 1; i < length; ++i){
+        res1 += pts[i-1].get_x() * (pts[i].get_y());
+        res2 += pts[i-1].get_y() * (pts[i].get_x());
+    }
+    res1 += pts[len-1].get_x() * pts[0].get_y();
+    res2 += pts[len-1].get_y() * pts[0].get_x();
+
+    result = fabs(res1 - res2)/2;
+    return result;
+}
+
+Point* Triangle::get_pts(){
+    return pts;
+}
+
+void Triangle::show_calc() {
+    std::cout << "Доступные вычисления:\n"  << "  1. Площадь треугольника\n" << "  2. Периметр треугольника\n";
+}
+
+void Triangle::show_conditions() {
+    std::cout << "Как произвести расчеты?\n  1. По сторонам треугольника\n  2. По координатам вершин треугольника\n";
+}
+
+void Triangle::show_input_form(Conditions cnds) {
+    cnds == sides ? std::cout << "Введите длины сторон треугольника по порядку A B C:\n" : cnds == coords ? std::cout
+                              << "Введите координаты:\n" : std::cout
+                              << "Ошибка ввода!"  << std::endl;
+}
 
