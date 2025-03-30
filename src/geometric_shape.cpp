@@ -200,6 +200,12 @@ void Triangle::set_sides(double a, double b, double c){
     }
 }
 
+void Triangle::get_sides(double& a, double& b, double& c) const {
+    a = this->a;
+    b = this->b;
+    c = this->c;
+}
+
 void Triangle::set_points(Point** points, size_t len){
     if(pts) delete [] pts;
     length = len;
@@ -209,8 +215,24 @@ void Triangle::set_points(Point** points, size_t len){
     }
 }
 
+Point* Triangle::get_pts(){
+    return pts;
+}
+
 double Triangle::perimeter(){
     return a + b + c;
+}
+
+double Triangle::area(double a, double b, double c){
+    if(check_valid_tr(a,b,c)){
+        this->a = a;
+        this->b = b;
+        this->c = c;
+    
+        double hperim = perimeter()/2;
+        return sqrt(hperim * (hperim - this->a) * (hperim - this->b) * (hperim - this->c));
+    }
+    return -1;
 }
 
 double Triangle::area(Point** points, size_t len){
@@ -231,10 +253,6 @@ double Triangle::area(Point** points, size_t len){
 
     result = fabs(res1 - res2)/2;
     return result;
-}
-
-Point* Triangle::get_pts(){
-    return pts;
 }
 
 void Triangle::show_calc() {

@@ -105,7 +105,7 @@ int main(){
            std::cout << "Ошибка ввода!"  << std::endl;
     }
 
-
+//Square
     if(sh == square && clc == area && cnds == sides) {
         double a{0},b{0},c{0},d{0};
         std::cin >> a >> b >> c >> d;
@@ -156,6 +156,7 @@ int main(){
         std::cout << "Не реализовано." << std::endl;
     }
 
+//Rectangle
     if(sh == rectangle && clc == area && cnds == sides) {
         double a{0},b{0},c{0},d{0};
         std::cin >> a >> b >> c >> d;
@@ -209,8 +210,14 @@ int main(){
         return 0;
     }
     
+//Triangle
     if(sh == triangle && clc == area && cnds == sides) {
-        std::cout << "Не реализовано." << std::endl;
+        double a{0},b{0},c{0};
+        std::cin >> a >> b >> c;
+        tr_shape.set_sides(a,b,c);
+        double area_tr_s = tr_shape.area(a,b,c);
+        area_tr_s != -1 ? std::cout << "Площадь треугольника: " << std::fixed << std::setprecision(2) << area_tr_s << std::endl : 
+                          std::cout << "Ошибка! Некорректные длины сторон треугольника." << std::endl;
 
         return 0;
     }
