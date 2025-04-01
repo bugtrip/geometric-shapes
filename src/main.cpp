@@ -3,10 +3,10 @@
 #include "geometric_shape.h"
 
 int main(){
-    int num_shape{0}, num_conditions{0}, num_clc{0};
+    int num_shape{0};
+    Shape sh{none_sh};
     Conditions cnds{none_cnd};
     Calculations clc{none_clc};
-    Shape sh{none_sh};
     
     GeometricShape::show_menu();
     
@@ -19,90 +19,27 @@ int main(){
     std::cin >> num_shape;
     std::cout << "\n";
     
-    sh = (num_shape == 1) ? square : (num_shape == 2) ? rectangle : (num_shape == 3) ? triangle : (num_shape == 0) ? exit_sh : none_sh;
+    sh = (num_shape == 1) ? square : (num_shape == 2) ? rectangle 
+                                   : (num_shape == 3) ? triangle 
+                                   : (num_shape == 0) ? exit_sh 
+                                   : none_sh;
     
     switch(sh){
         case square:
-            sq_shape.show_calc();
-            std::cin >> num_clc;
-            std::cout << "\n";
-            clc = (num_clc == 1) ? area : (num_clc == 2) ? perimeter : none_clc;
-            
-            if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
-            
-            else if(clc == area) {
-                sq_shape.show_conditions();
-                std::cin >> num_conditions;
-                std::cout << "\n";
-                cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : none_cnd;
-                sq_shape.show_input_form(cnds);
-                break;
-            }
-            
-            else if(clc == perimeter){
-                sq_shape.show_conditions();
-                std::cin >> num_conditions;
-                std::cout << "\n";
-                cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : none_cnd;
-                sq_shape.show_input_form(cnds);
-                break;
-            }
-        
+            sq_shape.input(clc, cnds);
+            break;
         case rectangle:
-            rec_shape.show_calc();
-            std::cin >> num_clc;
-            std::cout << "\n";
-            clc = (num_clc == 1) ? area : (num_clc == 2) ? perimeter : none_clc;
-
-            if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
-
-            else if(clc == area) {
-                rec_shape.show_conditions();
-                std::cin >> num_conditions;
-                cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : none_cnd;
-                rec_shape.show_input_form(cnds);
-                break;
-            }
-            
-            else if(clc == perimeter){
-                rec_shape.show_conditions();
-                std::cin >> num_conditions;
-                std::cout << "\n";
-                cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : none_cnd;
-                rec_shape.show_input_form(cnds);
-                break;        
-            }
-            
+            rec_shape.input(clc, cnds);
+            break;
         case triangle:
-            tr_shape.show_calc();
-            std::cin >> num_clc;
-            std::cout << "\n";
-            clc = (num_clc == 1) ? area : (num_clc == 2) ? perimeter : none_clc;
-
-            if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
-
-            else if(clc == area) {
-                tr_shape.show_conditions();
-                std::cin >> num_conditions;
-                cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : none_cnd;
-                tr_shape.show_input_form(cnds);
-                break;
-            }
-            
-            else if(clc == perimeter){
-                tr_shape.show_conditions();
-                std::cin >> num_conditions;
-                std::cout << "\n";
-                cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : none_cnd;
-                tr_shape.show_input_form(cnds);
-                break;        
-            }
-            
+            tr_shape.input(clc, cnds);
+            break;
         case exit_sh:
             //std::cout << " " << std::endl;
             return 0;
         default:
            std::cout << "Ошибка ввода!"  << std::endl;
+           return 0;
     }
 
 //Square

@@ -3,25 +3,55 @@
 #include <cstddef>
 
 enum Shape{exit_sh = 0, square = 1, rectangle = 2, triangle = 3, none_sh = 4};
-enum Calculations{area = 1, perimeter = 2, none_clc = 3};
-enum Conditions{sides = 1, coords = 2, none_cnd = 3};
+enum Calculations{exit_clc = 0, area = 1, perimeter = 2, none_clc = 3};
+enum Conditions{exit_cnds = 0, sides = 1, coords = 2, none_cnd = 3};
 
 class Point {
 private:
     double x,y;
 public:
     Point(double x = 0, double y = 0) : x(x), y(y) {}
-    double get_x();
-    double get_y();
+    double get_x() const;
+    double get_y() const;
     void set_pt(double x, double y);
 };
+/*
+template<typename TypeShape> int input(TypeShape& sh, Calculations& clc, Conditions& cnds) {
+    int num_conditions{0}, num_clc{0};
+    sh.show_calc();
+    std::cin >> num_clc;
+    std::cout << "\n";
+    clc = (num_clc == 1) ? Calculations::area : (num_clc == 2) ? Calculations::perimeter : (num_clc == 0) ? exit_clc : none_clc;
 
+    if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
+
+    else if(clc == exit_clc) { return 0; }
+
+    else if(clc == Calculations::area) {
+        sh.show_conditions();
+        std::cin >> num_conditions;
+        std::cout << "\n";
+        cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : (num_conditions == 0) ? exit_cnds : none_cnd;
+        sh.show_input_form(cnds);
+    }
+
+    else if(clc == Calculations::perimeter){
+        sh.show_conditions();
+        std::cin >> num_conditions;
+        std::cout << "\n";
+        cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : (num_conditions == 0) ? exit_cnds : none_cnd;
+        sh.show_input_form(cnds);
+    }
+    return 0;
+}
+*/
 class GeometricShape {
 public:
     virtual double perimeter() = 0;
     virtual double area(Point** points, size_t len) = 0;
     virtual void set_points(Point** points, size_t len) = 0;
     static void show_menu();
+    //virtual int input();
     virtual void show_conditions() = 0;
     virtual void show_calc() = 0;
     virtual void show_input_form(Conditions cnds) = 0;
@@ -53,6 +83,7 @@ public:
     virtual double area();
     //virtual double area(double a);
     virtual double area(Point** points, size_t len) override;
+    int input(Calculations& clc, Conditions& cnds);
     virtual void show_conditions() override;
     virtual void show_calc() override;
     virtual void show_input_form(Conditions cnds) override;
@@ -87,6 +118,7 @@ public:
     virtual double area();
     //virtual double area(double a, double raduis_circumscribed_circle);
     virtual double area(Point** coords, size_t len) override;
+    int input(Calculations& clc, Conditions& cnds);
     virtual void show_conditions() override;
     virtual void show_calc() override;
     virtual void show_input_form(Conditions cnds) override;
@@ -119,6 +151,7 @@ public:
     virtual double perimeter() override;
     virtual double area(double a, double b, double c);
     virtual double area(Point** coords, size_t len) override;
+    int input(Calculations& clc, Conditions& cnds);
     virtual void show_conditions() override;
     virtual void show_calc() override;
     virtual void show_input_form(Conditions cnds) override;
