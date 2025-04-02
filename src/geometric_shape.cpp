@@ -26,37 +26,39 @@ void GeometricShape::show_input_form(Conditions cnds){
                               << "Ошибка ввода!\n" : std::cout << "\n";
 }
 
-//Square
-
-int Square::input(Calculations& clc, Conditions& cnds){
+int GeometricShape::input(GeometricShape& sh, Calculations& clc, Conditions& cnds){
     int num_conditions{0}, num_clc{0};
-    show_calc();
+    sh.show_calc();
     std::cin >> num_clc;
     std::cout << "\n";
     clc = (num_clc == 1) ? Calculations::area : (num_clc == 2) ? Calculations::perimeter : (num_clc == 0) ? exit_clc : none_clc;
-    
+
     if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
-    
+
     else if(clc == exit_clc) { return 0; }
 
     else if(clc == Calculations::area) {
-        show_conditions();
+        sh.show_conditions();
         std::cin >> num_conditions;
         std::cout << "\n";
         cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : (num_conditions == 0) ? exit_cnds : none_cnd;
-        show_input_form(cnds);
+        sh.show_input_form(cnds);
     }
-    
+
     else if(clc == Calculations::perimeter){
-        show_conditions();
+        sh.show_conditions();
         std::cin >> num_conditions;
         std::cout << "\n";
         cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : (num_conditions == 0) ? exit_cnds : none_cnd;
-        show_input_form(cnds);
+        sh.show_input_form(cnds);
     }
     return 0;
 }
 
+//Square
+int Square::input(GeometricShape& sh, Calculations& clc, Conditions& cnds){
+    return GeometricShape::input(sh, clc, cnds);
+}
 
 void Square::set_sides(double a, double b, double c, double d){
     if(check_valid_sq(a,b,c,d)){
@@ -135,34 +137,8 @@ void Square::show_input_form(Conditions cnds) {
 }
 
 //Rectangle
-
-int Rectangle::input(Calculations& clc, Conditions& cnds) {
-    int num_conditions{0}, num_clc{0};
-    show_calc();
-    std::cin >> num_clc;
-    std::cout << "\n";
-    clc = (num_clc == 1) ? Calculations::area : (num_clc == 2) ? Calculations::perimeter : (num_clc == 0) ? exit_clc : none_clc;
-
-    if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
-    
-    else if(clc == exit_clc) { return 0; }
-
-    else if(clc == Calculations::area) {
-        show_conditions();
-        std::cin >> num_conditions;
-        cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : (num_conditions == 0) ? exit_cnds : none_cnd;
-        show_input_form(cnds);
-    }
-    
-    else if(clc == Calculations::perimeter){
-        show_conditions();
-        std::cin >> num_conditions;
-        std::cout << "\n";
-        cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : (num_conditions == 0) ? exit_cnds : none_cnd;
-        show_input_form(cnds);
-    }
-
-    return 0;
+int Rectangle::input(GeometricShape& sh, Calculations& clc, Conditions& cnds){
+    return GeometricShape::input(sh, clc, cnds);
 }
 
 void Rectangle::set_sides(double a, double b, double c, double d){
@@ -241,40 +217,13 @@ void Rectangle::show_conditions() {
 }
 
 void Rectangle::show_input_form(Conditions cnds) {
-    cnds == sides ? std::cout << "Введите длины сторон прямоугольника по порядку A B C D:\n" : cnds == coords ? std::cout
-                              << "Введите координаты:\n" : cnds == none_cnd ? std::cout
-                              << "Ошибка ввода!\n" : std::cout << "\n";
+    cnds == sides ? std::cout << "Введите через пробел длину каждой стороны прямоугольника по порядку A B C D:\n" : cnds == coords 
+                  ? std::cout << "Введите координаты:\n" : cnds == none_cnd ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
 }
 
 //Triangle
-
-int Triangle::input(Calculations& clc, Conditions& cnds) {
-    int num_conditions{0}, num_clc{0};
-    show_calc();
-    std::cin >> num_clc;
-    std::cout << "\n";
-    clc = (num_clc == 1) ? Calculations::area : (num_clc == 2) ? Calculations::perimeter : (num_clc == 0) ? exit_clc : none_clc;
-
-    if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
-    
-    else if(clc == exit_clc) { return 0; }
-
-    else if(clc == Calculations::area) {
-        show_conditions();
-        std::cin >> num_conditions;
-        cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : (num_conditions == 0) ? exit_cnds : none_cnd;
-        show_input_form(cnds);
-    }
-    
-    else if(clc == Calculations::perimeter){
-        show_conditions();
-        std::cin >> num_conditions;
-        std::cout << "\n";
-        cnds = (num_conditions == 1) ? sides : (num_conditions == 2) ? coords : (num_conditions == 0) ? exit_cnds : none_cnd;
-        show_input_form(cnds);    
-    }
-
-    return 0;
+int Triangle::input(GeometricShape& sh, Calculations& clc, Conditions& cnds){
+    return GeometricShape::input(sh, clc, cnds);
 }
 
 bool Triangle::check_valid_tr(double a, double b, double c){
@@ -357,8 +306,7 @@ void Triangle::show_conditions() {
 }
 
 void Triangle::show_input_form(Conditions cnds) {
-    cnds == sides ? std::cout << "Введите длины сторон треугольника по порядку A B C:\n" : cnds == coords ? std::cout
-                              << "Введите координаты:\n" : cnds == none_cnd ? std::cout
-                              << "Ошибка ввода!\n" : std::cout << "\n";
+    cnds == sides ? std::cout << "Введите через пробел длину каждой стороны треугольника по порядку A B C:\n" : cnds == coords 
+                  ? std::cout << "Введите координаты:\n" : cnds == none_cnd ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
 }
 

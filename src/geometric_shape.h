@@ -51,7 +51,7 @@ public:
     virtual double area(Point** points, size_t len) = 0;
     virtual void set_points(Point** points, size_t len) = 0;
     static void show_menu();
-    //virtual int input();
+    virtual int input(GeometricShape&, Calculations&, Conditions&);
     virtual void show_conditions() = 0;
     virtual void show_calc() = 0;
     virtual void show_input_form(Conditions cnds) = 0;
@@ -83,7 +83,7 @@ public:
     virtual double area();
     //virtual double area(double a);
     virtual double area(Point** points, size_t len) override;
-    int input(Calculations& clc, Conditions& cnds);
+    virtual int input(GeometricShape&, Calculations&, Conditions&) override;
     virtual void show_conditions() override;
     virtual void show_calc() override;
     virtual void show_input_form(Conditions cnds) override;
@@ -118,7 +118,7 @@ public:
     virtual double area();
     //virtual double area(double a, double raduis_circumscribed_circle);
     virtual double area(Point** coords, size_t len) override;
-    int input(Calculations& clc, Conditions& cnds);
+    virtual int input(GeometricShape&, Calculations&, Conditions&) override;
     virtual void show_conditions() override;
     virtual void show_calc() override;
     virtual void show_input_form(Conditions cnds) override;
@@ -151,7 +151,7 @@ public:
     virtual double perimeter() override;
     virtual double area(double a, double b, double c);
     virtual double area(Point** coords, size_t len) override;
-    int input(Calculations& clc, Conditions& cnds);
+    virtual int input(GeometricShape&, Calculations&, Conditions&) override;
     virtual void show_conditions() override;
     virtual void show_calc() override;
     virtual void show_input_form(Conditions cnds) override;
