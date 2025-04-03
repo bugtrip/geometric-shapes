@@ -8,7 +8,7 @@ int main(){
     Conditions cnds{none_cnd};
     Calculations clc{none_clc};
     
-    GeometricShape::show_menu();
+    GeometricShape::show_menu();    
     
     Square sq_shape;
     Rectangle rec_shape;
@@ -19,21 +19,21 @@ int main(){
 
     std::cin >> num_shape;
     std::cout << "\n";
-    
+    //selection of a geometric shapes
     sh = (num_shape == 1) ? square : (num_shape == 2) ? rectangle 
                                    : (num_shape == 3) ? triangle 
                                    : (num_shape == 0) ? exit_sh 
                                    : none_sh;
-    
+    //selection of conditions for calculations
     switch(sh){
         case square:
-            rf_sq.input(rf_sq, clc, cnds);
+            rf_sq.available_calc(rf_sq, clc, cnds);
             break;
         case rectangle:
-            rf_rec.input(rf_rec, clc, cnds);
+            rf_rec.available_calc(rf_rec, clc, cnds);
             break;
         case triangle:
-            rf_tr.input(rf_tr, clc, cnds);
+            rf_tr.available_calc(rf_tr, clc, cnds);
             break;
         case exit_sh:
             //std::cout << " " << std::endl;

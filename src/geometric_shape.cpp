@@ -26,7 +26,8 @@ void GeometricShape::show_input_form(Conditions cnds){
                               << "Ошибка ввода!\n" : std::cout << "\n";
 }
 
-int GeometricShape::input(GeometricShape& sh, Calculations& clc, Conditions& cnds){
+//selection of available calculations
+int GeometricShape::available_calc(GeometricShape& sh, Calculations& clc, Conditions& cnds){
     int num_conditions{0}, num_clc{0};
     sh.show_calc();
     std::cin >> num_clc;
@@ -56,8 +57,8 @@ int GeometricShape::input(GeometricShape& sh, Calculations& clc, Conditions& cnd
 }
 
 //Square
-int Square::input(GeometricShape& sh, Calculations& clc, Conditions& cnds){
-    return GeometricShape::input(sh, clc, cnds);
+int Square::available_calc(GeometricShape& sh, Calculations& clc, Conditions& cnds){
+    return GeometricShape::available_calc(sh, clc, cnds);
 }
 
 void Square::set_sides(double a, double b, double c, double d){
@@ -137,8 +138,8 @@ void Square::show_input_form(Conditions cnds) {
 }
 
 //Rectangle
-int Rectangle::input(GeometricShape& sh, Calculations& clc, Conditions& cnds){
-    return GeometricShape::input(sh, clc, cnds);
+int Rectangle::available_calc(GeometricShape& sh, Calculations& clc, Conditions& cnds){
+    return GeometricShape::available_calc(sh, clc, cnds);
 }
 
 void Rectangle::set_sides(double a, double b, double c, double d){
@@ -222,8 +223,8 @@ void Rectangle::show_input_form(Conditions cnds) {
 }
 
 //Triangle
-int Triangle::input(GeometricShape& sh, Calculations& clc, Conditions& cnds){
-    return GeometricShape::input(sh, clc, cnds);
+int Triangle::available_calc(GeometricShape& sh, Calculations& clc, Conditions& cnds){
+    return GeometricShape::available_calc(sh, clc, cnds);
 }
 
 bool Triangle::check_valid_tr(double a, double b, double c){
