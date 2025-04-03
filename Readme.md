@@ -1,2 +1,2 @@
 # Geometric Shapes
-A C++ educational program for performing calculations of geometric shapes.
+This in an educational C++ application for performing calculations with geometric shapes.

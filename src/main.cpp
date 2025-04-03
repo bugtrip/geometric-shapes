@@ -17,14 +17,15 @@ int main(){
     GeometricShape& rf_rec = rec_shape;
     GeometricShape& rf_tr = tr_shape;
 
+//selection of a geometric shapes
     std::cin >> num_shape;
     std::cout << "\n";
-    //selection of a geometric shapes
     sh = (num_shape == 1) ? square : (num_shape == 2) ? rectangle 
                                    : (num_shape == 3) ? triangle 
                                    : (num_shape == 0) ? exit_sh 
                                    : none_sh;
-    //selection of conditions for calculations
+
+//selection of conditions for calculations
     switch(sh){
         case square:
             rf_sq.available_calc(rf_sq, clc, cnds);
@@ -42,7 +43,7 @@ int main(){
            std::cout << "Ошибка ввода!"  << std::endl;
            return 0;
     }
-
+    
 //Square
     if(sh == square && clc == area && cnds == sides) {
         double a{0},b{0},c{0},d{0};
@@ -94,9 +95,9 @@ int main(){
 
 //Rectangle
     if(sh == rectangle && clc == area && cnds == sides) {
-        double a{0},b{0},c{0},d{0};
-        std::cin >> a >> b >> c >> d;
-        rec_shape.set_sides(a,b,c,d);
+        double a{0},b{0};
+        std::cin >> a >> b;
+        rec_shape.set_sides(a,b,a,b);
         double area_rec_s = rec_shape.area();
         std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << area_rec_s << std::endl;
         
@@ -127,7 +128,16 @@ int main(){
 
         return 0;
     }
-               
+    
+    if(sh == rectangle && clc == area && cnds == side_perim) {
+        double perim{0}, a{0};
+        std::cin >> perim >> a;
+        double area_rec_sp = rec_shape.area(perim, a);
+        std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << area_rec_sp << std::endl;
+        
+        return 0;
+    }
+
     if(sh == rectangle && clc == perimeter && cnds == sides) {
         double a{0},b{0},c{0},d{0};
         std::cin >> a >> b >> c >> d;

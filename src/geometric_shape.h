@@ -4,7 +4,7 @@
 
 enum Shape{exit_sh = 0, square = 1, rectangle = 2, triangle = 3, none_sh = 4};
 enum Calculations{exit_clc = 0, area = 1, perimeter = 2, none_clc = 3};
-enum Conditions{exit_cnds = 0, sides = 1, coords = 2, none_cnd = 3};
+enum Conditions{exit_cnds = 0, sides = 1, coords = 2, side_perim = 3, none_cnd = 4};
 
 class Point {
 private:
@@ -52,9 +52,9 @@ public:
     virtual void set_points(Point** points, size_t len) = 0;
     static void show_menu();                                                 //display of the main menu
     virtual int available_calc(GeometricShape&, Calculations&, Conditions&); //selection of available calculations
-    virtual void show_conditions() = 0;                                      //display of the selection form for conditions 
+    virtual void show_conditions(Calculations& clc) = 0;                     //display of the selection form for conditions 
     virtual void show_calc() = 0;                                            //display of the selection form for available calculations
-    virtual void show_input_form(Conditions cnds) = 0;                       //input form for calculation parameters
+    virtual void show_input_form(Conditions& cnds) = 0;                       //input form for calculation parameters
     virtual ~GeometricShape(){}
 };
 
@@ -84,9 +84,9 @@ public:
     //virtual double area(double a);
     virtual double area(Point** points, size_t len) override;               //calculation of the area of a shape based on coordinates
     virtual int available_calc(GeometricShape&, Calculations&, Conditions&) override;
-    virtual void show_conditions() override;
+    virtual void show_conditions(Calculations& clc) override;
     virtual void show_calc() override;
-    virtual void show_input_form(Conditions cnds) override;
+    virtual void show_input_form(Conditions& cnds) override;
     virtual ~Square(){
         delete [] pts;
     }
@@ -96,6 +96,7 @@ class Rectangle : public GeometricShape {
 private:
     double a{0.0}, b{0.0}, c{0.0}, d{0.0};
     Conditions cnds{none_cnd};
+    //Calculations clc{none_clc};
     //double radius_circumscribed_circle{0};
     Point* pts{nullptr};
     size_t length{0};
@@ -116,12 +117,13 @@ public:
     virtual double perimeter() override;
     Point* get_pts();
     virtual double area();
+    virtual double area(double perim, double a);
     //virtual double area(double a, double raduis_circumscribed_circle);
     virtual double area(Point** coords, size_t len) override;
     virtual int available_calc(GeometricShape&, Calculations&, Conditions&) override;
-    virtual void show_conditions() override;
+    virtual void show_conditions(Calculations& clc) override;
     virtual void show_calc() override;
-    virtual void show_input_form(Conditions cnds) override;
+    virtual void show_input_form(Conditions& cnds) override;
     virtual ~Rectangle(){
         delete [] pts;
     }
@@ -152,9 +154,9 @@ public:
     virtual double area(double a, double b, double c);
     virtual double area(Point** coords, size_t len) override;
     virtual int available_calc(GeometricShape&, Calculations&, Conditions&) override;
-    virtual void show_conditions() override;
+    virtual void show_conditions(Calculations& clc) override;
     virtual void show_calc() override;
-    virtual void show_input_form(Conditions cnds) override;
+    virtual void show_input_form(Conditions& cnds) override;
     virtual ~Triangle() {
         delete [] pts;
     }  
