@@ -20,12 +20,6 @@ void GeometricShape::show_menu() {
               << "  1. Квадрат\n" << "  2. Прямоугольник\n" << "  3. Треугольник\n" << "  4. Ромб\n\n" << "  0. Выход" << std::endl;
 }
 
-void GeometricShape::show_input_form(Conditions& cnds){
-    cnds == sides ? std::cout << "Введите параметры:\n" : cnds == coords ? std::cout
-                              << "Введите координаты:\n" : cnds == none_cnd ? std::cout
-                              << "Ошибка ввода!\n" : std::cout << "\n";
-}
-
 //selection of available calculations
 int GeometricShape::available_calc(GeometricShape& sh, Calculations& clc, Conditions& cnds){
     int num_conditions{0}, num_clc{0};
@@ -76,6 +70,15 @@ void Square::set_sides(double a, double b, double c, double d){
         this->b = b;
         this->c = c;
         this->d = d;
+    }
+}
+
+void Square::set_sides(double a){
+    if(a > 0) {
+        this->a = a;
+        this->b = a;
+        this->c = a;
+        this->d = a;
     }
 }
 
@@ -143,7 +146,9 @@ void Square::show_conditions(Calculations& clc) {
 }
 
 void Square::show_input_form(Conditions& cnds) {
-    GeometricShape::show_input_form(cnds);
+    cnds == sides ? std::cout << "Введите длину стороны квадрата:\n" : cnds == coords 
+                  ? std::cout << "Введите координаты каждой вершины квадрата:\n" : cnds == none_cnd 
+                  ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
 }
 
 //Rectangle
@@ -245,7 +250,7 @@ void Rectangle::show_conditions(Calculations& clc) {
 
 void Rectangle::show_input_form(Conditions& cnds) {
     cnds == sides ? std::cout << "Введите через пробел длину и ширину прямоугольника по порядку A B:\n" : cnds == coords 
-                  ? std::cout << "Введите координаты:\n" : cnds == side_perim 
+                  ? std::cout << "Введите координаты каждой вершины прямоугольника:\n" : cnds == side_perim 
                   ? std::cout << "Введите через пробел периметр и длину стороны прямоугольника:\n" : cnds == none_cnd 
                   ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
 }
@@ -336,6 +341,7 @@ void Triangle::show_conditions(Calculations& clc) {
 
 void Triangle::show_input_form(Conditions& cnds) {
     cnds == sides ? std::cout << "Введите через пробел длину каждой стороны треугольника по порядку A B C:\n" : cnds == coords 
-                  ? std::cout << "Введите координаты:\n" : cnds == none_cnd ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
+                  ? std::cout << "Введите координаты каждой вершины треугольника\n" : cnds == none_cnd 
+                  ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
 }
 

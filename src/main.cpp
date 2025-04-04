@@ -46,9 +46,9 @@ int main(){
     
 //Square
     if(sh == square && clc == area && cnds == sides) {
-        double a{0},b{0},c{0},d{0};
-        std::cin >> a >> b >> c >> d;
-        sq_shape.set_sides(a,b,c,d);
+        double a{0};
+        std::cin >> a;
+        sq_shape.set_sides(a);
         double area_square_s = sq_shape.area();
         std::cout << "\nПлощадь квадрата: " << std::fixed << std::setprecision(2) << area_square_s << std::endl;
         return 0;
@@ -81,9 +81,9 @@ int main(){
     }
 
     if(sh == square && clc == perimeter && cnds == sides) {
-        double a{0},b{0},c{0},d{0};
-        std::cin >> a >> b >> c >> d;
-        sq_shape.set_sides(a,b,c,d);
+        double a{0};
+        std::cin >> a;
+        sq_shape.set_sides(a);
         double perim_square_s = sq_shape.perimeter();
         std::cout << "\nПериметр квадрата: " << std::fixed << std::setprecision(2) << perim_square_s << std::endl;
         
