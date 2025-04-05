@@ -17,19 +17,25 @@ void Point::set_pt(double x, double y){
 
 void GeometricShape::show_menu() {
     std::cout << "Выберите геометрическую фигуру для расчетов:\n" 
-              << "  1. Квадрат\n" << "  2. Прямоугольник\n" << "  3. Треугольник\n" << "  4. Ромб\n\n" << "  0. Выход" << std::endl;
+              << "  1. Квадрат\n" 
+              << "  2. Прямоугольник\n" 
+              << "  3. Треугольник\n" 
+              << "  4. Ромб\n\n" 
+              << "  0. Выход" << std::endl;
 }
 
 //selection of available calculations
-int GeometricShape::available_calc(GeometricShape& sh, Calculations& clc, Conditions& cnds){
+int GeometricShape::available_calc(GeometricShape& sh){
     int num_conditions{0}, num_clc{0};
+    Conditions cnds;
+    Calculations clc;
     sh.show_calc();
     std::cin >> num_clc;
     std::cout << "\n";
     clc = (num_clc == 1) ? Calculations::area : (num_clc == 2) 
                          ? Calculations::perimeter : (num_clc == 0) 
                          ? exit_clc : none_clc;
-
+    sh.set_clc(clc);
     if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
 
     else if(clc == exit_clc) { return 0; }
@@ -42,7 +48,7 @@ int GeometricShape::available_calc(GeometricShape& sh, Calculations& clc, Condit
                                      ? coords : (num_conditions == 3) 
                                      ? side_perim : (num_conditions == 0) 
                                      ? exit_cnds : none_cnd;
-        
+        sh.set_cnds(cnds);
         sh.show_input_form(cnds);
     }
 
@@ -53,15 +59,15 @@ int GeometricShape::available_calc(GeometricShape& sh, Calculations& clc, Condit
         cnds = (num_conditions == 1) ? sides : (num_conditions == 2) 
                                      ? coords : (num_conditions == 0) 
                                      ? exit_cnds : none_cnd;
-        
+        sh.set_cnds(cnds);
         sh.show_input_form(cnds);
     }
     return 0;
 }
 
 //Square
-int Square::available_calc(GeometricShape& sh, Calculations& clc, Conditions& cnds){
-    return GeometricShape::available_calc(sh, clc, cnds);
+int Square::available_calc(GeometricShape& sh){
+    return GeometricShape::available_calc(sh);
 }
 
 void Square::set_sides(double a, double b, double c, double d){
@@ -96,6 +102,25 @@ void Square::set_points(Point** points, size_t len){
     for(size_t i = 0; i < length; ++i){
         this->pts[i] = *points[i];
     }
+}
+
+void Square::set_cnds(Conditions cnds) {
+    if(this->cnds != cnds){
+        this->cnds = cnds;
+    }
+}
+
+void Square::set_clc(Calculations clc) {
+    if(this->clc != clc){
+        this->clc = clc;
+    }
+}
+
+Conditions Square::get_cnds() const {
+    return cnds;
+}
+Calculations Square::get_clc() const {
+    return clc;
 }
 
 bool Square::check_valid_sq(double a, double b, double c, double d){
@@ -136,12 +161,16 @@ Point* Square::get_pts(){
 }
 
 void Square::show_calc() {
-    std::cout << "Доступные вычисления:\n"  << "  1. Площадь квадрата\n" << "  2. Периметр квадрата\n\n" 
+    std::cout << "Доступные вычисления:\n"  
+              << "  1. Площадь квадрата\n" 
+              << "  2. Периметр квадрата\n\n" 
               << "  0. Выход\n";
 }
 
 void Square::show_conditions(Calculations& clc) {
-    std::cout << "Как произвести расчеты?\n  1. По сторонам квадрата\n  2. По координатам вершин квадрата\n\n" 
+    std::cout << "Как произвести расчеты?\n" 
+              << "  1. По сторонам квадрата\n" 
+              << "  2. По координатам вершин квадрата\n\n" 
               << "  0. Выход\n";
 }
 
@@ -152,8 +181,8 @@ void Square::show_input_form(Conditions& cnds) {
 }
 
 //Rectangle
-int Rectangle::available_calc(GeometricShape& sh, Calculations& clc, Conditions& cnds){
-    return GeometricShape::available_calc(sh, clc, cnds);
+int Rectangle::available_calc(GeometricShape& sh){
+    return GeometricShape::available_calc(sh);
 }
 
 void Rectangle::set_sides(double a, double b, double c, double d){
@@ -174,6 +203,25 @@ void Rectangle::set_points(Point** points, size_t len){
     }
 }
 
+void Rectangle::set_cnds(Conditions cnds) {
+    if(this->cnds != cnds){
+        this->cnds = cnds;
+    }
+}
+
+void Rectangle::set_clc(Calculations clc) {
+    if(this->clc != clc){
+        this->clc = clc;
+    }
+}
+
+Conditions Rectangle::get_cnds() const {
+    return cnds;
+}
+Calculations Rectangle::get_clc() const {
+    return clc;
+}
+
 void Rectangle::get_sides(double& a, double& b, double& c, double& d) const {
     a = this->a;
     b = this->b;
@@ -182,8 +230,7 @@ void Rectangle::get_sides(double& a, double& b, double& c, double& d) const {
 }
 
 bool Rectangle::check_valid_rec(double a, double b, double c, double d){
-    if((a == c && b == d) && c != b) return true;
-    return false;
+    return (a < 0 || b < 0 || c < 0 || d < 0) ? false : ((a == c && b == d) && c != b) ? true : false;
 }
 
 double Rectangle::perimeter() {
@@ -234,12 +281,16 @@ Point* Rectangle::get_pts(){
 }
 
 void Rectangle::show_calc() {
-    std::cout << "Доступные вычисления:\n"  << "  1. Площадь прямоугольника\n" << "  2. Периметр прямоугольника\n\n"
+    std::cout << "Доступные вычисления:\n"  
+              << "  1. Площадь прямоугольника\n" 
+              << "  2. Периметр прямоугольника\n\n"
               << "  0. Выход\n";
 }
 
 void Rectangle::show_conditions(Calculations& clc) {
-    std::cout << "Как произвести расчеты?\n  1. По длине и ширине прямоугольника\n  2. По координатам вершин прямоугольника\n"; 
+    std::cout << "Как произвести расчеты?\n" 
+              << "  1. По длине и ширине прямоугольника\n" 
+              << "  2. По координатам вершин прямоугольника\n"; 
     
     if(clc == Calculations::area) {
         std::cout << "  3. По периметру и одной стороне прямоугольника\n";
@@ -256,8 +307,8 @@ void Rectangle::show_input_form(Conditions& cnds) {
 }
 
 //Triangle
-int Triangle::available_calc(GeometricShape& sh, Calculations& clc, Conditions& cnds){
-    return GeometricShape::available_calc(sh, clc, cnds);
+int Triangle::available_calc(GeometricShape& sh){
+    return GeometricShape::available_calc(sh);
 }
 
 bool Triangle::check_valid_tr(double a, double b, double c){
@@ -272,6 +323,25 @@ void Triangle::set_sides(double a, double b, double c){
         this->b = b;
         this->c = c;
     }
+}
+
+void Triangle::set_cnds(Conditions cnds) {
+    if(this->cnds != cnds){
+        this->cnds = cnds;
+    }
+}
+
+void Triangle::set_clc(Calculations clc) {
+    if(this->clc != clc){
+        this->clc = clc;
+    }
+}
+
+Conditions Triangle::get_cnds() const {
+    return cnds;
+}
+Calculations Triangle::get_clc() const {
+    return clc;
 }
 
 void Triangle::get_sides(double& a, double& b, double& c) const {
@@ -330,12 +400,16 @@ double Triangle::area(Point** points, size_t len){
 }
 
 void Triangle::show_calc() {
-    std::cout << "Доступные вычисления:\n"  << "  1. Площадь треугольника\n" << "  2. Периметр треугольника\n\n"
+    std::cout << "Доступные вычисления:\n"  
+              << "  1. Площадь треугольника\n" 
+              << "  2. Периметр треугольника\n\n"
               << "  0. Выход\n";
 }
 
 void Triangle::show_conditions(Calculations& clc) {
-    std::cout << "Как произвести расчеты?\n  1. По сторонам треугольника\n  2. По координатам вершин треугольника\n\n"
+    std::cout << "Как произвести расчеты?\n" 
+              << "  1. По сторонам треугольника\n" 
+              << "  2. По координатам вершин треугольника\n\n"
               << "  0. Выход\n";
 }
 

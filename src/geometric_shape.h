@@ -15,8 +15,140 @@ public:
     double get_y() const;
     void set_pt(double x, double y);
 };
+
+class GeometricShape {
+public:
+    virtual double perimeter() = 0;
+    virtual double area(Point** points, size_t len) = 0;                    //calculation of the area of a shape based on coordinates
+    virtual void set_points(Point** points, size_t len) = 0;
+    virtual void set_cnds(Conditions) = 0;
+    virtual void set_clc(Calculations) = 0;
+    static void show_menu();                                                //display of the main menu
+    virtual int available_calc(GeometricShape&);                            //selection of available calculations
+    virtual void show_conditions(Calculations& clc) = 0;                    //display of the selection form for conditions 
+    virtual void show_calc() = 0;                                           //display of the selection form for available calculations
+    virtual void show_input_form(Conditions& cnds) = 0;                     //input form for calculation parameters
+    virtual ~GeometricShape(){}
+};
+
+class Square : public GeometricShape {
+private:
+    double a{0.0},b{0.0},c{0.0},d{0.0};
+    Conditions cnds{none_cnd};
+    Calculations clc{none_clc};
+    Point* pts{nullptr};
+    size_t length{0};
+public:
+    Square(const Square&) = delete;
+    Square& operator=(const Square&) = delete;
+    Square(Conditions cnds = none_cnd, double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(cnds) {
+            set_sides(a,b,c,d);
+    }
+    Square(Conditions cnds, Point** pts, size_t& len) : cnds(cnds) {
+       set_points(pts, len);
+    }
+    void set_sides(double a, double b, double c, double d);
+    void set_sides(double);
+    virtual void set_points(Point** points, size_t len) override;
+    void get_sides(double& a, double& b, double& c, double& d) const;
+    void set_cnds(Conditions) override;
+    void set_clc(Calculations) override;
+    Conditions get_cnds() const;
+    Calculations get_clc() const;
+    bool check_valid_sq(double a, double b, double c, double d);
+    virtual double perimeter() override;
+    Point* get_pts();
+    virtual double area();                                                  //calculation of the area of a shape based on sides
+    //virtual double area(double a);
+    virtual double area(Point** points, size_t len) override;               //calculation of the area of a shape based on coordinates
+    virtual int available_calc(GeometricShape&) override;
+    virtual void show_conditions(Calculations& clc) override;
+    virtual void show_calc() override;
+    virtual void show_input_form(Conditions& cnds) override;
+    virtual ~Square(){
+        delete [] pts;
+    }
+};
+
+class Rectangle : public GeometricShape {
+private:
+    double a{0.0}, b{0.0}, c{0.0}, d{0.0};
+    Conditions cnds{none_cnd};
+    Calculations clc{none_clc};
+    //double radius_circumscribed_circle{0};
+    Point* pts{nullptr};
+    size_t length{0};
+public:
+    Rectangle(const Rectangle&) = delete;
+    Rectangle& operator=(const Rectangle&) = delete;
+    Rectangle(Conditions cnds = none_cnd, double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(cnds){
+        set_sides(a,b,c,d);
+    }
+    Rectangle(Conditions cnds, Point** pts, size_t& len) : cnds(cnds) {
+       set_points(pts, len);
+    }
+    void set_sides(double a, double b, double c, double d);
+    virtual void set_points(Point** points, size_t len) override;
+    void get_sides(double& a, double& b, double& c, double& d) const;
+    void set_cnds(Conditions) override;
+    void set_clc(Calculations) override;
+    Conditions get_cnds() const;
+    Calculations get_clc() const;
+    bool check_valid_rec(double a, double b, double c, double d);
+    virtual double perimeter() override;
+    Point* get_pts();
+    virtual double area();
+    virtual double area(double perim, double a);
+    //virtual double area(double a, double raduis_circumscribed_circle);
+    virtual double area(Point** coords, size_t len) override;
+    virtual int available_calc(GeometricShape&) override;
+    virtual void show_conditions(Calculations& clc) override;
+    virtual void show_calc() override;
+    virtual void show_input_form(Conditions& cnds) override;
+    virtual ~Rectangle(){
+        delete [] pts;
+    }
+};
+
+class Triangle : public GeometricShape {
+private:
+    double a{0.0}, b{0.0}, c{0.0};
+    Conditions cnds{none_cnd};
+    Calculations clc{none_clc};
+    Point* pts{nullptr};
+    size_t length{0};
+public:
+    Triangle(const Triangle&) = delete;
+    Triangle& operator=(const Triangle&) = delete;
+    Triangle(Conditions cnds = none_cnd, double a = 0.0, double b = 0.0, double c = 0.0) : cnds(cnds){
+        set_sides(a,b,c);
+    }
+    Triangle(Conditions cnds, Point** pts, size_t& len) : cnds(cnds) {
+       set_points(pts, len);
+    }
+    void set_sides(double a, double b, double c);
+    virtual void set_points(Point** points, size_t len) override;
+    void get_sides(double& a, double& b, double& c) const;
+    void set_cnds(Conditions) override;
+    void set_clc(Calculations) override;
+    Conditions get_cnds() const;
+    Calculations get_clc() const;
+    bool check_valid_tr(double a, double b, double c);
+    Point* get_pts();
+    virtual double perimeter() override;
+    virtual double area(double a, double b, double c);
+    virtual double area(Point** coords, size_t len) override;
+    virtual int available_calc(GeometricShape&) override;
+    virtual void show_conditions(Calculations& clc) override;
+    virtual void show_calc() override;
+    virtual void show_input_form(Conditions& cnds) override;
+    virtual ~Triangle() {
+        delete [] pts;
+    }  
+};
+
 /*
-template<typename TypeShape> int input(TypeShape& sh, Calculations& clc, Conditions& cnds) {
+template<typename TypeShape> int available_calc(TypeShape& sh, Calculations& clc, Conditions& cnds) {
     int num_conditions{0}, num_clc{0};
     sh.show_calc();
     std::cin >> num_clc;
@@ -45,119 +177,5 @@ template<typename TypeShape> int input(TypeShape& sh, Calculations& clc, Conditi
     return 0;
 }
 */
-class GeometricShape {
-public:
-    virtual double perimeter() = 0;
-    virtual double area(Point** points, size_t len) = 0;                     //calculation of the area of a shape based on coordinates
-    virtual void set_points(Point** points, size_t len) = 0;
-    static void show_menu();                                                 //display of the main menu
-    virtual int available_calc(GeometricShape&, Calculations&, Conditions&); //selection of available calculations
-    virtual void show_conditions(Calculations& clc) = 0;                     //display of the selection form for conditions 
-    virtual void show_calc() = 0;                                            //display of the selection form for available calculations
-    virtual void show_input_form(Conditions& cnds) = 0;                       //input form for calculation parameters
-    virtual ~GeometricShape(){}
-};
-
-class Square : public GeometricShape {
-private:
-    double a{0.0},b{0.0},c{0.0},d{0.0};
-    Conditions cnds{none_cnd};
-    Point* pts{nullptr};
-    size_t length{0};
-public:
-    Square(const Square&) = delete;
-    Square& operator=(const Square&) = delete;
-    Square(Conditions cnds = none_cnd, double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(cnds) {
-            set_sides(a,b,c,d);
-    }
-    Square(Conditions cnds, Point** pts, size_t& len) : cnds(cnds) {
-       set_points(pts, len);
-    }
-    void set_sides(double a, double b, double c, double d);
-    void set_sides(double);
-    virtual void set_points(Point** points, size_t len) override;
-    void get_sides(double& a, double& b, double& c, double& d) const;
-    bool check_valid_sq(double a, double b, double c, double d);
-    virtual double perimeter() override;
-    Point* get_pts();
-    virtual double area();                                                  //calculation of the area of a shape based on sides
-    //virtual double area(double a);
-    virtual double area(Point** points, size_t len) override;               //calculation of the area of a shape based on coordinates
-    virtual int available_calc(GeometricShape&, Calculations&, Conditions&) override;
-    virtual void show_conditions(Calculations& clc) override;
-    virtual void show_calc() override;
-    virtual void show_input_form(Conditions& cnds) override;
-    virtual ~Square(){
-        delete [] pts;
-    }
-};
-
-class Rectangle : public GeometricShape {
-private:
-    double a{0.0}, b{0.0}, c{0.0}, d{0.0};
-    Conditions cnds{none_cnd};
-    //Calculations clc{none_clc};
-    //double radius_circumscribed_circle{0};
-    Point* pts{nullptr};
-    size_t length{0};
-public:
-    Rectangle(const Rectangle&) = delete;
-    Rectangle& operator=(const Rectangle&) = delete;
-    Rectangle(Conditions cnds = none_cnd, double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(cnds){
-        set_sides(a,b,c,d);
-    }
-    Rectangle(Conditions cnds, Point** pts, size_t& len) : cnds(cnds) {
-       set_points(pts, len);
-    }
-    void set_sides(double a, double b, double c, double d);
-    virtual void set_points(Point** points, size_t len) override;
-    void get_sides(double& a, double& b, double& c, double& d) const;
-    bool check_valid_rec(double a, double b, double c, double d);
-    virtual double perimeter() override;
-    Point* get_pts();
-    virtual double area();
-    virtual double area(double perim, double a);
-    //virtual double area(double a, double raduis_circumscribed_circle);
-    virtual double area(Point** coords, size_t len) override;
-    virtual int available_calc(GeometricShape&, Calculations&, Conditions&) override;
-    virtual void show_conditions(Calculations& clc) override;
-    virtual void show_calc() override;
-    virtual void show_input_form(Conditions& cnds) override;
-    virtual ~Rectangle(){
-        delete [] pts;
-    }
-};
-
-class Triangle : public GeometricShape {
-private:
-    double a{0.0}, b{0.0}, c{0.0};
-    Conditions cnds{none_cnd};
-    Point* pts{nullptr};
-    size_t length{0};
-public:
-    Triangle(const Triangle&) = delete;
-    Triangle& operator=(const Triangle&) = delete;
-    Triangle(Conditions cnds = none_cnd, double a = 0.0, double b = 0.0, double c = 0.0) : cnds(cnds){
-        set_sides(a,b,c);
-    }
-    Triangle(Conditions cnds, Point** pts, size_t& len) : cnds(cnds) {
-       set_points(pts, len);
-    }
-    void set_sides(double a, double b, double c);
-    virtual void set_points(Point** points, size_t len) override;
-    void get_sides(double& a, double& b, double& c) const;
-    bool check_valid_tr(double a, double b, double c);
-    Point* get_pts();
-    virtual double perimeter() override;
-    virtual double area(double a, double b, double c);
-    virtual double area(Point** coords, size_t len) override;
-    virtual int available_calc(GeometricShape&, Calculations&, Conditions&) override;
-    virtual void show_conditions(Calculations& clc) override;
-    virtual void show_calc() override;
-    virtual void show_input_form(Conditions& cnds) override;
-    virtual ~Triangle() {
-        delete [] pts;
-    }  
-};
 
 #endif

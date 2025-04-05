@@ -2,20 +2,11 @@
 #include <iomanip>
 #include "geometric_shape.h"
 
-int main(){
+int main(){       
     int num_shape{0};
     Shape sh{none_sh};
-    Conditions cnds{none_cnd};
-    Calculations clc{none_clc};
-    
-    GeometricShape::show_menu();    
-    
-    Square sq_shape;
-    Rectangle rec_shape;
-    Triangle tr_shape;
-    GeometricShape& rf_sq = sq_shape;
-    GeometricShape& rf_rec = rec_shape;
-    GeometricShape& rf_tr = tr_shape;
+        
+    GeometricShape::show_menu();
 
 //selection of a geometric shapes
     std::cin >> num_shape;
@@ -25,27 +16,35 @@ int main(){
                                    : (num_shape == 0) ? exit_sh 
                                    : none_sh;
 
+    Square sq_shape;
+    Rectangle rec_shape;
+    Triangle tr_shape;
+
+    GeometricShape& rf_sq = sq_shape;
+    GeometricShape& rf_rec = rec_shape;
+    GeometricShape& rf_tr = tr_shape;
+
+
 //selection of conditions for calculations
     switch(sh){
         case square:
-            rf_sq.available_calc(rf_sq, clc, cnds);
+            sq_shape.available_calc(rf_sq);
             break;
         case rectangle:
-            rf_rec.available_calc(rf_rec, clc, cnds);
+            rec_shape.available_calc(rf_rec);
             break;
         case triangle:
-            rf_tr.available_calc(rf_tr, clc, cnds);
+            tr_shape.available_calc(rf_tr);
             break;
         case exit_sh:
-            //std::cout << " " << std::endl;
             return 0;
         default:
            std::cout << "Ошибка ввода!"  << std::endl;
            return 0;
     }
-    
-//Square
-    if(sh == square && clc == area && cnds == sides) {
+
+//calculations for a square
+    if(sh == square && sq_shape.get_clc() == area && sq_shape.get_cnds() == sides) {
         double a{0};
         std::cin >> a;
         sq_shape.set_sides(a);
@@ -54,7 +53,7 @@ int main(){
         return 0;
     }
     
-    if(sh == square && clc == area && cnds == coords) {
+    if(sh == square && sq_shape.get_clc() == area && sq_shape.get_cnds() == coords) {
         size_t count_pt{4};
         Point* sq_shape_pts[count_pt] = { 
             new Point(),
@@ -80,7 +79,7 @@ int main(){
         return 0;
     }
 
-    if(sh == square && clc == perimeter && cnds == sides) {
+    if(sh == square && sq_shape.get_clc() == perimeter && sq_shape.get_cnds() == sides) {
         double a{0};
         std::cin >> a;
         sq_shape.set_sides(a);
@@ -89,12 +88,12 @@ int main(){
         
         return 0;
     }
-    if(sh == square && clc == perimeter && cnds == coords) {
+    if(sh == square && sq_shape.get_clc() == perimeter && sq_shape.get_cnds() == coords) {
         std::cout << "Не реализовано." << std::endl;
     }
 
-//Rectangle
-    if(sh == rectangle && clc == area && cnds == sides) {
+//calculations for a rectangle
+    if(sh == rectangle && rec_shape.get_clc() == area && rec_shape.get_cnds() == sides) {
         double a{0},b{0};
         std::cin >> a >> b;
         rec_shape.set_sides(a,b,a,b);
@@ -104,7 +103,7 @@ int main(){
         return 0;
     }
 
-    if(sh == rectangle && clc == area && cnds == coords) {
+    if(sh == rectangle && rec_shape.get_clc() == area && rec_shape.get_cnds() == coords) {
         size_t count_pt{4};
         Point* rec_shape_pts[count_pt] = { 
             new Point(),
@@ -129,7 +128,7 @@ int main(){
         return 0;
     }
     
-    if(sh == rectangle && clc == area && cnds == side_perim) {
+    if(sh == rectangle && rec_shape.get_clc() == area && rec_shape.get_cnds() == side_perim) {
         double perim{0}, a{0};
         std::cin >> perim >> a;
         double area_rec_sp = rec_shape.area(perim, a);
@@ -138,24 +137,24 @@ int main(){
         return 0;
     }
 
-    if(sh == rectangle && clc == perimeter && cnds == sides) {
-        double a{0},b{0},c{0},d{0};
-        std::cin >> a >> b >> c >> d;
-        rec_shape.set_sides(a,b,c,d);
+    if(sh == rectangle && rec_shape.get_clc() == perimeter && rec_shape.get_cnds() == sides) {
+        double a{0},b{0};
+        std::cin >> a >> b;
+        rec_shape.set_sides(a,b,a,b);
         double perim_rec_s = rec_shape.perimeter();
         std::cout << "\nПериметр прямоугольника: " << std::fixed << std::setprecision(2) << perim_rec_s << std::endl;
 
         return 0;
     }
     
-    if(sh == rectangle && clc == perimeter && cnds == coords) {
+    if(sh == rectangle && rec_shape.get_clc() == perimeter && rec_shape.get_cnds() == coords) {
         std::cout << "Не реализовано." << std::endl;
 
         return 0;
     }
     
-//Triangle
-    if(sh == triangle && clc == area && cnds == sides) {
+//calculations for a triangle
+    if(sh == triangle && tr_shape.get_clc() == area && tr_shape.get_cnds() == sides) {
         double a{0},b{0},c{0};
         std::cin >> a >> b >> c;
         tr_shape.set_sides(a,b,c);
@@ -166,7 +165,7 @@ int main(){
         return 0;
     }
 
-    if(sh == triangle && clc == area && cnds == coords) {
+    if(sh == triangle && tr_shape.get_clc() == area && tr_shape.get_cnds() == coords) {
         size_t count_pt{3};
         Point* tr_shape_pts[count_pt] = { 
             new Point(),
@@ -190,7 +189,7 @@ int main(){
         return 0;
     }
 
-    if(sh == triangle && clc == perimeter && cnds == sides) {
+    if(sh == triangle && tr_shape.get_clc() == perimeter && tr_shape.get_cnds() == sides) {
         double a{0},b{0},c{0};
         std::cin >> a >> b >> c;
         tr_shape.set_sides(a,b,c);
@@ -199,11 +198,11 @@ int main(){
         return 0;
     }
 
-    if(sh == triangle && clc == perimeter && cnds == coords) {
+    if(sh == triangle && tr_shape.get_clc() == perimeter && tr_shape.get_cnds() == coords) {
         std::cout << "Не реализовано." << std::endl;
 
         return 0;
     }
-
+    
     return 0;
 }
