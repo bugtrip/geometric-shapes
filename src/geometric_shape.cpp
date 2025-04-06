@@ -19,8 +19,7 @@ void GeometricShape::show_menu() {
     std::cout << "Выберите геометрическую фигуру для расчетов:\n" 
               << "  1. Квадрат\n" 
               << "  2. Прямоугольник\n" 
-              << "  3. Треугольник\n" 
-              << "  4. Ромб\n\n" 
+              << "  3. Треугольник\n\n" 
               << "  0. Выход" << std::endl;
 }
 
@@ -136,7 +135,7 @@ double Square::area(){
 }
 
 double Square::area(Point** points, size_t len){
-    double result{0.0}, res1{0.0}, res2{0.0};
+    double result{0.0}, coords1{0.0}, coords2{0.0};
     length = len;
     if(pts) delete [] pts;
     pts = new Point[length];
@@ -145,13 +144,13 @@ double Square::area(Point** points, size_t len){
     }
 
     for(size_t i = 1; i < length; ++i){
-        res1 += pts[i-1].get_x() * (pts[i].get_y());
-        res2 += pts[i-1].get_y() * (pts[i].get_x());
+        coords1 += pts[i-1].get_x() * (pts[i].get_y());
+        coords2 += pts[i-1].get_y() * (pts[i].get_x());
     }
-    res1 += pts[len-1].get_x() * pts[0].get_y();
-    res2 += pts[len-1].get_y() * pts[0].get_x();
+    coords1 += pts[length-1].get_x() * pts[0].get_y();
+    coords2 += pts[length-1].get_y() * pts[0].get_x();
 
-    result = fabs(res1 - res2)/2;
+    result = fabs(coords1 - coords2)/2.00;
     return result;
     
 }
@@ -256,7 +255,7 @@ double Rectangle::area(){
 
 
 double Rectangle::area(Point** points, size_t len){
-    double result{0.0}, res1{0.0}, res2{0.0};
+    double result{0.0}, coords1{0.0}, coords2{0.0};
     length = len;
     if(pts) delete [] pts;
     pts = new Point[length];
@@ -265,13 +264,13 @@ double Rectangle::area(Point** points, size_t len){
     }
     
     for(size_t i = 1; i < length; ++i){
-        res1 += pts[i-1].get_x() * (pts[i].get_y());
-        res2 += pts[i-1].get_y() * (pts[i].get_x());
+        coords1 += pts[i-1].get_x() * (pts[i].get_y());
+        coords2 += pts[i-1].get_y() * (pts[i].get_x());
     }
-    res1 += pts[len-1].get_x() * pts[0].get_y();
-    res2 += pts[len-1].get_y() * pts[0].get_x();
+    coords1 += pts[length-1].get_x() * pts[0].get_y();
+    coords2 += pts[length-1].get_y() * pts[0].get_x();
 
-    result = fabs(res1 - res2)/2;
+    result = fabs(coords1 - coords2)/2;
     return result;
 }
 
@@ -380,7 +379,7 @@ double Triangle::area(double a, double b, double c){
 }
 
 double Triangle::area(Point** points, size_t len){
-    double result{0.0}, res1{0.0}, res2{0.0};
+    double result{0.0}, coords1{0.0}, coords2{0.0};
     length = len;
     if(pts) delete [] pts;
     pts = new Point[length];
@@ -389,13 +388,13 @@ double Triangle::area(Point** points, size_t len){
     }
     
     for(size_t i = 1; i < length; ++i){
-        res1 += pts[i-1].get_x() * (pts[i].get_y());
-        res2 += pts[i-1].get_y() * (pts[i].get_x());
+        coords1 += pts[i-1].get_x() * (pts[i].get_y());
+        coords2 += pts[i-1].get_y() * (pts[i].get_x());
     }
-    res1 += pts[len-1].get_x() * pts[0].get_y();
-    res2 += pts[len-1].get_y() * pts[0].get_x();
+    coords1 += pts[length-1].get_x() * pts[0].get_y();
+    coords2 += pts[length-1].get_y() * pts[0].get_x();
 
-    result = fabs(res1 - res2)/2;
+    result = fabs(coords1 - coords2)/2;
     return result;
 }
 

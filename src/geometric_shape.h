@@ -41,10 +41,10 @@ private:
 public:
     Square(const Square&) = delete;
     Square& operator=(const Square&) = delete;
-    Square(Conditions cnds = none_cnd, double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(cnds) {
+    Square(double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(none_cnd), clc(none_clc) {
             set_sides(a,b,c,d);
     }
-    Square(Conditions cnds, Point** pts, size_t& len) : cnds(cnds) {
+    Square(Point** pts, size_t& len) : cnds(none_cnd), clc(none_clc) {
        set_points(pts, len);
     }
     void set_sides(double a, double b, double c, double d);
@@ -75,16 +75,15 @@ private:
     double a{0.0}, b{0.0}, c{0.0}, d{0.0};
     Conditions cnds{none_cnd};
     Calculations clc{none_clc};
-    //double radius_circumscribed_circle{0};
     Point* pts{nullptr};
     size_t length{0};
 public:
     Rectangle(const Rectangle&) = delete;
     Rectangle& operator=(const Rectangle&) = delete;
-    Rectangle(Conditions cnds = none_cnd, double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(cnds){
+    Rectangle(double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(none_cnd), clc(none_clc) {
         set_sides(a,b,c,d);
     }
-    Rectangle(Conditions cnds, Point** pts, size_t& len) : cnds(cnds) {
+    Rectangle(Point** pts, size_t& len) : cnds(none_cnd), clc(none_clc) {
        set_points(pts, len);
     }
     void set_sides(double a, double b, double c, double d);
@@ -120,10 +119,10 @@ private:
 public:
     Triangle(const Triangle&) = delete;
     Triangle& operator=(const Triangle&) = delete;
-    Triangle(Conditions cnds = none_cnd, double a = 0.0, double b = 0.0, double c = 0.0) : cnds(cnds){
+    Triangle(double a = 0.0, double b = 0.0, double c = 0.0) : cnds(none_cnd), clc(none_clc) {
         set_sides(a,b,c);
     }
-    Triangle(Conditions cnds, Point** pts, size_t& len) : cnds(cnds) {
+    Triangle(Point** pts, size_t& len) : cnds(none_cnd), clc(none_clc) {
        set_points(pts, len);
     }
     void set_sides(double a, double b, double c);
