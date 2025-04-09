@@ -58,6 +58,7 @@ public:
     bool check_valid_sq(double a, double b, double c, double d);
     virtual double perimeter() override;
     Point* get_pts();
+    int result_calc();
     virtual double area();                                                  //calculation of the area of a shape based on sides
     //virtual double area(double a);
     virtual double area(Point** points, size_t len) override;               //calculation of the area of a shape based on coordinates
@@ -96,6 +97,7 @@ public:
     bool check_valid_rec(double a, double b, double c, double d);
     virtual double perimeter() override;
     Point* get_pts();
+    int result_calc();
     virtual double area();
     virtual double area(double perim, double a);
     //virtual double area(double a, double raduis_circumscribed_circle);
@@ -134,6 +136,7 @@ public:
     Calculations get_clc() const;
     bool check_valid_tr(double a, double b, double c);
     Point* get_pts();
+    int result_calc();
     virtual double perimeter() override;
     virtual double area(double a, double b, double c);
     virtual double area(Point** coords, size_t len) override;
