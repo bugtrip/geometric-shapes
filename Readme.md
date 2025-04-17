@@ -1,2 +1,2 @@
 # Geometric Shapes
-This is a C++ training application designed for performing calculations with geometric shapes.
+This app is for calculating the perimeter and area of geometric shapes based on side lengths and vertex coordinates.

@@ -19,21 +19,21 @@ int main(){
     Rectangle rec_shape;
     Triangle tr_shape;
 
-    GeometricShape& rf_sq = sq_shape;
-    GeometricShape& rf_rec = rec_shape;
-    GeometricShape& rf_tr = tr_shape;
+    //GeometricShape& rf_sq = sq_shape;
+    //GeometricShape& rf_rec = rec_shape;
+    //GeometricShape& rf_tr = tr_shape;
 
 
 //selection of conditions for calculations
     switch(sh){
         case square:
-            sq_shape.available_calc(rf_sq);
+            sq_shape.available_calc();
             break;
         case rectangle:
-            rec_shape.available_calc(rf_rec);
+            rec_shape.available_calc();
             break;
         case triangle:
-            tr_shape.available_calc(rf_tr);
+            tr_shape.available_calc();
             break;
         case exit_sh:
             return 0;
