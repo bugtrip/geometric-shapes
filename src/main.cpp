@@ -1,5 +1,6 @@
-#include <iostream>
-#include "geometric_shape.h"
+#include "Square.h"
+#include "Rectangle.h"
+#include "Triangle.h"
 
 int main(){       
     int num_shape{0};
