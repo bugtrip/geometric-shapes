@@ -5,7 +5,7 @@
 int main(){       
     int num_shape{0};
     Shape sh{none_sh};
-        
+    
     GeometricShape::show_menu();
 
 //selection of a geometric shapes
@@ -38,7 +38,7 @@ int main(){
             break;
         case exit_sh:
             return 0;
-        default:
+        case none_sh:
            std::cout << "Ошибка ввода!"  << std::endl;
            return 0;
     }

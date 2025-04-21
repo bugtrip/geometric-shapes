@@ -6,17 +6,13 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <vector>
 
-/*
-enum Shape{exit_sh = 0, square = 1, rectangle = 2, triangle = 3, none_sh = 4};
-enum Calculations{exit_clc = 0, area = 1, perimeter = 2, none_clc = 3};
-enum Conditions{exit_cnds = 0, sides = 1, coords = 2, side_perim = 3, none_cnd = 4};
-*/
 class GeometricShape {
 public:
     virtual double perimeter() = 0;
-    virtual double area(Point** points, size_t len) = 0;                    //calculation of the area of a shape based on coordinates
-    virtual void set_points(Point** points, size_t len) = 0;
+    virtual double area(std::vector<Point>& points, size_t len) = 0;        //calculation of the area of a shape based on coordinates
+    virtual void set_points(std::vector<Point>& points, size_t len) = 0;
     virtual void set_cnds(Conditions) = 0;
     virtual void set_clc(Calculations) = 0;
     static void show_menu();                                                //display of the main menu

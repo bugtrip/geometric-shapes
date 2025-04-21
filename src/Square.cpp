@@ -29,13 +29,10 @@ void Square::get_sides(double& a, double& b, double& c, double& d) const {
     d = this->d;
 }
 
-void Square::set_points(Point** points, size_t len){
-    if(pts) delete [] pts;
+void Square::set_points(std::vector<Point>& points, size_t len){
+    if(!pts.empty()) pts.clear();
     length = len;
-    pts = new Point[length];
-    for(size_t i = 0; i < length; ++i){
-        this->pts[i] = *points[i];
-    }
+    pts = points;
 }
 
 void Square::set_cnds(Conditions cnds) {
@@ -69,14 +66,11 @@ double Square::area(){
     return a * a;
 }
 
-double Square::area(Point** points, size_t len){
+double Square::area(std::vector<Point>& points, size_t len){
     double result{0.0}, coords1{0.0}, coords2{0.0};
     length = len;
-    if(pts) delete [] pts;
-    pts = new Point[length];
-    for(size_t i = 0; i < length; ++i){
-        pts[i] = *points[i];
-    }
+    if(!pts.empty()) pts.clear();
+    pts = points;
 
     for(size_t i = 1; i < length; ++i){
         coords1 += pts[i-1].get_x() * (pts[i].get_y());
@@ -86,11 +80,12 @@ double Square::area(Point** points, size_t len){
     coords2 += pts[length-1].get_y() * pts[0].get_x();
 
     result = fabs(coords1 - coords2)/2.00;
+    
     return result;
 
 }
 
-Point* Square::get_pts(){
+std::vector<Point> Square::get_pts(){
     return pts;
 }
 
@@ -106,26 +101,23 @@ int Square::result_calc() {
 
     if(get_clc() == Calculations::area && get_cnds() == coords) {
         size_t count_pt{4};
-        Point* sq_shape_pts[count_pt] = {
-            new Point(),
-            new Point(),
-            new Point(),
-            new Point()
+        Point pt1,pt2,pt3,pt4;
+        std::vector<Point> sq_shape_pts = {
+            pt1,
+            pt2,
+            pt3,
+            pt4
         };
 
         for(size_t i = 0; i < count_pt; ++i){
             double a{0.0}, b{0.0};
             std::cin >> a >> b;
-            sq_shape_pts[i]->set_pt(a,b);
+            sq_shape_pts[i].set_pt(a,b);
         }
 
         //sq_shape.set_points(sq_shape_pts, count_pt);
         double area_square_c = area(sq_shape_pts, count_pt);
         std::cout << "\nПлощадь квадрата: " << std::fixed << std::setprecision(2) << area_square_c << std::endl;
-
-        for(size_t i = 0; i < count_pt; ++i){
-            delete sq_shape_pts[i];
-        }
 
         return 0;
     }
