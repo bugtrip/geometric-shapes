@@ -31,7 +31,6 @@ public:
     bool check_valid_sq(double a, double b, double c, double d);
     virtual double perimeter() override;
     std::vector<Point> get_pts();
-    int result_calc();
     virtual double area();                                                  //calculation of the area of a shape based on sides
     virtual double area(std::vector<Point>& points, size_t len) override;   //calculation of the area of a shape based on coordinates
     virtual int available_calc();

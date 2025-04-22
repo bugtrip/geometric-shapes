@@ -94,67 +94,6 @@ std::vector<Point> Rectangle::get_pts(){
 
 }
 
-int Rectangle::result_calc() {
-    if(get_clc() == Calculations::area && get_cnds() == sides) {
-        double a{0},b{0};
-        std::cin >> a >> b;
-        set_sides(a,b,a,b);
-        double area_rec_s = this->area();
-        std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << area_rec_s << std::endl;
-
-        return 0;
-    }
-
-    if(get_clc() == Calculations::area && get_cnds() == coords) {
-        size_t count_pt{4};
-        Point pt1,pt2,pt3,pt4;
-        std::vector<Point> rec_shape_pts = {
-            pt1,
-            pt2,
-            pt3,
-            pt4
-        };
-        for(size_t i = 0; i < count_pt; ++i){
-            double a{0.0}, b{0.0};
-            std::cin >> a >> b;
-            rec_shape_pts[i].set_pt(a,b);
-        }
-
-        //rec_shape.set_points(rec_shape_pts, count_pt);
-        double area_rec_c = area(rec_shape_pts, count_pt);
-        std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << area_rec_c << std::endl;
-
-        return 0;
-    }
-
-    if(get_clc() == Calculations::area && get_cnds() == side_perim) {
-        double perim{0}, a{0};
-        std::cin >> perim >> a;
-        double area_rec_sp = area(perim, a);
-        std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << area_rec_sp << std::endl;
-
-        return 0;
-    }
-
-    if(get_clc() == Calculations::perimeter && get_cnds() == sides) {
-        double a{0},b{0};
-        std::cin >> a >> b;
-        set_sides(a,b,a,b);
-        double perim_rec_s = this->perimeter();
-        std::cout << "\nПериметр прямоугольника: " << std::fixed << std::setprecision(2) << perim_rec_s << std::endl;
-
-        return 0;
-    }
-
-    if(get_clc() == Calculations::perimeter && get_cnds() == coords) {
-        std::cout << "Не реализовано." << std::endl;
-
-        return 0;
-    }
-
-    return 0;
-}
-
 void Rectangle::show_calc() {
     std::cout << "Доступные вычисления:\n"
               << "  1. Площадь прямоугольника\n"

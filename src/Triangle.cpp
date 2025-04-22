@@ -87,57 +87,6 @@ double Triangle::area(std::vector<Point>& points, size_t len){
     return result;
 }
 
-int Triangle::result_calc() {
-    if(get_clc() == Calculations::area && get_cnds() == sides) {
-        double a{0},b{0},c{0};
-        std::cin >> a >> b >> c;
-        set_sides(a,b,c);
-        double area_tr_s = area(a,b,c);
-        area_tr_s != -1 ? std::cout << "\nПлощадь треугольника: " << std::fixed << std::setprecision(2) << area_tr_s << std::endl :
-                          std::cout << "\nОшибка! Некорректные длины сторон треугольника." << std::endl;
-
-        return 0;
-    }
-
-    if(get_clc() == Calculations::area && get_cnds() == coords) {
-        size_t count_pt{3};
-        Point pt1,pt2,pt3;
-        std::vector<Point> tr_shape_pts = {
-            pt1,
-            pt2,
-            pt3
-        };
-        for(size_t i = 0; i < count_pt; ++i){
-            double a{0.0}, b{0.0};
-            std::cin >> a >> b;
-            tr_shape_pts[i].set_pt(a,b);
-        }
-
-        //tr_shape.set_points(tr_shape_pts, count_pt);
-        double area_tr_c = area(tr_shape_pts, count_pt);
-        std::cout << "\nПлощадь треугольника: " << std::fixed << std::setprecision(2) << area_tr_c << std::endl;
-
-        return 0;
-    }
-
-    if(get_clc() == Calculations::perimeter && get_cnds() == sides) {
-        double a{0},b{0},c{0};
-        std::cin >> a >> b >> c;
-        set_sides(a,b,c);
-        double perim_triangle_s = this->perimeter();
-        std::cout << "\nПериметр треугольника: " << std::fixed << std::setprecision(2) << perim_triangle_s << std::endl;
-        return 0;
-    }
-
-    if(get_clc() == Calculations::perimeter && get_cnds() == coords) {
-        std::cout << "Не реализовано." << std::endl;
-
-        return 0;
-    }
-
-    return 0;
-}
-
 void Triangle::show_calc() {
     std::cout << "Доступные вычисления:\n"
               << "  1. Площадь треугольника\n"

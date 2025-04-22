@@ -29,7 +29,6 @@ public:
     Calculations get_clc() const;
     bool check_valid_tr(double a, double b, double c);
     std::vector<Point> get_pts();
-    int result_calc();
     virtual double perimeter() override;
     virtual double area(double a, double b, double c);
     virtual double area(std::vector<Point>& coords, size_t len) override;

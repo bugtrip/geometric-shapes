@@ -89,55 +89,6 @@ std::vector<Point> Square::get_pts(){
     return pts;
 }
 
-int Square::result_calc() {
-    if(get_clc() == Calculations::area && get_cnds() == sides) {
-        double a{0};
-        std::cin >> a;
-        set_sides(a);
-        double area_square_s = this->area();
-        std::cout << "\nПлощадь квадрата: " << std::fixed << std::setprecision(2) << area_square_s << std::endl;
-        return 0;
-    }
-
-    if(get_clc() == Calculations::area && get_cnds() == coords) {
-        size_t count_pt{4};
-        Point pt1,pt2,pt3,pt4;
-        std::vector<Point> sq_shape_pts = {
-            pt1,
-            pt2,
-            pt3,
-            pt4
-        };
-
-        for(size_t i = 0; i < count_pt; ++i){
-            double a{0.0}, b{0.0};
-            std::cin >> a >> b;
-            sq_shape_pts[i].set_pt(a,b);
-        }
-
-        //sq_shape.set_points(sq_shape_pts, count_pt);
-        double area_square_c = area(sq_shape_pts, count_pt);
-        std::cout << "\nПлощадь квадрата: " << std::fixed << std::setprecision(2) << area_square_c << std::endl;
-
-        return 0;
-    }
-
-    if(get_clc() == Calculations::perimeter && get_cnds() == sides) {
-        double a{0};
-        std::cin >> a;
-        set_sides(a);
-        double perim_square_s = this->perimeter();
-        std::cout << "\nПериметр квадрата: " << std::fixed << std::setprecision(2) << perim_square_s << std::endl;
-
-        return 0;
-    }
-    if(get_clc() == Calculations::perimeter && get_cnds() == coords) {
-        std::cout << "Не реализовано." << std::endl;
-    }
-
-    return 0;
-}
-
 void Square::show_calc() {
     std::cout << "Доступные вычисления:\n"
               << "  1. Площадь квадрата\n"
