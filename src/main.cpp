@@ -191,7 +191,23 @@ int main(){
     }
 
     if(sh == triangle && tr_shape.get_clc() == Calculations::perimeter && tr_shape.get_cnds() == coords) {
-        std::cout << "Не реализовано." << std::endl;
+        size_t count_pt{3};
+        Point pt1,pt2,pt3;
+
+        std::vector<Point> tr_shape_pts = {
+            pt1,
+            pt2,
+            pt3
+        };
+        for(size_t i = 0; i < count_pt; ++i){
+            double a{0.0}, b{0.0};
+            std::cin >> a >> b;
+            tr_shape_pts[i].set_pt(a,b);
+        }
+
+        //set_points(tr_shape_pts, count_pt); 
+        double perim_tr_c = tr_shape.perimeter(tr_shape_pts, count_pt);
+        std::cout << "\nПериметр треугольника: " << std::fixed << std::setprecision(2) << perim_tr_c << std::endl;
 
         return 0;
     }

@@ -57,6 +57,17 @@ double Triangle::perimeter(){
     return a + b + c;
 }
 
+double Triangle::perimeter(std::vector<Point>& points, size_t len){
+    set_points(points, len);
+    double result{0};
+    for(size_t i = 1; i < length; ++i){
+        result += sqrt(fabs(pow(pts[i].get_x() - pts[i-1].get_x(), 2)) + fabs(pow(pts[i].get_y() - pts[i-1].get_y(), 2)));
+    }
+    result += sqrt(fabs(pow(pts[length-1].get_x() - pts[0].get_x(), 2)) + fabs(pow(pts[length-1].get_y() - pts[0].get_y(), 2)));
+
+    return result;
+}
+
 double Triangle::area(double a, double b, double c){
     if(check_valid_tr(a,b,c)){
         this->a = a;
@@ -71,9 +82,7 @@ double Triangle::area(double a, double b, double c){
 
 double Triangle::area(std::vector<Point>& points, size_t len){
     double result{0.0}, coords1{0.0}, coords2{0.0};
-    length = len;
-    if(!pts.empty()) pts.clear();
-    pts = points;
+    set_points(points, len);
 
     for(size_t i = 1; i < length; ++i){
         coords1 += pts[i-1].get_x() * (pts[i].get_y());
@@ -102,7 +111,8 @@ void Triangle::show_conditions(Calculations& clc) {
 }
 
 void Triangle::show_input_form(Conditions& cnds) {
-    cnds == sides ? std::cout << "Введите через пробел длину каждой стороны треугольника по порядку A B C:\n" : cnds == coords
-                  ? std::cout << "Введите координаты каждой вершины треугольника\n" : cnds == none_cnd
-                  ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
+      cnds == sides    ? std::cout << "Введите через пробел длину каждой стороны треугольника по порядку A B C:\n" 
+    : cnds == coords   ? std::cout << "Введите координаты каждой вершины треугольника\n" 
+    : cnds == none_cnd ? std::cout << "Ошибка ввода!\n" 
+    : std::cout << "\n";
 }

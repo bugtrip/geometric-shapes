@@ -73,9 +73,7 @@ double Rectangle::area(){
 
 double Rectangle::area(std::vector<Point>& points, size_t len){
     double result{0.0}, coords1{0.0}, coords2{0.0};
-    length = len;
-    if(!pts.empty()) pts.clear();
-    pts = points;
+    set_points(points, len);
 
     for(size_t i = 1; i < length; ++i){
         coords1 += pts[i-1].get_x() * (pts[i].get_y());
@@ -114,8 +112,9 @@ void Rectangle::show_conditions(Calculations& clc) {
 }
 
 void Rectangle::show_input_form(Conditions& cnds) {
-    cnds == sides ? std::cout << "Введите через пробел длину и ширину прямоугольника по порядку A B:\n" : cnds == coords
-                  ? std::cout << "Введите координаты каждой вершины прямоугольника:\n" : cnds == side_perim
-                  ? std::cout << "Введите через пробел периметр и длину стороны прямоугольника:\n" : cnds == none_cnd
-                  ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
+      cnds == sides      ? std::cout << "Введите через пробел длину и ширину прямоугольника по порядку A B:\n" 
+    : cnds == coords     ? std::cout << "Введите координаты каждой вершины прямоугольника:\n" 
+    : cnds == side_perim ? std::cout << "Введите через пробел периметр и длину стороны прямоугольника:\n" 
+    : cnds == none_cnd   ? std::cout << "Ошибка ввода!\n" 
+    : std::cout << "\n";
 }

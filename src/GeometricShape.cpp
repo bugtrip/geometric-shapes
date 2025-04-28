@@ -29,10 +29,12 @@ int GeometricShape::available_calc(GeometricShape* sh){
         sh->show_conditions(clc);
         std::cin >> num_conditions;
         std::cout << "\n";
-        cnds = (num_conditions == 1) ? sides : (num_conditions == 2)
-                                     ? coords : (num_conditions == 3)
-                                     ? side_perim : (num_conditions == 0)
-                                     ? exit_cnds : none_cnd;
+        cnds = (num_conditions == 1) ? sides 
+             : (num_conditions == 2) ? coords 
+             : (num_conditions == 3) ? side_perim 
+             : (num_conditions == 0) ? exit_cnds 
+             : none_cnd;
+
         sh->set_cnds(cnds);
         sh->show_input_form(cnds);
     }
@@ -41,9 +43,11 @@ int GeometricShape::available_calc(GeometricShape* sh){
         sh->show_conditions(clc);
         std::cin >> num_conditions;
         std::cout << "\n";
-        cnds = (num_conditions == 1) ? sides : (num_conditions == 2)
-                                     ? coords : (num_conditions == 0)
-                                     ? exit_cnds : none_cnd;
+        cnds = (num_conditions == 1) ? sides 
+             : (num_conditions == 2) ? coords 
+             : (num_conditions == 0) ? exit_cnds 
+             : none_cnd;
+
         sh->set_cnds(cnds);
         sh->show_input_form(cnds);
     }

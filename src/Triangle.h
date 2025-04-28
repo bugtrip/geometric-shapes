@@ -30,6 +30,7 @@ public:
     bool check_valid_tr(double a, double b, double c);
     std::vector<Point> get_pts();
     virtual double perimeter() override;
+    virtual double perimeter(std::vector<Point>&, size_t);
     virtual double area(double a, double b, double c);
     virtual double area(std::vector<Point>& coords, size_t len) override;
     virtual int available_calc();

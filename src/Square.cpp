@@ -68,9 +68,7 @@ double Square::area(){
 
 double Square::area(std::vector<Point>& points, size_t len){
     double result{0.0}, coords1{0.0}, coords2{0.0};
-    length = len;
-    if(!pts.empty()) pts.clear();
-    pts = points;
+    set_points(points, len);
 
     for(size_t i = 1; i < length; ++i){
         coords1 += pts[i-1].get_x() * (pts[i].get_y());
@@ -104,7 +102,8 @@ void Square::show_conditions(Calculations& clc) {
 }
 
 void Square::show_input_form(Conditions& cnds) {
-    cnds == sides ? std::cout << "Введите длину стороны квадрата:\n" : cnds == coords
-                  ? std::cout << "Введите координаты каждой вершины квадрата:\n" : cnds == none_cnd
-                  ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
+      cnds == sides    ? std::cout << "Введите длину стороны квадрата:\n" 
+    : cnds == coords   ? std::cout << "Введите координаты каждой вершины квадрата:\n" 
+    : cnds == none_cnd ? std::cout << "Ошибка ввода!\n" 
+    : std::cout << "\n";
 }
