@@ -7,6 +7,7 @@
 class Square : public GeometricShape {
 private:
     double a{0.0},b{0.0},c{0.0},d{0.0};
+    Shape shape{square};
     Conditions cnds{none_cnd};
     Calculations clc{none_clc};
     std::vector<Point> pts{0};
@@ -26,10 +27,12 @@ public:
     void get_sides(double& a, double& b, double& c, double& d) const;
     void set_cnds(Conditions) override;
     void set_clc(Calculations) override;
+    virtual Shape& get_shape() override;
     Conditions get_cnds() const;
     Calculations get_clc() const;
     bool check_valid_sq(double a, double b, double c, double d);
     virtual double perimeter() override;
+    virtual double perimeter(std::vector<Point>&, size_t len);
     std::vector<Point> get_pts();
     virtual double area();                                                  //calculation of the area of a shape based on sides
     virtual double area(std::vector<Point>& points, size_t len) override;   //calculation of the area of a shape based on coordinates

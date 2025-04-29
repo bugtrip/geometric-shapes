@@ -47,6 +47,10 @@ void Square::set_clc(Calculations clc) {
     }
 }
 
+Shape& Square::get_shape() {
+    return shape;
+}
+
 Conditions Square::get_cnds() const {
     return cnds;
 }
@@ -60,6 +64,16 @@ bool Square::check_valid_sq(double a, double b, double c, double d){
 
 double Square::perimeter(){
     return a + b + c + d;
+}
+
+double Square::perimeter(std::vector<Point>& points, size_t len){
+    double result{0.0};
+    set_points(points, len);
+    for(size_t i = 1; i < length; ++i){
+        result += sqrt(fabs(pow(pts[i].get_x() - pts[i-1].get_x(), 2)) + fabs(pow(pts[i].get_y() - pts[i-1].get_y(), 2)));
+    }
+
+    return result*4;
 }
 
 double Square::area(){
@@ -102,8 +116,8 @@ void Square::show_conditions(Calculations& clc) {
 }
 
 void Square::show_input_form(Conditions& cnds) {
-      cnds == sides    ? std::cout << "Введите длину стороны квадрата:\n" 
-    : cnds == coords   ? std::cout << "Введите координаты каждой вершины квадрата:\n" 
-    : cnds == none_cnd ? std::cout << "Ошибка ввода!\n" 
-    : std::cout << "\n";
+      cnds == sides                                    ? std::cout << "Введите длину стороны квадрата:\n"
+    : cnds == coords && clc == Calculations::area      ? std::cout << "Введите координаты каждой вершины квадрата:\n"
+    : cnds == coords && clc == Calculations::perimeter ? std::cout << "Введите координаты двух точек одной из сторон квадрата:\n"
+    : cnds == none_cnd                                 ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
 }

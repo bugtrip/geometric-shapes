@@ -7,6 +7,7 @@
 class Rectangle : public GeometricShape {
 private:
     double a{0.0}, b{0.0}, c{0.0}, d{0.0};
+    Shape shape{rectangle};
     Conditions cnds{none_cnd};
     Calculations clc{none_clc};
     std::vector<Point> pts{0};
@@ -25,6 +26,7 @@ public:
     void get_sides(double& a, double& b, double& c, double& d) const;
     void set_cnds(Conditions) override;
     void set_clc(Calculations) override;
+    virtual Shape& get_shape() override;
     Conditions get_cnds() const;
     Calculations get_clc() const;
     bool check_valid_rec(double a, double b, double c, double d);

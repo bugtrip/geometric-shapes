@@ -83,8 +83,23 @@ int main(){
     }
     
     if(sh == square && sq_shape.get_clc() == Calculations::perimeter && sq_shape.get_cnds() == coords) {
-        std::cout << "Не реализовано." << std::endl;
-        
+        size_t count_pt{2};
+        Point pt1, pt2;
+        std::vector<Point> sq_shape_pts = {
+            pt1,
+            pt2
+        };
+
+        for(size_t i = 0; i < count_pt; ++i){
+            double a{0.0}, b{0.0};
+            std::cin >> a >> b;
+            sq_shape_pts[i].set_pt(a,b);
+        }
+
+        //sq_shape.set_points(sq_shape_pts, count_pt);
+        double perim_square_c = sq_shape.perimeter(sq_shape_pts, count_pt);
+        std::cout << "\nПериметр квадрата: " << std::fixed << std::setprecision(2) << perim_square_c << std::endl;
+
         return 0;
     }
 
@@ -136,12 +151,6 @@ int main(){
         rec_shape.set_sides(a,b,a,b);
         double perim_rec_s = rec_shape.perimeter();
         std::cout << "\nПериметр прямоугольника: " << std::fixed << std::setprecision(2) << perim_rec_s << std::endl;
-
-        return 0;
-    }
-
-    if(sh == rectangle && rec_shape.get_clc() == Calculations::perimeter && rec_shape.get_cnds() == coords) {
-        std::cout << "Не реализовано." << std::endl;
 
         return 0;
     }

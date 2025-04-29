@@ -31,6 +31,10 @@ void Rectangle::set_clc(Calculations clc) {
     }
 }
 
+Shape& Rectangle::get_shape() {
+    return shape;
+}
+
 Conditions Rectangle::get_cnds() const {
     return cnds;
 }
@@ -101,20 +105,20 @@ void Rectangle::show_calc() {
 
 void Rectangle::show_conditions(Calculations& clc) {
     std::cout << "Как произвести расчеты?\n"
-              << "  1. По длине и ширине прямоугольника\n"
-              << "  2. По координатам вершин прямоугольника\n";
+              << "  1. По длине и ширине прямоугольника\n";
 
     if(clc == Calculations::area) {
-        std::cout << "  3. По периметру и одной стороне прямоугольника\n";
+        std::cout << "  2. По координатам вершин прямоугольника\n"
+                  << "  3. По периметру и одной стороне прямоугольника\n";
     }
 
     std::cout << "\n  0. Выход\n";
 }
 
 void Rectangle::show_input_form(Conditions& cnds) {
-      cnds == sides      ? std::cout << "Введите через пробел длину и ширину прямоугольника по порядку A B:\n" 
-    : cnds == coords     ? std::cout << "Введите координаты каждой вершины прямоугольника:\n" 
+      cnds == sides ? std::cout << "Введите через пробел длину и ширину прямоугольника по порядку A B:\n" 
+    : cnds == coords && clc == Calculations::area ? std::cout << "Введите координаты каждой вершины прямоугольника:\n" 
     : cnds == side_perim ? std::cout << "Введите через пробел периметр и длину стороны прямоугольника:\n" 
-    : cnds == none_cnd   ? std::cout << "Ошибка ввода!\n" 
+    : cnds == none_cnd ? std::cout << "Ошибка ввода!\n" 
     : std::cout << "\n";
 }

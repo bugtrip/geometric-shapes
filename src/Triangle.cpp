@@ -30,6 +30,10 @@ void Triangle::set_clc(Calculations clc) {
     }
 }
 
+Shape& Triangle::get_shape() {
+    return shape;    
+}
+
 Conditions Triangle::get_cnds() const {
     return cnds;
 }

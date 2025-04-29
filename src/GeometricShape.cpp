@@ -17,9 +17,11 @@ int GeometricShape::available_calc(GeometricShape* sh){
     sh->show_calc();
     std::cin >> num_clc;
     std::cout << "\n";
-    clc = (num_clc == 1) ? Calculations::area : (num_clc == 2)
-                         ? Calculations::perimeter : (num_clc == 0)
-                         ? exit_clc : none_clc;
+    clc = (num_clc == 1) ? Calculations::area 
+        : (num_clc == 2) ? Calculations::perimeter 
+        : (num_clc == 0) ? exit_clc 
+        : none_clc;
+
     sh->set_clc(clc);
     if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
 
@@ -44,7 +46,7 @@ int GeometricShape::available_calc(GeometricShape* sh){
         std::cin >> num_conditions;
         std::cout << "\n";
         cnds = (num_conditions == 1) ? sides 
-             : (num_conditions == 2) ? coords 
+             : (num_conditions == 2 && (sh->get_shape() == square || sh->get_shape() == triangle)) ? coords 
              : (num_conditions == 0) ? exit_cnds 
              : none_cnd;
 

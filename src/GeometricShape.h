@@ -15,6 +15,7 @@ public:
     virtual void set_points(std::vector<Point>& points, size_t len) = 0;
     virtual void set_cnds(Conditions) = 0;
     virtual void set_clc(Calculations) = 0;
+    virtual Shape& get_shape() = 0;
     static void show_menu();                                                //display of the main menu
     virtual int available_calc(GeometricShape*);                            //selection of available calculations
     virtual void show_conditions(Calculations& clc) = 0;                    //display of the selection form for conditions 
