@@ -11,10 +11,11 @@ int main(){
 //selection of a geometric shapes
     std::cin >> num_shape;
     std::cout << "\n";
-    sh = (num_shape == 1) ? square : (num_shape == 2) ? rectangle 
-                                   : (num_shape == 3) ? triangle 
-                                   : (num_shape == 0) ? exit_sh 
-                                   : none_sh;
+    sh = (num_shape == 1) ? square 
+       : (num_shape == 2) ? rectangle 
+       : (num_shape == 3) ? triangle 
+       : (num_shape == 0) ? exit_sh 
+       : none_sh;
 
     Square sq_shape;
     Rectangle rec_shape;
@@ -52,13 +53,13 @@ int main(){
     if(sh == square && sq_shape.get_clc() == Calculations::area && sq_shape.get_cnds() == coords) {
         size_t count_pt{4};
         Point pt1, pt2, pt3, pt4;
-        std::vector<Point> sq_shape_pts = {
-            pt1,
-            pt2,
-            pt3,
-            pt4
-        };
-
+        std::vector<Point> sq_shape_pts;
+        sq_shape_pts.reserve(count_pt);
+        sq_shape_pts.push_back(pt1);
+        sq_shape_pts.push_back(pt2);
+        sq_shape_pts.push_back(pt3);
+        sq_shape_pts.push_back(pt4);
+        
         for(size_t i = 0; i < count_pt; ++i){
             double a{0.0}, b{0.0};
             std::cin >> a >> b;
@@ -85,10 +86,10 @@ int main(){
     if(sh == square && sq_shape.get_clc() == Calculations::perimeter && sq_shape.get_cnds() == coords) {
         size_t count_pt{2};
         Point pt1, pt2;
-        std::vector<Point> sq_shape_pts = {
-            pt1,
-            pt2
-        };
+        std::vector<Point> sq_shape_pts;
+        sq_shape_pts.reserve(count_pt);
+        sq_shape_pts.push_back(pt1);
+        sq_shape_pts.push_back(pt2);
 
         for(size_t i = 0; i < count_pt; ++i){
             double a{0.0}, b{0.0};
@@ -117,12 +118,13 @@ int main(){
     if(sh == rectangle && rec_shape.get_clc() == Calculations::area && rec_shape.get_cnds() == coords) {
         size_t count_pt{4};
         Point pt1,pt2,pt3,pt4;
-        std::vector<Point> rec_shape_pts = {
-            pt1,
-            pt2,
-            pt3,
-            pt4
-        };
+        std::vector<Point> rec_shape_pts;
+        rec_shape_pts.reserve(count_pt);
+        rec_shape_pts.push_back(pt1);
+        rec_shape_pts.push_back(pt2);
+        rec_shape_pts.push_back(pt3);
+        rec_shape_pts.push_back(pt4);
+
         for(size_t i = 0; i < count_pt; ++i){
             double a{0.0}, b{0.0};
             std::cin >> a >> b;
@@ -170,12 +172,12 @@ int main(){
     if(sh == triangle && tr_shape.get_clc() == Calculations::area && tr_shape.get_cnds() == coords) {
         size_t count_pt{3};
         Point pt1,pt2,pt3;
+        std::vector<Point> tr_shape_pts;
+        tr_shape_pts.reserve(count_pt);
+        tr_shape_pts.push_back(pt1);
+        tr_shape_pts.push_back(pt2);
+        tr_shape_pts.push_back(pt3);
 
-        std::vector<Point> tr_shape_pts = {
-            pt1,
-            pt2,
-            pt3
-        };
         for(size_t i = 0; i < count_pt; ++i){
             double a{0.0}, b{0.0};
             std::cin >> a >> b;
@@ -202,12 +204,12 @@ int main(){
     if(sh == triangle && tr_shape.get_clc() == Calculations::perimeter && tr_shape.get_cnds() == coords) {
         size_t count_pt{3};
         Point pt1,pt2,pt3;
+        std::vector<Point> tr_shape_pts;
+        tr_shape_pts.reserve(count_pt);
+        tr_shape_pts.push_back(pt1);
+        tr_shape_pts.push_back(pt2);
+        tr_shape_pts.push_back(pt3);
 
-        std::vector<Point> tr_shape_pts = {
-            pt1,
-            pt2,
-            pt3
-        };
         for(size_t i = 0; i < count_pt; ++i){
             double a{0.0}, b{0.0};
             std::cin >> a >> b;
