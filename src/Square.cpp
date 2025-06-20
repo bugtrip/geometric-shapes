@@ -1,4 +1,5 @@
 #include "Square.h"
+#include <iostream>
 
 int Square::available_calc(){
     return GeometricShape::available_calc(this);

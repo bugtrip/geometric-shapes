@@ -1,4 +1,5 @@
 #include "Triangle.h"
+#include <iostream>
 
 int Triangle::available_calc(){
     return GeometricShape::available_calc(this);
@@ -116,7 +117,7 @@ void Triangle::show_conditions(Calculations& clc) {
 
 void Triangle::show_input_form(Conditions& cnds) {
       cnds == sides    ? std::cout << "Введите через пробел длину каждой стороны треугольника по порядку A B C:\n" 
-    : cnds == coords   ? std::cout << "Введите координаты каждой вершины треугольника\n" 
+    : cnds == coords   ? std::cout << "Введите координаты каждой вершины треугольника:\n" 
     : cnds == none_cnd ? std::cout << "Ошибка ввода!\n" 
     : std::cout << "\n";
 }

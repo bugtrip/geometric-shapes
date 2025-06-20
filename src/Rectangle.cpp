@@ -1,4 +1,5 @@
 #include "Rectangle.h"
+#include <iostream>
 
 int Rectangle::available_calc(){
     return GeometricShape::available_calc(this);
