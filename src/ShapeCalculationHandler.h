@@ -1,22 +1,22 @@
-#ifndef PROCESSING_
-#define PROCESSING_
+#ifndef SHAPECALCULATIONHANDLER_
+#define SHAPECALCULATIONHANDLER_
 
 #include "Square.h"
 #include "Rectangle.h"
 #include "Triangle.h"
 
-class Processing{
+class ShapeCalculationHandler{
 private:
     //GeometricShape* shape_proc;
     Square* sq_shape_proc;
     Rectangle* rec_shape_proc;
     Triangle* tr_shape_proc;
 public:
-    Processing(Square*);
-    Processing(Rectangle*);
-    Processing(Triangle*);
-    Processing(const Processing&) = delete;
-    Processing& operator=(const Processing&) = delete;
+    ShapeCalculationHandler(Square*);
+    ShapeCalculationHandler(Rectangle*);
+    ShapeCalculationHandler(Triangle*);
+    ShapeCalculationHandler(const ShapeCalculationHandler&) = delete;
+    ShapeCalculationHandler& operator=(const ShapeCalculationHandler&) = delete;
     void set_square_ptr(Square*);
     void set_rectangle_ptr(Rectangle*);
     void set_triangle_ptr(Triangle*);

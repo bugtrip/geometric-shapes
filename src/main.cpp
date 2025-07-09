@@ -1,7 +1,7 @@
 #include "Square.h"
 #include "Rectangle.h"
 #include "Triangle.h"
-#include "Processing.h"
+#include "ShapeCalculationHandler.h"
 #include <iostream>
 
 int main(){       
@@ -42,14 +42,14 @@ int main(){
     }
 
 if(sh == square){               //calculations for a square
-    Processing p(&sq_shape);
-    p.result_calc(&sq_shape);
+    ShapeCalculationHandler h(&sq_shape);
+    h.result_calc(&sq_shape);
 } else if(sh == rectangle) {    //calculations for a rectangle
-    Processing p(&rec_shape);
-    p.result_calc(&rec_shape);
+    ShapeCalculationHandler h(&rec_shape);
+    h.result_calc(&rec_shape);
 } else if(sh == triangle) {     //calculations for a triangle
-    Processing p(&tr_shape);
-    p.result_calc(&tr_shape);
+    ShapeCalculationHandler h(&tr_shape);
+    h.result_calc(&tr_shape);
 }
 
     return 0;
