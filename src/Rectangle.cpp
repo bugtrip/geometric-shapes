@@ -1,5 +1,6 @@
 #include "Rectangle.h"
 #include <iostream>
+#include <iomanip>
 
 int Rectangle::available_calc(){
     return GeometricShape::available_calc(this);
@@ -54,11 +55,11 @@ bool Rectangle::check_valid_rec(double a, double b, double c, double d){
     return (a < 0 || b < 0 || c < 0 || d < 0) ? false : ((a == c && b == d) && c != b) ? true : false;
 }
 
-double Rectangle::perimeter() {
+double Rectangle::calculate_perimeter() {
     return a + b + c + d;
 }
 
-double Rectangle::area(double perim, double a) {
+double Rectangle::calculate_area(double perim, double a) {
     if(perim > a) {
         this->a = a;
         this->b = 0;
@@ -71,12 +72,12 @@ double Rectangle::area(double perim, double a) {
     return 0;
 }
 
-double Rectangle::area(){
+double Rectangle::calculate_area(){
     return a * b;
 }
 
 
-double Rectangle::area(std::vector<Point>& points, size_t len){
+double Rectangle::calculate_area(std::vector<Point>& points, size_t len){
     double result{0.0}, coords1{0.0}, coords2{0.0};
     set_points(points, len);
 
@@ -122,4 +123,10 @@ void Rectangle::show_input_form(Conditions& cnds) {
     : cnds == side_perim ? std::cout << "Введите через пробел периметр и длину стороны прямоугольника:\n" 
     : cnds == none_cnd ? std::cout << "Ошибка ввода!\n" 
     : std::cout << "\n";
+}
+
+void Rectangle::print_calculation_result(double& calculation_result){
+    get_clc() == Calculations::area ?
+    std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << calculation_result << std::endl :
+    std::cout << "\nПериметр прямоугольника: " << std::fixed << std::setprecision(2) << calculation_result  << std::endl;
 }

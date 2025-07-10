@@ -8,8 +8,8 @@
 
 class GeometricShape {
 public:
-    virtual double perimeter() = 0;
-    virtual double area(std::vector<Point>& points, size_t len) = 0;        //calculation of the area of a shape based on coordinates
+    virtual double calculate_perimeter() = 0;
+    virtual double calculate_area(std::vector<Point>& points, size_t len) = 0;//calculation of the area of a shape based on coordinates
     virtual void set_points(std::vector<Point>& points, size_t len) = 0;
     virtual void set_cnds(Conditions) = 0;
     virtual void set_clc(Calculations) = 0;

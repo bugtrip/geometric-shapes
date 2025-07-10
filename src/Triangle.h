@@ -31,14 +31,15 @@ public:
     Calculations get_clc() const;
     bool check_valid_tr(double a, double b, double c);
     std::vector<Point> get_pts();
-    virtual double perimeter() override;
-    virtual double perimeter(std::vector<Point>&, size_t);
-    virtual double area(double a, double b, double c);
-    virtual double area(std::vector<Point>& coords, size_t len) override;
+    virtual double calculate_perimeter() override;
+    virtual double calculate_perimeter(std::vector<Point>&, size_t);
+    virtual double calculate_area(double a, double b, double c);
+    virtual double calculate_area(std::vector<Point>& coords, size_t len) override;
     virtual int available_calc();
     virtual void show_conditions(Calculations& clc) override;
     virtual void show_calc() override;
     virtual void show_input_form(Conditions& cnds) override;
+    void print_calculation_result(double&);
     virtual ~Triangle() {}
 };
 

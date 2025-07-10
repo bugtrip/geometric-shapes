@@ -1,5 +1,6 @@
 #include "Square.h"
 #include <iostream>
+#include <iomanip>
 
 int Square::available_calc(){
     return GeometricShape::available_calc(this);
@@ -63,11 +64,11 @@ bool Square::check_valid_sq(double a, double b, double c, double d){
     return (a == b) && (c == d) && (a == c) ? true : false;
 }
 
-double Square::perimeter(){
+double Square::calculate_perimeter(){
     return a + b + c + d;
 }
 
-double Square::perimeter(std::vector<Point>& points, size_t len){
+double Square::calculate_perimeter(std::vector<Point>& points, size_t len){
     double result{0.0};
     set_points(points, len);
     for(size_t i = 1; i < length; ++i){
@@ -77,11 +78,11 @@ double Square::perimeter(std::vector<Point>& points, size_t len){
     return result*4;
 }
 
-double Square::area(){
+double Square::calculate_area(){
     return a * a;
 }
 
-double Square::area(std::vector<Point>& points, size_t len){
+double Square::calculate_area(std::vector<Point>& points, size_t len){
     double result{0.0}, coords1{0.0}, coords2{0.0};
     set_points(points, len);
 
@@ -121,4 +122,10 @@ void Square::show_input_form(Conditions& cnds) {
     : cnds == coords && clc == Calculations::area      ? std::cout << "Введите координаты каждой вершины квадрата:\n"
     : cnds == coords && clc == Calculations::perimeter ? std::cout << "Введите координаты двух точек одной из сторон квадрата:\n"
     : cnds == none_cnd                                 ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
+}
+
+void Square::print_calculation_result(double& calculation_result){
+    get_clc() == Calculations::area ?
+    std::cout << "\nПлощадь квадрата: " << std::fixed << std::setprecision(2) << calculation_result << std::endl :
+    std::cout << "\nПериметр квадрата: " << std::fixed << std::setprecision(2) << calculation_result  << std::endl;
 }

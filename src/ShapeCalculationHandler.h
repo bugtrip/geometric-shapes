@@ -8,9 +8,9 @@
 class ShapeCalculationHandler{
 private:
     //GeometricShape* shape_proc;
-    Square* sq_shape_proc;
-    Rectangle* rec_shape_proc;
-    Triangle* tr_shape_proc;
+    Square* square_ptr;
+    Rectangle* rectangle_ptr;
+    Triangle* triangle_ptr;
 public:
     ShapeCalculationHandler(Square*);
     ShapeCalculationHandler(Rectangle*);

@@ -31,15 +31,16 @@ public:
     Conditions get_cnds() const;
     Calculations get_clc() const;
     bool check_valid_sq(double a, double b, double c, double d);
-    virtual double perimeter() override;
-    virtual double perimeter(std::vector<Point>&, size_t len);
+    virtual double calculate_perimeter() override;
+    virtual double calculate_perimeter(std::vector<Point>&, size_t len);
     std::vector<Point> get_pts();
-    virtual double area();                                                  //calculation of the area of a shape based on sides
-    virtual double area(std::vector<Point>& points, size_t len) override;   //calculation of the area of a shape based on coordinates
+    virtual double calculate_area();                                               //calculation of the area of a shape based on sides
+    virtual double calculate_area(std::vector<Point>& points, size_t len) override;//calculation of the area of a shape based on coordinates
     virtual int available_calc();
     virtual void show_conditions(Calculations& clc) override;
     virtual void show_calc() override;
     virtual void show_input_form(Conditions& cnds) override;
+    void print_calculation_result(double&);
     virtual ~Square(){}
 };
 
