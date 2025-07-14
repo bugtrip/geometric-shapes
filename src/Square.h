@@ -23,7 +23,7 @@ public:
     }
     void set_sides(double a, double b, double c, double d);
     void set_sides(double);
-    virtual void set_points(std::vector<Point>& points, size_t len) override;
+    void set_points(std::vector<Point>& points, size_t len);
     void get_sides(double& a, double& b, double& c, double& d) const;
     void set_cnds(Conditions) override;
     void set_clc(Calculations) override;
