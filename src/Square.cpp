@@ -2,6 +2,13 @@
 #include <iostream>
 #include <iomanip>
 
+Square::Square(double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(none_cnd), clc(none_clc) {
+	set_sides(a,b,c,d);
+}
+Square::Square(std::vector<Point>& pts, size_t len) : cnds(none_cnd), clc(none_clc) {
+	set_points(pts, len);
+}
+
 int Square::available_calc(){
     return GeometricShape::available_calc(this);
 }
@@ -34,7 +41,7 @@ void Square::get_sides(double& a, double& b, double& c, double& d) const {
 void Square::set_points(std::vector<Point>& points, size_t len){
     if(!pts.empty()) pts.clear();
     length = len;
-    pts = points;
+    pts = std::move(points);
 }
 
 void Square::set_cnds(Conditions cnds) {
@@ -99,7 +106,7 @@ double Square::calculate_area(std::vector<Point>& points, size_t len){
 
 }
 
-std::vector<Point> Square::get_pts(){
+std::vector<Point>& Square::get_pts(){
     return pts;
 }
 

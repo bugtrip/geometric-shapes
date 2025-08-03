@@ -15,12 +15,9 @@ private:
 public:
     Rectangle(const Rectangle&) = delete;
     Rectangle& operator=(const Rectangle&) = delete;
-    Rectangle(double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0) : cnds(none_cnd), clc(none_clc) {
-        set_sides(a,b,c,d);
-    }
-    Rectangle(std::vector<Point>& pts, size_t len) : cnds(none_cnd), clc(none_clc) {
-       set_points(pts, len);
-    }
+    Rectangle(){}
+	Rectangle(double, double, double, double);
+    Rectangle(std::vector<Point>&, size_t);
     void set_sides(double a, double b, double c, double d);
     void set_points(std::vector<Point>& points, size_t len);
     void get_sides(double& a, double& b, double& c, double& d) const;
@@ -31,7 +28,7 @@ public:
     Calculations get_clc() const;
     bool check_valid_rec(double a, double b, double c, double d);
     virtual double calculate_perimeter() override;
-    std::vector<Point> get_pts();
+    std::vector<Point>& get_pts();
     virtual double calculate_area();
     virtual double calculate_area(double perim, double a);
     virtual double calculate_area(std::vector<Point>& coords, size_t len) override;

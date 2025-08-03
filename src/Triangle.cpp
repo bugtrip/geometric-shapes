@@ -2,6 +2,13 @@
 #include <iostream>
 #include <iomanip>
 
+Triangle::Triangle(double a = 0.0, double b = 0.0, double c = 0.0){
+    set_sides(a,b,c);
+}
+Triangle::Triangle(std::vector<Point>& pts, size_t len){
+    set_points(pts, len);
+}
+
 int Triangle::available_calc(){
     return GeometricShape::available_calc(this);
 }
@@ -52,10 +59,10 @@ void Triangle::get_sides(double& a, double& b, double& c) const {
 void Triangle::set_points(std::vector<Point>& points, size_t len){
     if(!pts.empty()) pts.clear();
     length = len;
-    pts = points;
+    pts = std::move(points);
 }
 
-std::vector<Point> Triangle::get_pts(){
+std::vector<Point>& Triangle::get_pts(){
     return pts;
 }
 

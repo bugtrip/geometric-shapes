@@ -15,12 +15,9 @@ private:
 public:
     Triangle(const Triangle&) = delete;
     Triangle& operator=(const Triangle&) = delete;
-    Triangle(double a = 0.0, double b = 0.0, double c = 0.0) : cnds(none_cnd), clc(none_clc) {
-        set_sides(a,b,c);
-    }
-    Triangle(std::vector<Point> pts, size_t len) : cnds(none_cnd), clc(none_clc) {
-       set_points(pts, len);
-    }
+    Triangle(){}
+	Triangle(double, double, double);
+    Triangle(std::vector<Point>&, size_t);
     void set_sides(double a, double b, double c);
     void set_points(std::vector<Point>& points, size_t len);
     void get_sides(double& a, double& b, double& c) const;
@@ -30,7 +27,7 @@ public:
     Conditions get_cnds() const;
     Calculations get_clc() const;
     bool check_valid_tr(double a, double b, double c);
-    std::vector<Point> get_pts();
+    std::vector<Point>& get_pts();
     virtual double calculate_perimeter() override;
     virtual double calculate_perimeter(std::vector<Point>&, size_t);
     virtual double calculate_area(double a, double b, double c);
