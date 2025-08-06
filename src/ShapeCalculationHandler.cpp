@@ -1,5 +1,6 @@
 #include "ShapeCalculationHandler.h"
 #include <iostream>
+#include <sstream>
 
 ShapeCalculationHandler::ShapeCalculationHandler(Square* sq){
     set_square_ptr(sq);
@@ -23,6 +24,24 @@ void ShapeCalculationHandler::set_triangle_ptr(Triangle* tr){
     triangle_ptr = tr;
 }
 
+void ShapeCalculationHandler::input_coords(std::vector<Point>& pts){
+	double x{0.0};
+	double y{0.0};
+	std::string coords;
+	std::cin.ignore();
+	std::getline(std::cin, coords);
+	std::stringstream s(coords);
+	
+	for(size_t i = 0; i < pts.capacity(); ++i){
+		if(s >> x && s >> y){
+			pts.push_back(Point(x,y));
+		} else { 
+			pts.clear();
+			break; 
+		}
+	}
+}
+
 int ShapeCalculationHandler::result_calc(Square* sq_sh){
     set_square_ptr(sq_sh);
     if(square_ptr->get_clc() == Calculations::area && square_ptr->get_cnds() == sides) {
@@ -39,12 +58,8 @@ int ShapeCalculationHandler::result_calc(Square* sq_sh){
     if(square_ptr->get_clc() == Calculations::area && square_ptr->get_cnds() == coords) {
         size_t count_pt{4};
         std::vector<Point> sq_shape_pts;
-        
-        for(size_t i = 0; i < count_pt; ++i){
-            double a{0.0}, b{0.0};
-            std::cin >> a >> b;
-            sq_shape_pts.push_back(Point(a,b));
-        }
+		sq_shape_pts.reserve(count_pt);
+		input_coords(sq_shape_pts);        
 
         double area_square_c{0};
         area_square_c = square_ptr->calculate_area(sq_shape_pts, count_pt);

@@ -23,6 +23,7 @@ public:
     int result_calc(Square*);
     int result_calc(Rectangle*);
     int result_calc(Triangle*);
+	void input_coords(std::vector<Point>& pts);
 };
 
 #endif

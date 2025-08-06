@@ -90,20 +90,22 @@ double Square::calculate_area(){
 }
 
 double Square::calculate_area(std::vector<Point>& points, size_t len){
-    double result{0.0}, coords1{0.0}, coords2{0.0};
-    set_points(points, len);
+    if(!(points.empty())){
+		double result{0.0}, coords1{0.0}, coords2{0.0};
+		set_points(points, len);
 
-    for(size_t i = 1; i < length; ++i){
-        coords1 += pts[i-1].get_x() * (pts[i].get_y());
-        coords2 += pts[i-1].get_y() * (pts[i].get_x());
-    }
-    coords1 += pts[length-1].get_x() * pts[0].get_y();
-    coords2 += pts[length-1].get_y() * pts[0].get_x();
+		for(size_t i = 1; i < length; ++i){
+			coords1 += pts[i-1].get_x() * (pts[i].get_y());
+			coords2 += pts[i-1].get_y() * (pts[i].get_x());
+		}
+		coords1 += pts[length-1].get_x() * pts[0].get_y();
+		coords2 += pts[length-1].get_y() * pts[0].get_x();
 
-    result = fabs(coords1 - coords2)/2.00;
-    
-    return result;
-
+		result = fabs(coords1 - coords2)/2.00;
+		
+		return result;
+	}
+	return -1;
 }
 
 std::vector<Point>& Square::get_pts(){
@@ -128,10 +130,11 @@ void Square::show_input_form(Conditions& cnds) {
       cnds == sides                                    ? std::cout << "Введите длину стороны квадрата:\n"
     : cnds == coords && clc == Calculations::area      ? std::cout << "Введите координаты каждой вершины квадрата:\n"
     : cnds == coords && clc == Calculations::perimeter ? std::cout << "Введите координаты двух точек одной из сторон квадрата:\n"
-    : cnds == none_cnd                                 ? std::cout << "Ошибка ввода!\n" : std::cout << "\n";
+    : cnds == none_cnd                                 ? std::cerr << "Ошибка ввода!\n" : std::cout << "\n";
 }
 
 void Square::print_calculation_result(double& calculation_result){
+	if(calculation_result == -1){ std::cerr << "Ошибка! Не удалось произвести расчеты.\n"; return ; }
     get_clc() == Calculations::area ?
     std::cout << "\nПлощадь квадрата: " << std::fixed << std::setprecision(2) << calculation_result << std::endl :
     std::cout << "\nПериметр квадрата: " << std::fixed << std::setprecision(2) << calculation_result  << std::endl;
