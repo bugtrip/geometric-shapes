@@ -55,3 +55,16 @@ int GeometricShape::available_calc(GeometricShape* sh){
     }
     return 0;
 }
+
+void GeometricShape::replace_character(std::string& input){
+	size_t string_size = input.size();
+	for(size_t i = 0; i < string_size-1; ++i){
+		if(input[i] == ','){
+			if(input[i+1] == ' '){
+				input[i] = input[i+1];
+			} else {
+				input[i] = '.';
+			}
+		}
+	}
+}

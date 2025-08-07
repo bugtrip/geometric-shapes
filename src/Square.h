@@ -3,6 +3,7 @@
 
 #include "GeometricShape.h"
 #include <vector>
+#include <sstream>
 
 class Square : public GeometricShape {
 private:
@@ -21,7 +22,8 @@ public:
     void set_sides(double a, double b, double c, double d);
     void set_sides(double);
     void set_points(std::vector<Point>&, size_t);
-    void get_sides(double& a, double& b, double& c, double& d) const;
+    void input_coords(std::vector<Point>& pts);
+	void get_sides(double& a, double& b, double& c, double& d) const;
     void set_cnds(Conditions) override;
     void set_clc(Calculations) override;
     virtual Shape& get_shape() override;

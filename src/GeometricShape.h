@@ -5,6 +5,7 @@
 #include <cstddef>
 #include <cmath>
 #include <vector>
+#include <string>
 
 class GeometricShape {
 public:
@@ -18,7 +19,8 @@ public:
     virtual void show_conditions(Calculations& clc) = 0;                    //display of the selection form for conditions 
     virtual void show_calc() = 0;                                           //display of the selection form for available calculations
     virtual void show_input_form(Conditions& cnds) = 0;                     //input form for calculation parameters
-    virtual ~GeometricShape(){}
+	void replace_character(std::string& input);
+	virtual ~GeometricShape(){}
 };
 
 #endif

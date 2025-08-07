@@ -24,22 +24,8 @@ void ShapeCalculationHandler::set_triangle_ptr(Triangle* tr){
     triangle_ptr = tr;
 }
 
-void ShapeCalculationHandler::input_coords(std::vector<Point>& pts){
-	double x{0.0};
-	double y{0.0};
-	std::string coords;
-	std::cin.ignore();
-	std::getline(std::cin, coords);
-	std::stringstream s(coords);
-	
-	for(size_t i = 0; i < pts.capacity(); ++i){
-		if(s >> x && s >> y){
-			pts.push_back(Point(x,y));
-		} else { 
-			pts.clear();
-			break; 
-		}
-	}
+void ShapeCalculationHandler::input_points(Square* shape, std::vector<Point>& pts){
+	shape->input_coords(pts);
 }
 
 int ShapeCalculationHandler::result_calc(Square* sq_sh){
@@ -59,9 +45,9 @@ int ShapeCalculationHandler::result_calc(Square* sq_sh){
         size_t count_pt{4};
         std::vector<Point> sq_shape_pts;
 		sq_shape_pts.reserve(count_pt);
-		input_coords(sq_shape_pts);        
+		input_points(sq_sh, sq_shape_pts);
 
-        double area_square_c{0};
+		double area_square_c{0};
         area_square_c = square_ptr->calculate_area(sq_shape_pts, count_pt);
         square_ptr->print_calculation_result(area_square_c);
 
