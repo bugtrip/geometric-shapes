@@ -76,7 +76,7 @@ double Rectangle::calculate_area(double perim, double a) {
         return ((perim * a) - ((a*a) * 2.00)) / 2.00;
     }
 
-    return 0;
+    return -1;
 }
 
 double Rectangle::calculate_area(){
@@ -85,7 +85,8 @@ double Rectangle::calculate_area(){
 
 
 double Rectangle::calculate_area(std::vector<Point>& points, size_t len){
-    double result{0.0}, coords1{0.0}, coords2{0.0};
+	if(points.empty()){ return -1; }
+	double result{0.0}, coords1{0.0}, coords2{0.0};
     set_points(points, len);
 
     for(size_t i = 1; i < length; ++i){
@@ -133,7 +134,8 @@ void Rectangle::show_input_form(Conditions& cnds) {
 }
 
 void Rectangle::print_calculation_result(double& calculation_result){
-    get_clc() == Calculations::area ?
+	if(calculation_result == -1){ std::cerr << "Ошибка! Не удалось произвести расчеты.\n"; return ; }
+	get_clc() == Calculations::area ?
     std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << calculation_result << std::endl :
     std::cout << "\nПериметр прямоугольника: " << std::fixed << std::setprecision(2) << calculation_result  << std::endl;
 }

@@ -38,26 +38,6 @@ void Square::get_sides(double& a, double& b, double& c, double& d) const {
     d = this->d;
 }
 
-void Square::input_coords(std::vector<Point>& pts){
-	double x{0.0};
-	double y{0.0};
-	std::string str;
-	std::cin.ignore();
-	std::getline(std::cin, str);
-	if(str.empty()){ return; }
-	replace_character(str);
-	std::stringstream s(str);
-	
-	for(size_t i = 0; i < pts.capacity(); ++i){
-		if(s >> x && s >> y){
-			pts.push_back(Point(x,y));
-		} else {
-			pts.clear();
-			break;
-		}
-	}
-}
-
 void Square::set_points(std::vector<Point>& points, size_t len){
     if(!pts.empty()) pts.clear();
     length = len;
@@ -96,7 +76,8 @@ double Square::calculate_perimeter(){
 }
 
 double Square::calculate_perimeter(std::vector<Point>& points, size_t len){
-    double result{0.0};
+    if(points.empty()){ return -1;}
+	double result{0.0};
     set_points(points, len);
     for(size_t i = 1; i < length; ++i){
         result += sqrt(fabs(pow(pts[i].get_x() - pts[i-1].get_x(), 2)) + fabs(pow(pts[i].get_y() - pts[i-1].get_y(), 2)));

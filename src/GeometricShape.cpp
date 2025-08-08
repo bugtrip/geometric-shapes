@@ -1,5 +1,6 @@
 #include "GeometricShape.h"
 #include <iostream>
+#include <sstream>
 
 void GeometricShape::show_menu() {
     std::cout << "Выберите геометрическую фигуру для расчетов:\n"
@@ -65,6 +66,27 @@ void GeometricShape::replace_character(std::string& input){
 			} else {
 				input[i] = '.';
 			}
+		}
+	}
+}
+
+void GeometricShape::input_coords(std::vector<Point>& pts){
+	double x{0.0};
+	double y{0.0};
+	std::string str;
+	std::cin.ignore();
+	std::getline(std::cin, str);
+	if(str.empty()){ return; }
+	replace_character(str);
+
+	std::stringstream s(str);
+
+	for(size_t i = 0; i < pts.capacity(); ++i){
+		if(s >> x && s >> y){
+			pts.push_back(Point(x,y));
+		} else {
+			pts.clear();
+			break;
 		}
 	}
 }

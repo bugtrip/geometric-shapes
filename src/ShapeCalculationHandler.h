@@ -24,6 +24,8 @@ public:
     int result_calc(Rectangle*);
     int result_calc(Triangle*);
 	void input_points(Square*, std::vector<Point>&);
+	void input_points(Rectangle*, std::vector<Point>&);
+	void input_points(Triangle*, std::vector<Point>&);
 };
 
 #endif

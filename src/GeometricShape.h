@@ -19,6 +19,7 @@ public:
     virtual void show_conditions(Calculations& clc) = 0;                    //display of the selection form for conditions 
     virtual void show_calc() = 0;                                           //display of the selection form for available calculations
     virtual void show_input_form(Conditions& cnds) = 0;                     //input form for calculation parameters
+	void input_coords(std::vector<Point>& pts);
 	void replace_character(std::string& input);
 	virtual ~GeometricShape(){}
 };

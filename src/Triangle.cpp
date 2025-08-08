@@ -71,7 +71,8 @@ double Triangle::calculate_perimeter(){
 }
 
 double Triangle::calculate_perimeter(std::vector<Point>& points, size_t len){
-    set_points(points, len);
+	if(points.empty()){ return -1; }
+	set_points(points, len);
     double result{0};
     for(size_t i = 1; i < length; ++i){
         result += sqrt(fabs(pow(pts[i].get_x() - pts[i-1].get_x(), 2)) + fabs(pow(pts[i].get_y() - pts[i-1].get_y(), 2)));
@@ -82,7 +83,7 @@ double Triangle::calculate_perimeter(std::vector<Point>& points, size_t len){
 }
 
 double Triangle::calculate_area(double a, double b, double c){
-    if(check_valid_tr(a,b,c)){
+	if(check_valid_tr(a,b,c)){
         this->a = a;
         this->b = b;
         this->c = c;
@@ -94,7 +95,8 @@ double Triangle::calculate_area(double a, double b, double c){
 }
 
 double Triangle::calculate_area(std::vector<Point>& points, size_t len){
-    double result{0.0}, coords1{0.0}, coords2{0.0};
+	if(points.empty()){ return -1; }
+	double result{0.0}, coords1{0.0}, coords2{0.0};
     set_points(points, len);
 
     for(size_t i = 1; i < length; ++i){
@@ -131,11 +133,8 @@ void Triangle::show_input_form(Conditions& cnds) {
 }
 
 void Triangle::print_calculation_result(double& calculation_result){
-    if(calculation_result == -1){ 
-        std::cout << "\nОшибка! Некорректные длины сторон треугольника." << std::endl; 
-        return; 
-    }
-    get_clc() == Calculations::area ?
+	if(calculation_result == -1){ std::cerr << "Ошибка! Не удалось произвести расчеты.\n"; return ; }
+	get_clc() == Calculations::area ?
     std::cout << "\nПлощадь треугольника: " << std::fixed << std::setprecision(2) << calculation_result << std::endl :
     std::cout << "\nПериметр треугольника: " << std::fixed << std::setprecision(2) << calculation_result  << std::endl;
 }
