@@ -5,21 +5,20 @@
 #include <iostream>
 
 int main(){       
-    int num_shape{0};
+    int shape_num{0};
     Shape sh{none_sh};
     
     GeometricShape::show_menu();
 
 //selection of a geometric shapes
-    std::cin >> num_shape;
-    std::cout << "\n";
-    sh = (num_shape == 1) ? square 
-       : (num_shape == 2) ? rectangle 
-       : (num_shape == 3) ? triangle 
-       : (num_shape == 0) ? exit_sh 
-       : none_sh;
-
-    Square sq_shape;
+	
+	ShapeCalculationHandler handler(sh);
+	std::cin >> shape_num;
+	std::cout << "\n";
+	handler.set_shape(handler.selectShapes(shape_num));
+	sh = handler.get_shape();
+    
+	Square sq_shape;
     Rectangle rec_shape;
     Triangle tr_shape;
 

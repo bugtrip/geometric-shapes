@@ -2,6 +2,10 @@
 #include <iostream>
 #include <sstream>
 
+ShapeCalculationHandler::ShapeCalculationHandler(Shape sh){
+	set_shape(sh);
+}
+
 ShapeCalculationHandler::ShapeCalculationHandler(Square* sq){
     set_square_ptr(sq);
 }
@@ -10,6 +14,14 @@ ShapeCalculationHandler::ShapeCalculationHandler(Rectangle* rec){
 }
 ShapeCalculationHandler::ShapeCalculationHandler(Triangle* trian){
     set_triangle_ptr(trian);
+}
+
+void ShapeCalculationHandler::set_shape(Shape sh){
+	if(this->shape != sh) { this->shape = sh; }
+}
+
+Shape& ShapeCalculationHandler::get_shape(){
+	return shape;
 }
 
 void ShapeCalculationHandler::set_square_ptr(Square* sq){
@@ -34,6 +46,17 @@ void ShapeCalculationHandler::input_points(Rectangle* shape, std::vector<Point>&
 
 void ShapeCalculationHandler::input_points(Triangle* shape, std::vector<Point>& pts){
 	shape->input_coords(pts);
+}
+
+Shape ShapeCalculationHandler::selectShapes(int shape_num){
+	Shape sh{none_sh};
+    sh = (shape_num == 1) ? square
+       : (shape_num == 2) ? rectangle
+       : (shape_num == 3) ? triangle
+       : (shape_num == 0) ? exit_sh
+       : none_sh;
+
+	return sh;
 }
 
 int ShapeCalculationHandler::result_calc(Square* sq_sh){
