@@ -17,38 +17,22 @@ int main(){
 	std::cout << "\n";
 	handler.set_shape(handler.selectShapes(shape_num));
 	sh = handler.get_shape();
-    
-	Square sq_shape;
-    Rectangle rec_shape;
-    Triangle tr_shape;
+	handler.make_shape_ptr(sh);
 
 //selection of conditions for calculations
-    switch(sh){
-        case square:
-            sq_shape.available_calc();
-            break;
-        case rectangle:
-            rec_shape.available_calc();
-            break;
-        case triangle:
-            tr_shape.available_calc();
-            break;
-        case exit_sh:
-            return 0;
-        case none_sh:
-           std::cout << "Ошибка ввода!"  << std::endl;
-           return 0;
-    }
+
+	int select_condition_result = handler.select_conditions(sh);
+	if(select_condition_result == -1){ return -1; }
 
 if(sh == square){               //calculations for a square
-    ShapeCalculationHandler h(&sq_shape);
-    h.result_calc(&sq_shape);
+    ShapeCalculationHandler h(std::move(handler));
+    h.result_calc(h.get_square_ptr());
 } else if(sh == rectangle) {    //calculations for a rectangle
-    ShapeCalculationHandler h(&rec_shape);
-    h.result_calc(&rec_shape);
+    ShapeCalculationHandler h(std::move(handler));
+    h.result_calc(h.get_rectangle_ptr());
 } else if(sh == triangle) {     //calculations for a triangle
-    ShapeCalculationHandler h(&tr_shape);
-    h.result_calc(&tr_shape);
+    ShapeCalculationHandler h(std::move(handler));
+    h.result_calc(h.get_triangle_ptr());
 }
 
     return 0;

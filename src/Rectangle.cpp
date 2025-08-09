@@ -134,7 +134,7 @@ void Rectangle::show_input_form(Conditions& cnds) {
 }
 
 void Rectangle::print_calculation_result(double& calculation_result){
-	if(calculation_result == -1){ std::cerr << "Ошибка! Не удалось произвести расчеты.\n"; return ; }
+	if(calculation_result == -1){ std::cerr << "=== Ошибка! Не удалось произвести расчеты. ===\n"; return ; }
 	get_clc() == Calculations::area ?
     std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << calculation_result << std::endl :
     std::cout << "\nПериметр прямоугольника: " << std::fixed << std::setprecision(2) << calculation_result  << std::endl;
