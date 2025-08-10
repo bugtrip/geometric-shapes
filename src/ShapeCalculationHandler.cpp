@@ -71,6 +71,10 @@ void ShapeCalculationHandler::inputPoints(Triangle* shape, std::vector<Point>& p
 	shape->inputCoords(pts);
 }
 
+void ShapeCalculationHandler::inputSides(Rectangle* shape, double& a, double& b){
+	shape->inputSides(a,b);
+}
+
 Shape ShapeCalculationHandler::selectShapes(int shape_num){
 	Shape sh{none_sh};
     sh = (shape_num == 1) ? square
@@ -172,8 +176,11 @@ int ShapeCalculationHandler::resultCalc(std::shared_ptr<Rectangle> recSh){
     if(rectanglePtr != recSh){ setRectanglePtr(recSh); }
     if(rectanglePtr->getCalculations() == Calculations::area && rectanglePtr->getConditions() == sides) {
         double a{0},b{0};
-        std::cin >> a >> b;
-        rectanglePtr->setSides(a,b,a,b);
+        /*
+		std::cin >> a >> b;
+        */
+		inputSides(rectanglePtr.get(), a, b);
+		rectanglePtr->setSides(a,b,a,b);
         double areaRectangleSides{0};
         areaRectangleSides = rectanglePtr->calculateArea();
         rectanglePtr->printCalculationResult(areaRectangleSides);

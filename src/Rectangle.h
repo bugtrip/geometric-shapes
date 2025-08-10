@@ -3,6 +3,7 @@
 
 #include "GeometricShape.h"
 #include <vector>
+#include <sstream>
 
 class Rectangle : public GeometricShape {
 private:
@@ -26,7 +27,8 @@ public:
     virtual Shape& getShape() override;
     Conditions getConditions() const;
     Calculations getCalculations() const;
-    bool checkValidRectangle(double, double, double, double);
+    void inputSides(double&, double&);
+	bool checkValidRectangle(double, double, double, double);
     virtual double calculatePerimeter() override;
     std::vector<Point>& getPoints();
     virtual double calculateArea();

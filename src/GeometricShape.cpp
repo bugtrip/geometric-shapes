@@ -12,15 +12,15 @@ void GeometricShape::showMenu() {
 
 //selection of available calculations
 int GeometricShape::availableCalculations(GeometricShape* sh){
-    int num_conditions{0}, num_clc{0};
+    int numCondition{0}, numCalculation{0};
     Conditions cnds;
     Calculations clc;
     sh->showCalculations();
-    std::cin >> num_clc;
+    std::cin >> numCalculation;
     std::cout << "\n";
-    clc = (num_clc == 1) ? Calculations::area 
-        : (num_clc == 2) ? Calculations::perimeter 
-        : (num_clc == 0) ? exit_clc 
+    clc = (numCalculation == 1) ? Calculations::area 
+        : (numCalculation == 2) ? Calculations::perimeter 
+        : (numCalculation == 0) ? exit_clc 
         : none_clc;
 
     sh->setCalculations(clc);
@@ -30,12 +30,12 @@ int GeometricShape::availableCalculations(GeometricShape* sh){
 
     else if(clc == Calculations::area) {
         sh->showConditions(clc);
-        std::cin >> num_conditions;
+        std::cin >> numCondition;
         std::cout << "\n";
-        cnds = (num_conditions == 1) ? sides 
-             : (num_conditions == 2) ? coords 
-             : (num_conditions == 3) ? side_perim 
-             : (num_conditions == 0) ? exit_cnds 
+        cnds = (numCondition == 1) ? sides 
+             : (numCondition == 2) ? coords 
+             : (numCondition == 3) ? side_perim 
+             : (numCondition == 0) ? exit_cnds 
              : none_cnd;
 
         sh->setConditions(cnds);
@@ -44,11 +44,11 @@ int GeometricShape::availableCalculations(GeometricShape* sh){
 
     else if(clc == Calculations::perimeter){
         sh->showConditions(clc);
-        std::cin >> num_conditions;
+        std::cin >> numCondition;
         std::cout << "\n";
-        cnds = (num_conditions == 1) ? sides 
-             : (num_conditions == 2 && (sh->getShape() == square || sh->getShape() == triangle)) ? coords 
-             : (num_conditions == 0) ? exit_cnds 
+        cnds = (numCondition == 1) ? sides 
+             : (numCondition == 2 && (sh->getShape() == square || sh->getShape() == triangle)) ? coords 
+             : (numCondition == 0) ? exit_cnds 
              : none_cnd;
 
         sh->setConditions(cnds);
@@ -58,8 +58,8 @@ int GeometricShape::availableCalculations(GeometricShape* sh){
 }
 
 void GeometricShape::replaceCharacter(std::string& input){
-	size_t string_size = input.size();
-	for(size_t i = 0; i < string_size-1; ++i){
+	size_t stringSize = input.size();
+	for(size_t i = 0; i < stringSize-1; ++i){
 		if(input[i] == ','){
 			if(input[i+1] == ' '){
 				input[i] = input[i+1];

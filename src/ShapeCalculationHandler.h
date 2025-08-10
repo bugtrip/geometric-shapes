@@ -39,6 +39,7 @@ public:
 	void inputPoints(Square*, std::vector<Point>&);
 	void inputPoints(Rectangle*, std::vector<Point>&);
 	void inputPoints(Triangle*, std::vector<Point>&);
+	void inputSides(Rectangle*, double&, double&);
 	~ShapeCalculationHandler(){}
 };
 

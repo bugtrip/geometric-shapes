@@ -22,6 +22,18 @@ void Rectangle::setSides(double a, double b, double c, double d){
     }
 }
 
+void Rectangle::inputSides(double& a, double& b){
+	std::string str;
+	std::cin.ignore();
+	std::getline(std::cin, str);
+	if(str.empty()){ return ; }
+	replaceCharacter(str);
+	
+	std::stringstream ss(str);
+	ss >> a;
+	ss >> b;
+}
+
 void Rectangle::setPoints(std::vector<Point>& points, size_t len){
     if(!pts.empty()) pts.clear();
     length = len;

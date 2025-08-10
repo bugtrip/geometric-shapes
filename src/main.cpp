@@ -21,8 +21,8 @@ int main(){
 
 //selection of conditions for calculations
 
-	int selectConditionResult = handler.selectConditions(sh);
-	if(selectConditionResult == -1){ return -1; }
+	int selectedCondition = handler.selectConditions(sh);
+	if(selectedCondition == -1){ return 0; }
 
 if(sh == square){               //calculations for a square
     ShapeCalculationHandler h(std::move(handler));
