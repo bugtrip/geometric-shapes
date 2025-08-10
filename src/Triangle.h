@@ -18,20 +18,20 @@ public:
     Triangle(){}
 	Triangle(double, double, double);
     Triangle(std::vector<Point>&, size_t);
-    void setSides(double a, double b, double c);
-    void setPoints(std::vector<Point>& points, size_t len);
-    void getSides(double& a, double& b, double& c) const;
+    void setSides(double, double, double);
+    void setPoints(std::vector<Point>&, size_t);
+    void getSides(double&, double&, double&) const;
     void setConditions(Conditions) override;
     void setCalculations(Calculations) override;
     virtual Shape& getShape() override;
     Conditions getConditions() const;
     Calculations getCalculations() const;
-    bool checkValidTriangle(double a, double b, double c);
+    bool checkValidTriangle(double, double, double);
     std::vector<Point>& getPoints();
     virtual double calculatePerimeter() override;
     virtual double calculatePerimeter(std::vector<Point>&, size_t);
-    virtual double calculateArea(double a, double b, double c);
-    virtual double calculateArea(std::vector<Point>& coords, size_t len) override;
+    virtual double calculateArea(double, double, double);
+    virtual double calculateArea(std::vector<Point>&, size_t) override;
     virtual int availableCalculations();
     virtual void showConditions(Calculations& clc) override;
     virtual void showCalculations() override;

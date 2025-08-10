@@ -10,9 +10,9 @@ class ShapeCalculationHandler{
 private:
     //GeometricShape* shape_proc;
     Shape shape{none_sh};
-	std::shared_ptr<Square> square_ptr{nullptr};
-    std::shared_ptr<Rectangle> rectangle_ptr{nullptr};
-    std::shared_ptr<Triangle> triangle_ptr{nullptr};
+	std::shared_ptr<Square> squarePtr{nullptr};
+    std::shared_ptr<Rectangle> rectanglePtr{nullptr};
+    std::shared_ptr<Triangle> trianglePtr{nullptr};
 public:
 	ShapeCalculationHandler(Shape sh);
 	ShapeCalculationHandler(std::shared_ptr<Square>);

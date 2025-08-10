@@ -12,7 +12,7 @@ public:
     Point(double x = 0, double y = 0) : x(x), y(y) {}
     double getX() const;
     double getY() const;
-    void setPts(double x, double y);
+    void setPts(double, double);
 };
 
 #endif

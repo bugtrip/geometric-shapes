@@ -18,20 +18,20 @@ public:
     Rectangle(){}
 	Rectangle(double, double, double, double);
     Rectangle(std::vector<Point>&, size_t);
-    void setSides(double a, double b, double c, double d);
-    void setPoints(std::vector<Point>& points, size_t len);
-    void getSides(double& a, double& b, double& c, double& d) const;
+    void setSides(double, double, double, double);
+    void setPoints(std::vector<Point>&, size_t);
+    void getSides(double&, double&, double&, double&) const;
     void setConditions(Conditions) override;
     void setCalculations(Calculations) override;
     virtual Shape& getShape() override;
     Conditions getConditions() const;
     Calculations getCalculations() const;
-    bool checkValidRectangle(double a, double b, double c, double d);
+    bool checkValidRectangle(double, double, double, double);
     virtual double calculatePerimeter() override;
     std::vector<Point>& getPoints();
     virtual double calculateArea();
-    virtual double calculateArea(double perim, double a);
-    virtual double calculateArea(std::vector<Point>& coords, size_t len) override;
+    virtual double calculateArea(double, double);
+    virtual double calculateArea(std::vector<Point>&, size_t) override;
     virtual int availableCalculations();
     virtual void showConditions(Calculations& clc) override;
     virtual void showCalculations() override;

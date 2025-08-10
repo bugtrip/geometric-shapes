@@ -133,9 +133,9 @@ void Rectangle::showInputForm(Conditions& cnds) {
     : std::cout << "\n";
 }
 
-void Rectangle::printCalculationResult(double& calculation_result){
-	if(calculation_result == -1){ std::cerr << "=== Ошибка! Не удалось произвести расчеты. ===\n"; return ; }
+void Rectangle::printCalculationResult(double& calculationResult){
+	if(calculationResult == -1){ std::cerr << "=== Ошибка! Не удалось произвести расчеты. ===\n"; return ; }
 	getCalculations() == Calculations::area ?
-    std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << calculation_result << std::endl :
-    std::cout << "\nПериметр прямоугольника: " << std::fixed << std::setprecision(2) << calculation_result  << std::endl;
+    std::cout << "\nПлощадь прямоугольника: " << std::fixed << std::setprecision(2) << calculationResult << std::endl :
+    std::cout << "\nПериметр прямоугольника: " << std::fixed << std::setprecision(2) << calculationResult  << std::endl;
 }

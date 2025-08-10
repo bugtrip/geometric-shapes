@@ -18,13 +18,13 @@ ShapeCalculationHandler::ShapeCalculationHandler(std::shared_ptr<Triangle> trian
 
 ShapeCalculationHandler::ShapeCalculationHandler(ShapeCalculationHandler&& rhs){
 	shape = rhs.shape;
-	square_ptr = std::move(rhs.square_ptr);
-	rectangle_ptr = std::move(rhs.rectangle_ptr);
-	triangle_ptr = std::move(rhs.triangle_ptr);
+	squarePtr = std::move(rhs.squarePtr);
+	rectanglePtr = std::move(rhs.rectanglePtr);
+	trianglePtr = std::move(rhs.trianglePtr);
 	rhs.shape = none_sh;
-	rhs.square_ptr = nullptr;
-	rhs.rectangle_ptr = nullptr;
-	rhs.triangle_ptr = nullptr;
+	rhs.squarePtr = nullptr;
+	rhs.rectanglePtr = nullptr;
+	rhs.trianglePtr = nullptr;
 }
 
 void ShapeCalculationHandler::setShapeHandler(Shape sh){
@@ -36,27 +36,27 @@ Shape& ShapeCalculationHandler::getShapeHandler(){
 }
 
 void ShapeCalculationHandler::setSquarePtr(std::shared_ptr<Square> sq){
-    square_ptr = sq;
+    squarePtr = sq;
 }
 
 std::shared_ptr<Square>& ShapeCalculationHandler::getSquarePtr(){
-	return square_ptr;
+	return squarePtr;
 }
 
 void ShapeCalculationHandler::setRectanglePtr(std::shared_ptr<Rectangle> rec){
-    rectangle_ptr = rec;
+    rectanglePtr = rec;
 }
 
 std::shared_ptr<Rectangle>& ShapeCalculationHandler::getRectanglePtr(){
-	return rectangle_ptr;
+	return rectanglePtr;
 }
 
 void ShapeCalculationHandler::setTrianglePtr(std::shared_ptr<Triangle> tr){
-    triangle_ptr = tr;
+    trianglePtr = tr;
 }
 
 std::shared_ptr<Triangle>& ShapeCalculationHandler::getTrianglePtr(){
-	return triangle_ptr;
+	return trianglePtr;
 }
 
 void ShapeCalculationHandler::inputPoints(Square* shape, std::vector<Point>& pts){
@@ -97,13 +97,13 @@ int ShapeCalculationHandler::selectConditions(Shape& shape){
 	if(this->shape != shape){ setShapeHandler(shape); }
 	switch(this->shape){
 		case square:
-			if(square_ptr != nullptr) { square_ptr->availableCalculations(); }
+			if(squarePtr != nullptr) { squarePtr->availableCalculations(); }
 			break;
 		case rectangle:
-			if(rectangle_ptr != nullptr){ rectangle_ptr->availableCalculations(); }
+			if(rectanglePtr != nullptr){ rectanglePtr->availableCalculations(); }
 			break;
 		case triangle:
-			if(triangle_ptr != nullptr){ triangle_ptr->availableCalculations(); }
+			if(trianglePtr != nullptr){ trianglePtr->availableCalculations(); }
 			break;
 		case exit_sh:
 			return 0;
@@ -115,52 +115,52 @@ int ShapeCalculationHandler::selectConditions(Shape& shape){
 	return 0;
 }
 
-int ShapeCalculationHandler::resultCalc(std::shared_ptr<Square> sq_sh){
-    if(square_ptr != sq_sh){ setSquarePtr(sq_sh); }
-    if(square_ptr->getCalculations() == Calculations::area && square_ptr->getConditions() == sides) {
-        double a{0};
+int ShapeCalculationHandler::resultCalc(std::shared_ptr<Square> sqSh){
+    if(squarePtr != sqSh){ setSquarePtr(sqSh); }
+    if(squarePtr->getCalculations() == Calculations::area && squarePtr->getConditions() == sides) {
+        double a{0.0};
         std::cin >> a;
-        square_ptr->setSides(a);
-        double area_square_s{0};
-        area_square_s = square_ptr->calculateArea();
-        square_ptr->printCalculationResult(area_square_s);
+        squarePtr->setSides(a);
+        double areaSquareSides{0.0};
+        areaSquareSides = squarePtr->calculateArea();
+        squarePtr->printCalculationResult(areaSquareSides);
 
         return 0;
     }
 
-    if(square_ptr->getCalculations() == Calculations::area && square_ptr->getConditions() == coords) {
-        size_t count_pt{4};
-        std::vector<Point> square_points_array;
-		square_points_array.reserve(count_pt);
-		inputPoints(square_ptr.get(), square_points_array);
+    if(squarePtr->getCalculations() == Calculations::area && squarePtr->getConditions() == coords) {
+        size_t numberPoints{4};
+        std::vector<Point> squarePointsArray;
+		squarePointsArray.reserve(numberPoints);
+		inputPoints(squarePtr.get(), squarePointsArray);
 
-		double area_square_c{0};
-        area_square_c = square_ptr->calculateArea(square_points_array, count_pt);
-        square_ptr->printCalculationResult(area_square_c);
+		double areaSquareCoords{0.0};
+        areaSquareCoords = squarePtr->calculateArea(squarePointsArray, numberPoints);
+        squarePtr->printCalculationResult(areaSquareCoords);
 
         return 0;
     }
 
-    if(square_ptr->getCalculations() == Calculations::perimeter && square_ptr->getConditions() == sides) {
-        double a{0};
+    if(squarePtr->getCalculations() == Calculations::perimeter && squarePtr->getConditions() == sides) {
+        double a{0.0};
         std::cin >> a;
-        square_ptr->setSides(a);
-        double perim_square_s{0};
-        perim_square_s = square_ptr->calculatePerimeter();
-        square_ptr->printCalculationResult(perim_square_s);
+        squarePtr->setSides(a);
+        double perimeterSquareSides{0.00};
+        perimeterSquareSides = squarePtr->calculatePerimeter();
+        squarePtr->printCalculationResult(perimeterSquareSides);
 
         return 0;
     }
     
-    if(square_ptr->getCalculations() == Calculations::perimeter && square_ptr->getConditions() == coords) {
-        size_t count_pt{2};
-        std::vector<Point> sq_shape_pts;
-		sq_shape_pts.reserve(count_pt);
-		inputPoints(square_ptr.get(), sq_shape_pts);
+    if(squarePtr->getCalculations() == Calculations::perimeter && squarePtr->getConditions() == coords) {
+        size_t numberPoints{2};
+        std::vector<Point> squarePointsArray;
+		squarePointsArray.reserve(numberPoints);
+		inputPoints(squarePtr.get(), squarePointsArray);
 
-		double perim_square_c{0};
-        perim_square_c = square_ptr->calculatePerimeter(sq_shape_pts, count_pt);
-        square_ptr->printCalculationResult(perim_square_c);
+		double perimeterSquareCoords{0};
+        perimeterSquareCoords = squarePtr->calculatePerimeter(squarePointsArray, numberPoints);
+        squarePtr->printCalculationResult(perimeterSquareCoords);
 
         return 0;
     }
@@ -168,49 +168,49 @@ int ShapeCalculationHandler::resultCalc(std::shared_ptr<Square> sq_sh){
     return 0;
 }
 
-int ShapeCalculationHandler::resultCalc(std::shared_ptr<Rectangle> rec_sh){
-    if(rectangle_ptr != rec_sh){ setRectanglePtr(rec_sh); }
-    if(rectangle_ptr->getCalculations() == Calculations::area && rectangle_ptr->getConditions() == sides) {
+int ShapeCalculationHandler::resultCalc(std::shared_ptr<Rectangle> recSh){
+    if(rectanglePtr != recSh){ setRectanglePtr(recSh); }
+    if(rectanglePtr->getCalculations() == Calculations::area && rectanglePtr->getConditions() == sides) {
         double a{0},b{0};
         std::cin >> a >> b;
-        rectangle_ptr->setSides(a,b,a,b);
-        double area_rec_s{0};
-        area_rec_s = rectangle_ptr->calculateArea();
-        rectangle_ptr->printCalculationResult(area_rec_s);
+        rectanglePtr->setSides(a,b,a,b);
+        double areaRectangleSides{0};
+        areaRectangleSides = rectanglePtr->calculateArea();
+        rectanglePtr->printCalculationResult(areaRectangleSides);
 
         return 0;
     }
 
-    if(rectangle_ptr->getCalculations() == Calculations::area && rectangle_ptr->getConditions() == coords) {
-        size_t count_pt{4};
-        std::vector<Point> rec_shape_pts;
-		rec_shape_pts.reserve(count_pt);
-		inputPoints(rectangle_ptr.get(), rec_shape_pts);
+    if(rectanglePtr->getCalculations() == Calculations::area && rectanglePtr->getConditions() == coords) {
+        size_t numberPoints{4};
+        std::vector<Point> rectanglePointsArray;
+		rectanglePointsArray.reserve(numberPoints);
+		inputPoints(rectanglePtr.get(), rectanglePointsArray);
 		
-		double area_rec_c{0};
-        area_rec_c = rectangle_ptr->calculateArea(rec_shape_pts, count_pt);
-        rectangle_ptr->printCalculationResult(area_rec_c);
+		double areaRectangleCoords{0};
+        areaRectangleCoords = rectanglePtr->calculateArea(rectanglePointsArray, numberPoints);
+        rectanglePtr->printCalculationResult(areaRectangleCoords);
 
         return 0;
     }
 
-    if(rectangle_ptr->getCalculations() == Calculations::area && rectangle_ptr->getConditions() == side_perim) {
+    if(rectanglePtr->getCalculations() == Calculations::area && rectanglePtr->getConditions() == side_perim) {
         double perim{0}, a{0};
         std::cin >> perim >> a;
-        double area_rec_sp{0};
-        area_rec_sp = rectangle_ptr->calculateArea(perim, a);
-        rectangle_ptr->printCalculationResult(area_rec_sp);
+        double areaRectanglePerim{0};
+        areaRectanglePerim = rectanglePtr->calculateArea(perim, a);
+        rectanglePtr->printCalculationResult(areaRectanglePerim);
 
         return 0;
     }
 
-    if(rectangle_ptr->getCalculations() == Calculations::perimeter && rectangle_ptr->getConditions() == sides) {
+    if(rectanglePtr->getCalculations() == Calculations::perimeter && rectanglePtr->getConditions() == sides) {
         double a{0},b{0};
         std::cin >> a >> b;
-        rectangle_ptr->setSides(a,b,a,b);
-        double perim_rec_s{0};
-        perim_rec_s = rectangle_ptr->calculatePerimeter();
-        rectangle_ptr->printCalculationResult(perim_rec_s);
+        rectanglePtr->setSides(a,b,a,b);
+        double perimeterRectangleSides{0};
+        perimeterRectangleSides = rectanglePtr->calculatePerimeter();
+        rectanglePtr->printCalculationResult(perimeterRectangleSides);
 
         return 0;
     }
@@ -218,52 +218,52 @@ int ShapeCalculationHandler::resultCalc(std::shared_ptr<Rectangle> rec_sh){
     return 0;
 }
 
-int ShapeCalculationHandler::resultCalc(std::shared_ptr<Triangle> tr_sh){
-    if(triangle_ptr != tr_sh){ setTrianglePtr(tr_sh); }
-    if(triangle_ptr->getCalculations() == Calculations::area && triangle_ptr->getConditions() == sides) {
+int ShapeCalculationHandler::resultCalc(std::shared_ptr<Triangle> trSh){
+    if(trianglePtr != trSh){ setTrianglePtr(trSh); }
+    if(trianglePtr->getCalculations() == Calculations::area && trianglePtr->getConditions() == sides) {
         double a{0},b{0},c{0};
         std::cin >> a >> b >> c;
-        triangle_ptr->setSides(a,b,c);
-        double area_tr_s{0};
-        area_tr_s = triangle_ptr->calculateArea(a,b,c);
-        triangle_ptr->printCalculationResult(area_tr_s);
+        trianglePtr->setSides(a,b,c);
+        double areaTriangleSides{0};
+        areaTriangleSides = trianglePtr->calculateArea(a,b,c);
+        trianglePtr->printCalculationResult(areaTriangleSides);
 
         return 0;
     }
 
-    if(triangle_ptr->getCalculations() == Calculations::area && triangle_ptr->getConditions() == coords) {
-        size_t count_pt{3};
-        std::vector<Point> tr_shape_pts;
-		tr_shape_pts.reserve(count_pt);
-		inputPoints(triangle_ptr.get(), tr_shape_pts);
+    if(trianglePtr->getCalculations() == Calculations::area && trianglePtr->getConditions() == coords) {
+        size_t numberPoints{3};
+        std::vector<Point> trianglePointsArray;
+		trianglePointsArray.reserve(numberPoints);
+		inputPoints(trianglePtr.get(), trianglePointsArray);
 
-		double area_tr_c{0};
-        area_tr_c = triangle_ptr->calculateArea(tr_shape_pts, count_pt);
-        triangle_ptr->printCalculationResult(area_tr_c);
+		double areaTriangleCoords{0};
+        areaTriangleCoords = trianglePtr->calculateArea(trianglePointsArray, numberPoints);
+        trianglePtr->printCalculationResult(areaTriangleCoords);
 
         return 0;
     }
 
-    if(triangle_ptr->getCalculations() == Calculations::perimeter && triangle_ptr->getConditions() == sides) {
+    if(trianglePtr->getCalculations() == Calculations::perimeter && trianglePtr->getConditions() == sides) {
         double a{0},b{0},c{0};
         std::cin >> a >> b >> c;
-        triangle_ptr->setSides(a,b,c);
-        double perim_triangle_s{0};
-        perim_triangle_s = triangle_ptr->calculatePerimeter();
-        triangle_ptr->printCalculationResult(perim_triangle_s);
+        trianglePtr->setSides(a,b,c);
+        double perimeterTriangleSides{0};
+        perimeterTriangleSides = trianglePtr->calculatePerimeter();
+        trianglePtr->printCalculationResult(perimeterTriangleSides);
 
         return 0;
     }
 
-    if(triangle_ptr->getCalculations() == Calculations::perimeter && triangle_ptr->getConditions() == coords) {
-        size_t count_pt{3};
-        std::vector<Point> tr_shape_pts;
-		tr_shape_pts.reserve(count_pt);
-		inputPoints(triangle_ptr.get(), tr_shape_pts);
+    if(trianglePtr->getCalculations() == Calculations::perimeter && trianglePtr->getConditions() == coords) {
+        size_t numberPoints{3};
+        std::vector<Point> trianglePointsArray;
+		trianglePointsArray.reserve(numberPoints);
+		inputPoints(trianglePtr.get(), trianglePointsArray);
 
-		double perim_tr_c{0};
-        perim_tr_c = triangle_ptr->calculatePerimeter(tr_shape_pts, count_pt);
-        triangle_ptr->printCalculationResult(perim_tr_c);
+		double perimeterTriangleCoords{0};
+        perimeterTriangleCoords = trianglePtr->calculatePerimeter(trianglePointsArray, numberPoints);
+        trianglePtr->printCalculationResult(perimeterTriangleCoords);
 
         return 0;
     }

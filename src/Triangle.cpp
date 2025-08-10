@@ -132,9 +132,9 @@ void Triangle::showInputForm(Conditions& cnds) {
     : std::cout << "\n";
 }
 
-void Triangle::printCalculationResult(double& calculation_result){
-	if(calculation_result == -1){ std::cerr << "=== Ошибка! Не удалось произвести расчеты. ===\n"; return ; }
+void Triangle::printCalculationResult(double& calculationResult){
+	if(calculationResult == -1){ std::cerr << "=== Ошибка! Не удалось произвести расчеты. ===\n"; return ; }
 	getCalculations() == Calculations::area ?
-    std::cout << "\nПлощадь треугольника: " << std::fixed << std::setprecision(2) << calculation_result << std::endl :
-    std::cout << "\nПериметр треугольника: " << std::fixed << std::setprecision(2) << calculation_result  << std::endl;
+    std::cout << "\nПлощадь треугольника: " << std::fixed << std::setprecision(2) << calculationResult << std::endl :
+    std::cout << "\nПериметр треугольника: " << std::fixed << std::setprecision(2) << calculationResult  << std::endl;
 }

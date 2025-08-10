@@ -19,21 +19,21 @@ public:
     Square(){}
     Square(double, double, double, double);
     Square(std::vector<Point>&, size_t);
-    void setSides(double a, double b, double c, double d);
+    void setSides(double, double, double, double);
     void setSides(double);
     void setPoints(std::vector<Point>&, size_t);
-	void getSides(double& a, double& b, double& c, double& d) const;
+	void getSides(double&, double&, double&, double&) const;
     void setConditions(Conditions) override;
     void setCalculations(Calculations) override;
     virtual Shape& getShape() override;
     Conditions getConditions() const;
     Calculations getCalculations() const;
-    bool checkValidSquare(double a, double b, double c, double d);
+    bool checkValidSquare(double, double, double, double);
     virtual double calculatePerimeter() override;
-    virtual double calculatePerimeter(std::vector<Point>&, size_t len);
+    virtual double calculatePerimeter(std::vector<Point>&, size_t);
     std::vector<Point>& getPoints();
     virtual double calculateArea();                                               //calculation of the area of a shape based on sides
-    virtual double calculateArea(std::vector<Point>& points, size_t len) override;//calculation of the area of a shape based on coordinates
+    virtual double calculateArea(std::vector<Point>&, size_t) override;//calculation of the area of a shape based on coordinates
     virtual int availableCalculations();
     virtual void showConditions(Calculations& clc) override;
     virtual void showCalculations() override;
