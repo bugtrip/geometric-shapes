@@ -9,18 +9,18 @@
 
 class GeometricShape {
 public:
-    virtual double calculate_perimeter() = 0;
-    virtual double calculate_area(std::vector<Point>& points, size_t len) = 0;//calculation of the area of a shape based on coordinates
-    virtual void set_cnds(Conditions) = 0;
-    virtual void set_clc(Calculations) = 0;
-    virtual Shape& get_shape() = 0;
-    static void show_menu();                                                //display of the main menu
-    virtual int available_calc(GeometricShape*);                            //selection of available calculations
-    virtual void show_conditions(Calculations& clc) = 0;                    //display of the selection form for conditions 
-    virtual void show_calc() = 0;                                           //display of the selection form for available calculations
-    virtual void show_input_form(Conditions& cnds) = 0;                     //input form for calculation parameters
-	void input_coords(std::vector<Point>& pts);
-	void replace_character(std::string& input);
+    virtual double calculatePerimeter() = 0;
+    virtual double calculateArea(std::vector<Point>& points, size_t len) = 0;//calculation of the area of a shape based on coordinates
+    virtual void setConditions(Conditions) = 0;
+    virtual void setCalculations(Calculations) = 0;
+    virtual Shape& getShape() = 0;
+    static void showMenu();                                                //display of the main menu
+    virtual int availableCalculations(GeometricShape*);                            //selection of available calculations
+    virtual void showConditions(Calculations& clc) = 0;                    //display of the selection form for conditions 
+    virtual void showCalculations() = 0;                                           //display of the selection form for available calculations
+    virtual void showInputForm(Conditions& cnds) = 0;                     //input form for calculation parameters
+	void inputCoords(std::vector<Point>& pts);
+	void replaceCharacter(std::string& input);
 	virtual ~GeometricShape(){}
 };
 

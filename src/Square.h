@@ -19,26 +19,26 @@ public:
     Square(){}
     Square(double, double, double, double);
     Square(std::vector<Point>&, size_t);
-    void set_sides(double a, double b, double c, double d);
-    void set_sides(double);
-    void set_points(std::vector<Point>&, size_t);
-	void get_sides(double& a, double& b, double& c, double& d) const;
-    void set_cnds(Conditions) override;
-    void set_clc(Calculations) override;
-    virtual Shape& get_shape() override;
-    Conditions get_cnds() const;
-    Calculations get_clc() const;
-    bool check_valid_sq(double a, double b, double c, double d);
-    virtual double calculate_perimeter() override;
-    virtual double calculate_perimeter(std::vector<Point>&, size_t len);
-    std::vector<Point>& get_pts();
-    virtual double calculate_area();                                               //calculation of the area of a shape based on sides
-    virtual double calculate_area(std::vector<Point>& points, size_t len) override;//calculation of the area of a shape based on coordinates
-    virtual int available_calc();
-    virtual void show_conditions(Calculations& clc) override;
-    virtual void show_calc() override;
-    virtual void show_input_form(Conditions& cnds) override;
-    void print_calculation_result(double&);
+    void setSides(double a, double b, double c, double d);
+    void setSides(double);
+    void setPoints(std::vector<Point>&, size_t);
+	void getSides(double& a, double& b, double& c, double& d) const;
+    void setConditions(Conditions) override;
+    void setCalculations(Calculations) override;
+    virtual Shape& getShape() override;
+    Conditions getConditions() const;
+    Calculations getCalculations() const;
+    bool checkValidSquare(double a, double b, double c, double d);
+    virtual double calculatePerimeter() override;
+    virtual double calculatePerimeter(std::vector<Point>&, size_t len);
+    std::vector<Point>& getPoints();
+    virtual double calculateArea();                                               //calculation of the area of a shape based on sides
+    virtual double calculateArea(std::vector<Point>& points, size_t len) override;//calculation of the area of a shape based on coordinates
+    virtual int availableCalculations();
+    virtual void showConditions(Calculations& clc) override;
+    virtual void showCalculations() override;
+    virtual void showInputForm(Conditions& cnds) override;
+    void printCalculationResult(double&);
     virtual ~Square(){}
 };
 

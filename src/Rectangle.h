@@ -18,25 +18,25 @@ public:
     Rectangle(){}
 	Rectangle(double, double, double, double);
     Rectangle(std::vector<Point>&, size_t);
-    void set_sides(double a, double b, double c, double d);
-    void set_points(std::vector<Point>& points, size_t len);
-    void get_sides(double& a, double& b, double& c, double& d) const;
-    void set_cnds(Conditions) override;
-    void set_clc(Calculations) override;
-    virtual Shape& get_shape() override;
-    Conditions get_cnds() const;
-    Calculations get_clc() const;
-    bool check_valid_rec(double a, double b, double c, double d);
-    virtual double calculate_perimeter() override;
-    std::vector<Point>& get_pts();
-    virtual double calculate_area();
-    virtual double calculate_area(double perim, double a);
-    virtual double calculate_area(std::vector<Point>& coords, size_t len) override;
-    virtual int available_calc();
-    virtual void show_conditions(Calculations& clc) override;
-    virtual void show_calc() override;
-    virtual void show_input_form(Conditions& cnds) override;
-    void print_calculation_result(double&);
+    void setSides(double a, double b, double c, double d);
+    void setPoints(std::vector<Point>& points, size_t len);
+    void getSides(double& a, double& b, double& c, double& d) const;
+    void setConditions(Conditions) override;
+    void setCalculations(Calculations) override;
+    virtual Shape& getShape() override;
+    Conditions getConditions() const;
+    Calculations getCalculations() const;
+    bool checkValidRectangle(double a, double b, double c, double d);
+    virtual double calculatePerimeter() override;
+    std::vector<Point>& getPoints();
+    virtual double calculateArea();
+    virtual double calculateArea(double perim, double a);
+    virtual double calculateArea(std::vector<Point>& coords, size_t len) override;
+    virtual int availableCalculations();
+    virtual void showConditions(Calculations& clc) override;
+    virtual void showCalculations() override;
+    virtual void showInputForm(Conditions& cnds) override;
+    void printCalculationResult(double&);
     virtual ~Rectangle(){}
 };
 

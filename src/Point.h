@@ -10,9 +10,9 @@ private:
     double x,y;
 public:
     Point(double x = 0, double y = 0) : x(x), y(y) {}
-    double get_x() const;
-    double get_y() const;
-    void set_pt(double x, double y);
+    double getX() const;
+    double getY() const;
+    void setPts(double x, double y);
 };
 
 #endif

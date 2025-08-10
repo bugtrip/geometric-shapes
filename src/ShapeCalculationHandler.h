@@ -22,23 +22,23 @@ public:
     ShapeCalculationHandler(const ShapeCalculationHandler&) = delete;
     ShapeCalculationHandler& operator=(const ShapeCalculationHandler&) = delete;
 	
-	void set_shape(Shape sh);
-	Shape& get_shape();
-	void set_square_ptr(std::shared_ptr<Square>);
-    void set_rectangle_ptr(std::shared_ptr<Rectangle>);
-    void set_triangle_ptr(std::shared_ptr<Triangle>);
-	std::shared_ptr<Square>& get_square_ptr();
-	std::shared_ptr<Rectangle>& get_rectangle_ptr();
-	std::shared_ptr<Triangle>& get_triangle_ptr();
+	void setShapeHandler(Shape sh);
+	Shape& getShapeHandler();
+	void setSquarePtr(std::shared_ptr<Square>);
+    void setRectanglePtr(std::shared_ptr<Rectangle>);
+    void setTrianglePtr(std::shared_ptr<Triangle>);
+	std::shared_ptr<Square>& getSquarePtr();
+	std::shared_ptr<Rectangle>& getRectanglePtr();
+	std::shared_ptr<Triangle>& getTrianglePtr();
 	Shape selectShapes(int shape_num);
-	int select_conditions(Shape& shape);
-	void make_shape_ptr(Shape&);
-	int result_calc(std::shared_ptr<Square>);
-    int result_calc(std::shared_ptr<Rectangle>);
-    int result_calc(std::shared_ptr<Triangle>);
-	void input_points(Square*, std::vector<Point>&);
-	void input_points(Rectangle*, std::vector<Point>&);
-	void input_points(Triangle*, std::vector<Point>&);
+	int selectConditions(Shape& shape);
+	void makeShapePtr(Shape&);
+	int resultCalc(std::shared_ptr<Square>);
+    int resultCalc(std::shared_ptr<Rectangle>);
+    int resultCalc(std::shared_ptr<Triangle>);
+	void inputPoints(Square*, std::vector<Point>&);
+	void inputPoints(Rectangle*, std::vector<Point>&);
+	void inputPoints(Triangle*, std::vector<Point>&);
 	~ShapeCalculationHandler(){}
 };
 

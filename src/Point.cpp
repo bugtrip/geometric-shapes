@@ -1,13 +1,13 @@
 #include "Point.h"
 
-double Point::get_x() const {
+double Point::getX() const {
     return x;
 }
-double Point::get_y() const {
+double Point::getY() const {
     return y;
 }
 
-void Point::set_pt(double x, double y){
+void Point::setPts(double x, double y){
     this->x = x;
     this->y = y;
 }

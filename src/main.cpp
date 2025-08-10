@@ -8,31 +8,31 @@ int main(){
     int shape_num{0};
     Shape sh{none_sh};
     
-    GeometricShape::show_menu();
+    GeometricShape::showMenu();
 
 //selection of a geometric shapes
 	
 	ShapeCalculationHandler handler(sh);
 	std::cin >> shape_num;
 	std::cout << "\n";
-	handler.set_shape(handler.selectShapes(shape_num));
-	sh = handler.get_shape();
-	handler.make_shape_ptr(sh);
+	handler.setShapeHandler(handler.selectShapes(shape_num));
+	sh = handler.getShapeHandler();
+	handler.makeShapePtr(sh);
 
 //selection of conditions for calculations
 
-	int select_condition_result = handler.select_conditions(sh);
+	int select_condition_result = handler.selectConditions(sh);
 	if(select_condition_result == -1){ return -1; }
 
 if(sh == square){               //calculations for a square
     ShapeCalculationHandler h(std::move(handler));
-    h.result_calc(h.get_square_ptr());
+    h.resultCalc(h.getSquarePtr());
 } else if(sh == rectangle) {    //calculations for a rectangle
     ShapeCalculationHandler h(std::move(handler));
-    h.result_calc(h.get_rectangle_ptr());
+    h.resultCalc(h.getRectanglePtr());
 } else if(sh == triangle) {     //calculations for a triangle
     ShapeCalculationHandler h(std::move(handler));
-    h.result_calc(h.get_triangle_ptr());
+    h.resultCalc(h.getTrianglePtr());
 }
 
     return 0;

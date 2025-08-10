@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sstream>
 
-void GeometricShape::show_menu() {
+void GeometricShape::showMenu() {
     std::cout << "Выберите геометрическую фигуру для расчетов:\n"
               << "  1. Квадрат\n"
               << "  2. Прямоугольник\n"
@@ -11,11 +11,11 @@ void GeometricShape::show_menu() {
 }
 
 //selection of available calculations
-int GeometricShape::available_calc(GeometricShape* sh){
+int GeometricShape::availableCalculations(GeometricShape* sh){
     int num_conditions{0}, num_clc{0};
     Conditions cnds;
     Calculations clc;
-    sh->show_calc();
+    sh->showCalculations();
     std::cin >> num_clc;
     std::cout << "\n";
     clc = (num_clc == 1) ? Calculations::area 
@@ -23,13 +23,13 @@ int GeometricShape::available_calc(GeometricShape* sh){
         : (num_clc == 0) ? exit_clc 
         : none_clc;
 
-    sh->set_clc(clc);
+    sh->setCalculations(clc);
     if(clc == none_clc) { std::cout << "Ошибка ввода!\n"; return 0; }
 
     else if(clc == exit_clc) { return 0; }
 
     else if(clc == Calculations::area) {
-        sh->show_conditions(clc);
+        sh->showConditions(clc);
         std::cin >> num_conditions;
         std::cout << "\n";
         cnds = (num_conditions == 1) ? sides 
@@ -38,26 +38,26 @@ int GeometricShape::available_calc(GeometricShape* sh){
              : (num_conditions == 0) ? exit_cnds 
              : none_cnd;
 
-        sh->set_cnds(cnds);
-        sh->show_input_form(cnds);
+        sh->setConditions(cnds);
+        sh->showInputForm(cnds);
     }
 
     else if(clc == Calculations::perimeter){
-        sh->show_conditions(clc);
+        sh->showConditions(clc);
         std::cin >> num_conditions;
         std::cout << "\n";
         cnds = (num_conditions == 1) ? sides 
-             : (num_conditions == 2 && (sh->get_shape() == square || sh->get_shape() == triangle)) ? coords 
+             : (num_conditions == 2 && (sh->getShape() == square || sh->getShape() == triangle)) ? coords 
              : (num_conditions == 0) ? exit_cnds 
              : none_cnd;
 
-        sh->set_cnds(cnds);
-        sh->show_input_form(cnds);
+        sh->setConditions(cnds);
+        sh->showInputForm(cnds);
     }
     return 0;
 }
 
-void GeometricShape::replace_character(std::string& input){
+void GeometricShape::replaceCharacter(std::string& input){
 	size_t string_size = input.size();
 	for(size_t i = 0; i < string_size-1; ++i){
 		if(input[i] == ','){
@@ -70,14 +70,14 @@ void GeometricShape::replace_character(std::string& input){
 	}
 }
 
-void GeometricShape::input_coords(std::vector<Point>& pts){
+void GeometricShape::inputCoords(std::vector<Point>& pts){
 	double x{0.0};
 	double y{0.0};
 	std::string str;
 	std::cin.ignore();
 	std::getline(std::cin, str);
 	if(str.empty()){ return; }
-	replace_character(str);
+	replaceCharacter(str);
 
 	std::stringstream s(str);
 
