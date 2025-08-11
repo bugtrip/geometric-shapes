@@ -70,7 +70,7 @@ void GeometricShape::replaceCharacter(std::string& input){
 	}
 }
 
-void GeometricShape::inputCoords(std::vector<Point>& pts){
+void GeometricShape::inputCoords(std::vector<Point>& pts, size_t& pointsCount){
 	double x{0.0};
 	double y{0.0};
 	std::string str;
@@ -81,7 +81,7 @@ void GeometricShape::inputCoords(std::vector<Point>& pts){
 
 	std::stringstream s(str);
 
-	for(size_t i = 0; i < pts.capacity(); ++i){
+	for(size_t i = 0; i < pointsCount; ++i){
 		if(s >> x && s >> y){
 			pts.push_back(Point(x,y));
 		} else {

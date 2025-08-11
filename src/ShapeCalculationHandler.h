@@ -34,12 +34,14 @@ public:
 	int selectConditions(Shape& shape);
 	void makeShapePtr(Shape&);
 	int calculateRectangleAreaBySides(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
+	int calculateRectangleAreaByPerim(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
+	double calculateRectangleAreaByCoords(std::vector<Point>&, size_t&);
 	int processCalculations(std::shared_ptr<Square>);
     int processCalculations(const std::shared_ptr<Rectangle>&);
     int processCalculations(std::shared_ptr<Triangle>);
-	void inputPoints(Square*, std::vector<Point>&);
-	void inputPoints(Rectangle*, std::vector<Point>&);
-	void inputPoints(Triangle*, std::vector<Point>&);
+	void inputPoints(Square*, std::vector<Point>&, size_t&);
+	void inputPoints(Rectangle*, std::vector<Point>&, size_t&);
+	void inputPoints(Triangle*, std::vector<Point>&, size_t&);
 	void inputSides(Rectangle*, double&, double&);
 	~ShapeCalculationHandler(){}
 };
