@@ -33,9 +33,10 @@ public:
 	Shape selectShapes(int shape_num);
 	int selectConditions(Shape& shape);
 	void makeShapePtr(Shape&);
-	int resultCalc(std::shared_ptr<Square>);
-    int resultCalc(std::shared_ptr<Rectangle>);
-    int resultCalc(std::shared_ptr<Triangle>);
+	int calculateRectangleAreaBySides(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
+	int processCalculations(std::shared_ptr<Square>);
+    int processCalculations(const std::shared_ptr<Rectangle>&);
+    int processCalculations(std::shared_ptr<Triangle>);
 	void inputPoints(Square*, std::vector<Point>&);
 	void inputPoints(Rectangle*, std::vector<Point>&);
 	void inputPoints(Triangle*, std::vector<Point>&);

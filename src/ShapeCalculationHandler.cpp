@@ -119,7 +119,26 @@ int ShapeCalculationHandler::selectConditions(Shape& shape){
 	return 0;
 }
 
-int ShapeCalculationHandler::resultCalc(std::shared_ptr<Square> sqSh){
+int ShapeCalculationHandler::calculateRectangleAreaBySides(const std::shared_ptr<Rectangle>& recShape, Calculations clc, Conditions cnds){
+	if(recShape == nullptr){ return -1;}
+	if(rectanglePtr != recShape){ setRectanglePtr(recShape); }
+	if(clc != area || cnds != sides){ return -1; }
+	if(rectanglePtr->getCalculations() != clc || rectanglePtr->getConditions() != cnds){ 
+		rectanglePtr->setCalculations(clc);
+		rectanglePtr->setConditions(cnds);
+	}
+	double a{0.00}, b{0.00};
+	inputSides(rectanglePtr.get(), a, b);
+	rectanglePtr->setSides(a,b,a,b);
+
+	double areaRectangleSides{0};
+	areaRectangleSides = rectanglePtr->calculateArea();
+	rectanglePtr->printCalculationResult(areaRectangleSides);
+
+	return 0;
+}
+
+int ShapeCalculationHandler::processCalculations(std::shared_ptr<Square> sqSh){
     if(squarePtr != sqSh){ setSquarePtr(sqSh); }
     if(squarePtr->getCalculations() == Calculations::area && squarePtr->getConditions() == sides) {
         double a{0.0};
@@ -172,22 +191,17 @@ int ShapeCalculationHandler::resultCalc(std::shared_ptr<Square> sqSh){
     return 0;
 }
 
-int ShapeCalculationHandler::resultCalc(std::shared_ptr<Rectangle> recSh){
+int ShapeCalculationHandler::processCalculations(const std::shared_ptr<Rectangle>& recSh){
     if(rectanglePtr != recSh){ setRectanglePtr(recSh); }
-    if(rectanglePtr->getCalculations() == Calculations::area && rectanglePtr->getConditions() == sides) {
-        double a{0},b{0};
-        /*
-		std::cin >> a >> b;
-        */
-		inputSides(rectanglePtr.get(), a, b);
-		rectanglePtr->setSides(a,b,a,b);
-        double areaRectangleSides{0};
-        areaRectangleSides = rectanglePtr->calculateArea();
-        rectanglePtr->printCalculationResult(areaRectangleSides);
-
-        return 0;
-    }
-
+    if(rectanglePtr->getCalculations() == area && rectanglePtr->getConditions() == sides){
+	int calculateResult = calculateRectangleAreaBySides(rectanglePtr, rectanglePtr->getCalculations(), rectanglePtr->getConditions());
+		if(calculateResult == -1){ 
+			std::cerr << "Ошибка в расчетах!" << std::endl; 
+			return -1; 
+		}
+		return 0;
+	}
+	
     if(rectanglePtr->getCalculations() == Calculations::area && rectanglePtr->getConditions() == coords) {
         size_t numberPoints{4};
         std::vector<Point> rectanglePointsArray;
@@ -225,7 +239,7 @@ int ShapeCalculationHandler::resultCalc(std::shared_ptr<Rectangle> recSh){
     return 0;
 }
 
-int ShapeCalculationHandler::resultCalc(std::shared_ptr<Triangle> trSh){
+int ShapeCalculationHandler::processCalculations(std::shared_ptr<Triangle> trSh){
     if(trianglePtr != trSh){ setTrianglePtr(trSh); }
     if(trianglePtr->getCalculations() == Calculations::area && trianglePtr->getConditions() == sides) {
         double a{0},b{0},c{0};

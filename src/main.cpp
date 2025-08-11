@@ -26,13 +26,16 @@ int main(){
 
 if(sh == square){               //calculations for a square
     ShapeCalculationHandler h(std::move(handler));
-    h.resultCalc(h.getSquarePtr());
+    h.processCalculations(h.getSquarePtr());
+	return 0;
 } else if(sh == rectangle) {    //calculations for a rectangle
     ShapeCalculationHandler h(std::move(handler));
-    h.resultCalc(h.getRectanglePtr());
+    h.processCalculations(h.getRectanglePtr());
+	return 0;
 } else if(sh == triangle) {     //calculations for a triangle
     ShapeCalculationHandler h(std::move(handler));
-    h.resultCalc(h.getTrianglePtr());
+    h.processCalculations(h.getTrianglePtr());
+	return 0;
 }
 
     return 0;
