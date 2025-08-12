@@ -21,7 +21,8 @@ public:
     Square(std::vector<Point>&, size_t);
     void setSides(double, double, double, double);
     void setSides(double);
-    void setPoints(std::vector<Point>&, size_t);
+    void inputSides(double&);
+	void setPoints(std::vector<Point>&, size_t);
 	void getSides(double&, double&, double&, double&) const;
     void setConditions(Conditions) override;
     void setCalculations(Calculations) override;

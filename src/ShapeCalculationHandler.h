@@ -33,17 +33,24 @@ public:
 	Shape selectShapes(int shape_num);
 	int selectConditions(Shape& shape);
 	void makeShapePtr(Shape&);
-	int calculateRectangleAreaBySides(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
-	int calculateRectangleAreaByPerim(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
+	double calculateSquareAreaBySides(const std::shared_ptr<Square>&, Calculations, Conditions);
+	double calculateRectangleAreaBySides(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
+	double calculateRectangleAreaByPerim(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
 	double calculateRectangleAreaByCoords(std::vector<Point>&, size_t&);
+	double calculateRectanglePerimBySides(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
 	int processCalculations(std::shared_ptr<Square>);
     int processCalculations(const std::shared_ptr<Rectangle>&);
     int processCalculations(std::shared_ptr<Triangle>);
-	void inputPoints(Square*, std::vector<Point>&, size_t&);
-	void inputPoints(Rectangle*, std::vector<Point>&, size_t&);
-	void inputPoints(Triangle*, std::vector<Point>&, size_t&);
+	template<typename Type>
+	void inputPoints(Type*, std::vector<Point>&, size_t&);
 	void inputSides(Rectangle*, double&, double&);
+	void inputSides(Square*, double&);
 	~ShapeCalculationHandler(){}
 };
+
+template<typename Type>
+void ShapeCalculationHandler::inputPoints(Type* shapePtr, std::vector<Point>& points, size_t& pointCount){
+	shapePtr->inputCoords(points, pointCount);
+}
 
 #endif

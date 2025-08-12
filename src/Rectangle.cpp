@@ -75,11 +75,14 @@ bool Rectangle::checkValidRectangle(double a, double b, double c, double d){
 }
 
 double Rectangle::calculatePerimeter() {
-    return a + b + c + d;
+    if(a != 0 && b != 0){
+		return a + b + c + d;
+	}
+	return -1;
 }
 
 double Rectangle::calculateArea(double perim, double a) {
-    if(perim > a) {
+    if(perim > a && a != 0) {
         this->a = a;
         this->b = 0;
         this->c = 0;
@@ -92,7 +95,10 @@ double Rectangle::calculateArea(double perim, double a) {
 }
 
 double Rectangle::calculateArea(){
-    return a * b;
+    if(a != 0 && b != 0){
+		return a * b;
+	}
+	return -1;
 }
 
 

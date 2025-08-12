@@ -31,6 +31,17 @@ void Square::setSides(double a){
     }
 }
 
+void Square::inputSides(double& a){
+	std::string str;
+	std::cin.ignore();
+	std::getline(std::cin, str);
+	if(str.empty()){ return ; }
+	replaceCharacter(str);
+
+	std::stringstream ss(str);
+	ss >> a;
+}
+
 void Square::getSides(double& a, double& b, double& c, double& d) const {
     a = this->a;
     b = this->b;
@@ -87,7 +98,8 @@ double Square::calculatePerimeter(std::vector<Point>& points, size_t len){
 }
 
 double Square::calculateArea(){
-    return a * a;
+    if(a != 0) { return a * a; }
+	return -1;
 }
 
 double Square::calculateArea(std::vector<Point>& points, size_t len){
