@@ -1,6 +1,7 @@
 #include "Triangle.h"
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 Triangle::Triangle(double a = 0.0, double b = 0.0, double c = 0.0){
     setSides(a,b,c);
@@ -25,6 +26,19 @@ void Triangle::setSides(double a, double b, double c){
         this->b = b;
         this->c = c;
     }
+}
+
+void Triangle::inputSides(double& a, double& b, double& c){
+	std::string str;
+	std::cin.ignore();
+	std::getline(std::cin, str);
+	if(str.empty()){ return ; }
+	replaceCharacter(str);
+
+	std::stringstream ss(str);
+	ss >> a;
+	ss >> b;
+	ss >> c;
 }
 
 void Triangle::setConditions(Conditions cnds) {
@@ -67,7 +81,11 @@ std::vector<Point>& Triangle::getPoints(){
 }
 
 double Triangle::calculatePerimeter(){
-    return a + b + c;
+    if(checkValidTriangle(a,b,c)){
+
+		return a + b + c;
+	}
+	return -1;
 }
 
 double Triangle::calculatePerimeter(std::vector<Point>& points, size_t len){
@@ -84,9 +102,7 @@ double Triangle::calculatePerimeter(std::vector<Point>& points, size_t len){
 
 double Triangle::calculateArea(double a, double b, double c){
 	if(checkValidTriangle(a,b,c)){
-        this->a = a;
-        this->b = b;
-        this->c = c;
+        setSides(a,b,c);
 
         double hperim = calculatePerimeter()/2;
         return sqrt(hperim * (hperim - this->a) * (hperim - this->b) * (hperim - this->c));

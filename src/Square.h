@@ -33,8 +33,8 @@ public:
     virtual double calculatePerimeter() override;
     virtual double calculatePerimeter(std::vector<Point>&, size_t);
     std::vector<Point>& getPoints();
-    virtual double calculateArea();                                               //calculation of the area of a shape based on sides
-    virtual double calculateArea(std::vector<Point>&, size_t) override;//calculation of the area of a shape based on coordinates
+    virtual double calculateArea();                                         //calculation of the area of a shape based on sides
+    virtual double calculateArea(std::vector<Point>&, size_t) override;		//calculation of the area of a shape based on coordinates
     virtual int availableCalculations();
     virtual void showConditions(Calculations& clc) override;
     virtual void showCalculations() override;

@@ -19,7 +19,8 @@ public:
 	Triangle(double, double, double);
     Triangle(std::vector<Point>&, size_t);
     void setSides(double, double, double);
-    void setPoints(std::vector<Point>&, size_t);
+    void inputSides(double&, double&, double&);
+	void setPoints(std::vector<Point>&, size_t);
     void getSides(double&, double&, double&) const;
     void setConditions(Conditions) override;
     void setCalculations(Calculations) override;

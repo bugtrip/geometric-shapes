@@ -83,7 +83,10 @@ bool Square::checkValidSquare(double a, double b, double c, double d){
 }
 
 double Square::calculatePerimeter(){
-    return a + b + c + d;
+	if(a != 0){
+		return a + b + c + d;
+	}
+	return -1;
 }
 
 double Square::calculatePerimeter(std::vector<Point>& points, size_t len){

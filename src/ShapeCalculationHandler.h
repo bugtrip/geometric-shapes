@@ -8,7 +8,6 @@
 
 class ShapeCalculationHandler{
 private:
-    //GeometricShape* shape_proc;
     Shape shape{none_sh};
 	std::shared_ptr<Square> squarePtr{nullptr};
     std::shared_ptr<Rectangle> rectanglePtr{nullptr};
@@ -34,17 +33,25 @@ public:
 	int selectConditions(Shape& shape);
 	void makeShapePtr(Shape&);
 	double calculateSquareAreaBySides(const std::shared_ptr<Square>&, Calculations, Conditions);
+	double calculateSquareAreaByCoords(std::vector<Point>&, size_t&);
+	double calculateSquarePerimBySides(const std::shared_ptr<Square>&, Calculations, Conditions);
+	double calculateSquarePerimByCoords(std::vector<Point>&, size_t&);
 	double calculateRectangleAreaBySides(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
 	double calculateRectangleAreaByPerim(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
 	double calculateRectangleAreaByCoords(std::vector<Point>&, size_t&);
 	double calculateRectanglePerimBySides(const std::shared_ptr<Rectangle>&, Calculations, Conditions);
-	int processCalculations(std::shared_ptr<Square>);
+	double calculateTriangleAreaBySides(const std::shared_ptr<Triangle>&, Calculations, Conditions);
+	double calculateTriangleAreaByCoords(std::vector<Point>&, size_t&);
+	double calculateTrianglePerimBySides(const std::shared_ptr<Triangle>&, Calculations, Conditions);
+	double calculateTrianglePerimByCoords(std::vector<Point>&, size_t&);
+	int processCalculations(const std::shared_ptr<Square>&);
     int processCalculations(const std::shared_ptr<Rectangle>&);
-    int processCalculations(std::shared_ptr<Triangle>);
+    int processCalculations(const std::shared_ptr<Triangle>&);
 	template<typename Type>
 	void inputPoints(Type*, std::vector<Point>&, size_t&);
 	void inputSides(Rectangle*, double&, double&);
 	void inputSides(Square*, double&);
+	void inputSides(Triangle*, double&, double&, double&);
 	~ShapeCalculationHandler(){}
 };
 
