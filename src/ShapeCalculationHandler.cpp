@@ -71,12 +71,12 @@ void ShapeCalculationHandler::inputSides(Triangle* shape, double& a, double& b, 
 	shape->inputSides(a,b,c);
 }
 
-Shape ShapeCalculationHandler::selectShapes(int shape_num){
+Shape ShapeCalculationHandler::selectShapes(int numberShape){
 	Shape sh{none_sh};
-    sh = (shape_num == 1) ? square
-       : (shape_num == 2) ? rectangle
-       : (shape_num == 3) ? triangle
-       : (shape_num == 0) ? exit_sh
+    sh = (numberShape == 1) ? square
+       : (numberShape == 2) ? rectangle
+       : (numberShape == 3) ? triangle
+       : (numberShape == 0) ? exit_sh
        : none_sh;
 
 	return sh;
@@ -97,13 +97,16 @@ int ShapeCalculationHandler::selectConditions(Shape& shape){
 	if(this->shape != shape){ setShapeHandler(shape); }
 	switch(this->shape){
 		case square:
-			if(squarePtr != nullptr) { squarePtr->availableCalculations(); }
+			if(squarePtr == nullptr) { return -1; } 
+			squarePtr->availableCalculations();
 			break;
 		case rectangle:
-			if(rectanglePtr != nullptr){ rectanglePtr->availableCalculations(); }
+			if(rectanglePtr == nullptr){ return -1; }
+			rectanglePtr->availableCalculations();
 			break;
 		case triangle:
-			if(trianglePtr != nullptr){ trianglePtr->availableCalculations(); }
+			if(trianglePtr == nullptr){ return -1; }
+			trianglePtr->availableCalculations();
 			break;
 		case exit_sh:
 			return 0;
