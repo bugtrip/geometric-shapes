@@ -48,15 +48,15 @@ public:
     int processCalculations(const std::shared_ptr<Rectangle>&);
     int processCalculations(const std::shared_ptr<Triangle>&);
 	template<typename Type>
-	void inputPoints(Type*, std::vector<Point>&, size_t&);
-	void inputSides(Rectangle*, double&, double&);
-	void inputSides(Square*, double&);
-	void inputSides(Triangle*, double&, double&, double&);
+	void inputPoints(Type&, std::vector<Point>&, size_t&);
+	void inputSides(std::shared_ptr<Square>&, double&);
+	void inputSides(std::shared_ptr<Rectangle>&, double&, double&);
+	void inputSides(std::shared_ptr<Triangle>&, double&, double&, double&);
 	~ShapeCalculationHandler(){}
 };
 
 template<typename Type>
-void ShapeCalculationHandler::inputPoints(Type* shapePtr, std::vector<Point>& points, size_t& pointCount){
+void ShapeCalculationHandler::inputPoints(Type& shapePtr, std::vector<Point>& points, size_t& pointCount){
 	shapePtr->inputCoords(points, pointCount);
 }
 

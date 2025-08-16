@@ -59,15 +59,15 @@ std::shared_ptr<Triangle>& ShapeCalculationHandler::getTrianglePtr(){
 	return trianglePtr;
 }
 
-void ShapeCalculationHandler::inputSides(Square* shape, double& a){
+void ShapeCalculationHandler::inputSides(std::shared_ptr<Square>& shape, double& a){
 	shape->inputSides(a);
 }
 
-void ShapeCalculationHandler::inputSides(Rectangle* shape, double& a, double& b){
+void ShapeCalculationHandler::inputSides(std::shared_ptr<Rectangle>& shape, double& a, double& b){
 	shape->inputSides(a,b);
 }
 
-void ShapeCalculationHandler::inputSides(Triangle* shape, double& a, double& b, double& c){
+void ShapeCalculationHandler::inputSides(std::shared_ptr<Triangle>& shape, double& a, double& b, double& c){
 	shape->inputSides(a,b,c);
 }
 
@@ -126,7 +126,7 @@ double ShapeCalculationHandler::calculateSquareAreaBySides(const std::shared_ptr
 	if(squarePtr->getConditions() != cnds){ squarePtr->setConditions(cnds); }
 
 	double a{0.0};
-	inputSides(squarePtr.get(), a);
+	inputSides(squarePtr, a);
 	squarePtr->setSides(a);
 	double squareAreaSides = squarePtr->calculateArea();
 
@@ -135,7 +135,7 @@ double ShapeCalculationHandler::calculateSquareAreaBySides(const std::shared_ptr
 
 double ShapeCalculationHandler::calculateSquareAreaByCoords(std::vector<Point>& squarePointsArray, size_t& pointsCount){
 	if(squarePtr != nullptr){
-		inputPoints(squarePtr.get(), squarePointsArray, pointsCount);
+		inputPoints(squarePtr, squarePointsArray, pointsCount);
 		double squareAreaCoords = squarePtr->calculateArea(squarePointsArray, pointsCount);
 	
 		return squareAreaCoords;
@@ -151,7 +151,7 @@ double ShapeCalculationHandler::calculateSquarePerimBySides(const std::shared_pt
 	if(squarePtr->getConditions()){ squarePtr->setConditions(cnds); }
 
 	double a{0.00};
-	inputSides(squarePtr.get(), a);
+	inputSides(squarePtr, a);
 	squarePtr->setSides(a);
 	double squarePerimSides = squarePtr->calculatePerimeter();
 
@@ -160,7 +160,7 @@ double ShapeCalculationHandler::calculateSquarePerimBySides(const std::shared_pt
 
 double ShapeCalculationHandler::calculateSquarePerimByCoords(std::vector<Point>& squarePointsArray, size_t& pointsCount){
 	if(squarePtr != nullptr){	
-		inputPoints(squarePtr.get(), squarePointsArray, pointsCount);
+		inputPoints(squarePtr, squarePointsArray, pointsCount);
 		double squarePerimCoords = squarePtr->calculatePerimeter(squarePointsArray, pointsCount);
 
 		return squarePerimCoords;
@@ -177,7 +177,7 @@ double ShapeCalculationHandler::calculateRectangleAreaBySides(const std::shared_
 		rectanglePtr->setConditions(cnds);
 	}
 	double a{0.00}, b{0.00};
-	inputSides(rectanglePtr.get(), a, b);
+	inputSides(rectanglePtr, a, b);
 	rectanglePtr->setSides(a,b,a,b);
 	double rectangleAreaSides = rectanglePtr->calculateArea();
 
@@ -186,7 +186,7 @@ double ShapeCalculationHandler::calculateRectangleAreaBySides(const std::shared_
 
 double ShapeCalculationHandler::calculateRectangleAreaByCoords(std::vector<Point>& rectanglePointsArray, size_t& pointsCount){
 	if(rectanglePtr != nullptr){
-		inputPoints(rectanglePtr.get(), rectanglePointsArray, pointsCount);
+		inputPoints(rectanglePtr, rectanglePointsArray, pointsCount);
 		double rectangleAreaCoords = rectanglePtr->calculateArea(rectanglePointsArray, pointsCount);
 
 		return rectangleAreaCoords;
@@ -202,7 +202,7 @@ double ShapeCalculationHandler::calculateRectangleAreaByPerim(const std::shared_
 	if(rectanglePtr->getConditions() != cnds){ rectanglePtr->setConditions(cnds); }
 	
 	double perim{0.00}, a{0.00};
-	inputSides(rectanglePtr.get(), perim, a);
+	inputSides(rectanglePtr, perim, a);
 	double rectangleAreaPerim = rectanglePtr->calculateArea(perim, a);
 
 	return rectangleAreaPerim;
@@ -216,7 +216,7 @@ double ShapeCalculationHandler::calculateRectanglePerimBySides(const std::shared
 	if(rectanglePtr->getConditions() != cnds){ rectanglePtr->setConditions(cnds); }
 	
 	double a{0.00}, b{0.00};
-	inputSides(rectanglePtr.get(), a, b);
+	inputSides(rectanglePtr, a, b);
 	rectanglePtr->setSides(a,b,a,b);
 	double rectanglePerimeterSides = rectanglePtr->calculatePerimeter();
 
@@ -231,7 +231,7 @@ double ShapeCalculationHandler::calculateTriangleAreaBySides(const std::shared_p
 	if(trianglePtr->getConditions() != cnds){ trianglePtr->setConditions(cnds); }
 	
 	double a{0.00}, b{0.00}, c{0.00};
-	inputSides(trianglePtr.get(), a, b, c);
+	inputSides(trianglePtr, a, b, c);
 	double triangleAreaSides = trianglePtr->calculateArea(a,b,c);
 
 	return triangleAreaSides;
@@ -239,7 +239,7 @@ double ShapeCalculationHandler::calculateTriangleAreaBySides(const std::shared_p
 
 double ShapeCalculationHandler::calculateTriangleAreaByCoords(std::vector<Point>& trianglePointsArray, size_t& pointsCount){
 	if(trianglePtr != nullptr){
-		inputPoints(trianglePtr.get(), trianglePointsArray, pointsCount);
+		inputPoints(trianglePtr, trianglePointsArray, pointsCount);
 		double triangleAreaCoords = trianglePtr->calculateArea(trianglePointsArray, pointsCount);
 
 		return triangleAreaCoords;
@@ -255,7 +255,7 @@ double ShapeCalculationHandler::calculateTrianglePerimBySides(const std::shared_
 	if(trianglePtr->getConditions() != cnds){ trianglePtr->setConditions(cnds); }
 
 	double a{0.00}, b{0.00}, c{0.00};
-	inputSides(trianglePtr.get(), a, b, c);
+	inputSides(trianglePtr, a, b, c);
 	trianglePtr->setSides(a,b,c);
 	double trianglePerimSides = trianglePtr->calculatePerimeter();
 
@@ -264,7 +264,7 @@ double ShapeCalculationHandler::calculateTrianglePerimBySides(const std::shared_
 
 double ShapeCalculationHandler::calculateTrianglePerimByCoords(std::vector<Point>& trianglePointsArray, size_t& pointsCount){
 	if(trianglePtr != nullptr){
-		inputPoints(trianglePtr.get(), trianglePointsArray, pointsCount);
+		inputPoints(trianglePtr, trianglePointsArray, pointsCount);
 		double trianglePerimCoords = trianglePtr->calculatePerimeter(trianglePointsArray, pointsCount);
 
 		return trianglePerimCoords;

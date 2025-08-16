@@ -15,8 +15,9 @@ int main(){
 	ShapeCalculationHandler handler(sh);
 	std::cin >> shapeNum;
 	std::cout << "\n";
-	handler.setShapeHandler(handler.selectShapes(shapeNum));
-	sh = handler.getShapeHandler();
+	sh = handler.selectShapes(shapeNum);
+	if(sh == none_sh){ return 0; }
+	handler.setShapeHandler(sh);
 	handler.makeShapePtr(sh);
 
 //selection of conditions for calculations
